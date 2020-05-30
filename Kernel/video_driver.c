@@ -60,7 +60,7 @@ void writePixel(int x, int y) { //x es el width, y es el height
 	pos[2] = 255; //ROJO
 }
 void writeScreen(int x, int y) {
-		char * pos = getPixelDataByPosition(x,y); // &(screen_info).framebuffer
+	char * pos = getPixelDataByPosition(x,y); // &(screen_info).framebuffer
 	pos[0] = 0;//AZUL
 	pos[1] = 0;//VERDE
 	pos[2] = 0; //ROJO
@@ -76,7 +76,7 @@ void clear(void){
 void printCharByPixel(int x, int y,char ascii) { //PASAR DE MOVERSE POR PIXELES A MOVERSE POR LINEAS Y CARACTERES
 	for(int i = 0; i < 8*MULT; i++)
 		for(int j = 0; j < 8*MULT;j++) {
-			if((font8x8_basic[ascii][i/MULT] & mask[7-j/MULT]) != 0){ // EL HOMBRE QUE ARMO EL FONT HIZO TODO AL REVEZ!!!
+			if((font8x8_basic[ascii][i/MULT] & mask[7-j/MULT]) != 0){ // EL HOMBRE QUE ARMO EL FONT HIZO TODO AL REVEZ!!!     0000000
 				writePixel(x+j,y+i);
 			}
 			else
@@ -95,7 +95,7 @@ void printLineByPixel(int x, int y, char * string) {
 void printChar(char ascii) {
 	printCharByPixel(pos*(MULT*8),line*(MULT*8),ascii);
 	pos++;
-	if(pos >= CHARACTERS ) {
+	if(pos >= CHARACTERS) {
 		newLine();
 	}
 }
@@ -116,7 +116,3 @@ void newLine(void) {
 	line++;
 	pos = 0;
 }
-
-
-
-

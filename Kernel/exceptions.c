@@ -9,5 +9,7 @@ void exceptionDispatcher(int exception) {
 }
 
 static void zero_division() {
+	//printLine("Usted trato de dividir por cero!");
+	//printLine("Usted se tiene que arrepentir de lo que hizo");
 	// Handler para manejar excepcíon
 }
