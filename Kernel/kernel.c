@@ -124,6 +124,7 @@ int main()
 	printLine("Hol4 Mund0");
 	printLine("H0l4 Mund0");
 	printLine("H014 Mund0");
+	while(1);
 
 	return 0;
 }
