@@ -1,6 +1,6 @@
 #include <keyboard.h>
 
-char keyPressed();
+extern char keyPressed();
 extern char getKey();
 
 static char asccode[58][2] ={ {0,0}, {0,0}, {'1', '!'}, {'2', '@'}, {'3', '#'},{'4', '$'},{'5','%'},{'6','^'},{'7','&'},{'8','*'},{'9','('},{'0',')'},{'-','_'},{'-','+'},{'\b', '\b'},{'\t','\t'},
@@ -20,15 +20,15 @@ void keyboard_handler(){
 	unsigned char keyPress;
 	if(wasKeyPressed()){
 		scancode = getKey();
-	}
-	if(scancode == 54){
-		shift =1;
-	}
-	else if (scancode == 182){
-		shift = 0;
-	}
-	if(scancode <128){
-		keyPress = asccode[scancode][shift];
-		printChar(keyPress);
+		if(scancode == 54){
+			shift =1;
+		}
+		else if (scancode == 182){
+			shift = 0;
+		}
+		else if(scancode <128){
+			keyPress = asccode[scancode][shift];
+			printChar(keyPress);
+		}
 	}
 }
