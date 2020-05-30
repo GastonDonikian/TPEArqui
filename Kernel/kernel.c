@@ -119,11 +119,7 @@ int main()
 	ncNewline();
 	ncPrint("[Finished]");
 	
-	printLine("Hola Mundo");
-	printLine("Hola Mund0");
-	printLine("Hol4 Mund0");
-	printLine("H0l4 Mund0");
-	printLine("H014 Mund0");
+	printLine("Hola Mundo, como estas sabias que");
 
 	return 0;
 }
