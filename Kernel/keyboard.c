@@ -1,21 +1,34 @@
 #include <keyboard.h>
 
 char keyPressed();
-char getKey();
+extern char getKey();
 
-char map[] = {0,0,'1','2','3','4','5','6','7','8','9','0',0,0,0,0,'q','w','e','r',
-'t','y','u','i','o','p',0,0,0,0,'a','s','d','f','g','h','j','k','l','ñ',0,0,0,0,'z','x','c','v','b','n','m',',','.'};
+static char asccode[58][2] ={ {0,0}, {0,0}, {'1', '!'}, {'2', '@'}, {'3', '#'},{'4', '$'},{'5','%'},{'6','^'},{'7','&'},{'8','*'},{'9','('},{'0',')'},{'-','_'},{'-','+'},{'\b', '\b'},{'\t','\t'},
+ {'q','Q'}, {'w','W'}, {'e','E'},{'r','R'},{'t','T'},{'y','Y'},{'u','U'},{'i','I'},{'o','O'},{'p','P'},{'[','{'},{']','}'},
+ {'\n','\n'},{0,0},{'a','A'},{'s','S'},{'d','D'},{'f','F'},{'g','G'},{'h','H'},{'j','J'},{'k','K'},{'l','L'}, {';',':'},{'\'', '\"'},{'°','~'},{0,0},{'\\','|'},
+ {'z','Z'},{'x','X'},{'c','C'},{'v','V'},{'b','B'},{'n','N'},{'m','M'}, {',', '<'},{'.','>'},
+ {'/','?'},{0,0},{0,0},{0,0},{' ',' '}};
+
 
 char wasKeyPressed(){
 	return keyPressed();
 }
 
-char getKeyPressed() {
-	if(wasKeyPressed()) {
-		unsigned char c = getKey();
-		if(c > 52)
-			return 0;
-		ncPrintChar(map[c]);
+void keyboard_handler(){
+	static char shift;
+	unsigned char scancode =250;
+	unsigned char keyPress;
+	if(wasKeyPressed()){
+		scancode = getKey();
 	}
-	return 0;
+	if(scancode == 54){
+		shift =1;
+	}
+	else if (scancode == 182){
+		shift = 0;
+	}
+	if(scancode <128){
+		keyPress = asccode[scancode][shift];
+		printChar(keyPress);
+	}
 }
