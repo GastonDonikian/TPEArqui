@@ -2,5 +2,5 @@
 #ifndef _keyboard_
 #define _keyboard_ 
 char wasKeyPressed();
-char getKeyPressed();
+void keyboard_handler();
 #endif
