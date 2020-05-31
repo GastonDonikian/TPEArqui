@@ -124,6 +124,8 @@ int main()
 	initializeScreen();
 	printLine("Hola Mundo, como estas sabias que");
 	printLine("Hola Mundo, segunda pantalla");
+	printCharAt('H',4);
+	selector(1);
 	while(1);
 	return 0;
 }
