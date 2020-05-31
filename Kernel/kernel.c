@@ -120,5 +120,6 @@ int main()
 	ncPrint("[Finished]");
 	
 	printLine("Hola Mundo, como estas sabias que");
+	while(1);
 	return 0;
 }
