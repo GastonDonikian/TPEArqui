@@ -1,5 +1,6 @@
 #include <keyboard.h>
-
+#include "screenManager.h"
+#define BUFFERSIZE 24
 extern char keyPressed();
 extern char getKey();
 
@@ -9,6 +10,9 @@ static char asccode[58][2] ={ {0,0}, {0,0}, {'1', '!'}, {'2', '@'}, {'3', '#'},{
  {'z','Z'},{'x','X'},{'c','C'},{'v','V'},{'b','B'},{'n','N'},{'m','M'}, {',', '<'},{'.','>'},
  {'/','?'},{0,0},{0,0},{0,0},{' ',' '}};
 
+int buffer_position = 0;
+char buffer[BUFFERSIZE];
+int reading_position= 0;
 
 char wasKeyPressed(){
 	return keyPressed();
@@ -28,7 +32,23 @@ void keyboard_handler(){
 		}
 		else if(scancode <128){
 			keyPress = asccode[scancode][shift];
-			printChar(keyPress);
+			addToBuffer(keyPress);
 		}
+	}
+}
+void addToBuffer(char key){
+	if (buffer_position < BUFFERSIZE){
+		buffer[buffer_position++] = key;
+	}
+	else {
+		buffer_position=0;
+		buffer[buffer_position++]= key;
+	}
+}
+
+void keyboard_reader(char * result, int count){
+	for (int i= 0; i < count && buffer[reading_position]!=0; i++){
+		result[i]=buffer[reading_position];
+		buffer[reading_position++]=0;
 	}
 }
