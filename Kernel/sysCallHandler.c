@@ -26,7 +26,7 @@ sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 }
 
 void read(uint64_t buffer, uint64_t count) {
-	timer_handler();
+	keyboard_reader(buffer, count);
 }
 
 void write(uint64_t buffer, uint64_t count, uint64_t upordown){

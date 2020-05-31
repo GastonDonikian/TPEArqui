@@ -112,6 +112,9 @@ int main()
 	printLine("Hola Mundo, segunda pantalla");
 	printCharAt('H',4);
 	selector(1);
-	while(1);
+	char hola[30];
+	while(1){
+		keyboard_reader(hola, 1);
+	}
 	return 0;
 }
