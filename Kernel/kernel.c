@@ -37,20 +37,6 @@ void * getStackBase()
 	);
 }
 
-void printGreenChar(char c) {
-	static char * screen 
-= 0xB8000;
-
-	*screen = c;
-	*(screen+1) = 2;
-	screen = screen + 2;
-}
-
-void printGreenText(char * string) {
-	while(*string != 0)
-		printGreenChar(*string++);
-}
-
 void * initializeKernelBinary()
 {
 	char buffer[10];
