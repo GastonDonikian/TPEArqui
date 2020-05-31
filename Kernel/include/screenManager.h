@@ -9,7 +9,7 @@ void printLine(char * string);
 void clearScreen();
 void newLine(void);
 void printCharAt(unsigned char ascii, unsigned char line);
-void print(char * string)
+void print(char * string);
 void printAt(char * string, unsigned char line) ;
 void printLineAt(char * string, unsigned char line);
 
