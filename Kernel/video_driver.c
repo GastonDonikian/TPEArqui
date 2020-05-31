@@ -47,6 +47,7 @@ struct vbe_mode_info_structure {
 
 struct vbe_mode_info_structure * screen_info = 0x5C00;
 unsigned char mask[] = {128,64,32,16,8,4,2,1};
+
 int pos = 0; //Caracter de la pantalla
 int line = 0; //linea en la pantalla
 char * getPixelDataByPosition(int x, int y) {
