@@ -7,6 +7,7 @@
 #include <time.h>
 #include <keyboard.h>
 #include "video_driver.h"
+#include "screenManager.h"
 extern uint8_t text;
 extern uint8_t rodata;
 extern uint8_t data;
@@ -118,8 +119,11 @@ int main()
 	ncPrint((char*)sampleDataModuleAddress);
 	ncNewline();
 	ncPrint("[Finished]");
-	
+
+
+	initializeScreen();
 	printLine("Hola Mundo, como estas sabias que");
+	printLine("Hola Mundo, segunda pantalla");
 	while(1);
 	return 0;
 }

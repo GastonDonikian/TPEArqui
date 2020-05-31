@@ -69,11 +69,11 @@ void writeScreen(int x, int y) {
 void clear(void){
 	for(int i = 0; i < HEIGHT;i++)
 		for(int j = 0; j < WIDTH;j++){
-			writeScreen(i,j);
+			writeScreen(j,i);
 		}	
 }
 
-void printCharByPixel(int x, int y,char ascii) { //PASAR DE MOVERSE POR PIXELES A MOVERSE POR LINEAS Y CARACTERES
+void printCharByPixel(int x, int y,unsigned char ascii) { //PASAR DE MOVERSE POR PIXELES A MOVERSE POR LINEAS Y CARACTERES
 	for(int i = 0; i < 8*MULT; i++)
 		for(int j = 0; j < 8*MULT;j++) {
 			if((font8x8_basic[ascii][i/MULT] & mask[7-j/MULT]) != 0){ // EL HOMBRE QUE ARMO EL FONT HIZO TODO AL REVEZ!!!     0000000
@@ -84,7 +84,7 @@ void printCharByPixel(int x, int y,char ascii) { //PASAR DE MOVERSE POR PIXELES 
 		}
 }
 
-void printLineByPixel(int x, int y, char * string) {
+/*void printLineByPixel(int x, int y, char * string) {
 	int i = 0;
 	while(string[i] != 0) {
 		printCharByPixel(x + 8*i*MULT,y,string[i]);
@@ -115,4 +115,4 @@ void newLine(void) {
 	}
 	line++;
 	pos = 0;
-}
+}*/
