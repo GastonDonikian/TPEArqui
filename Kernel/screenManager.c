@@ -16,7 +16,7 @@ unsigned char select = 0;
 
 void cleanLine(unsigned char line);
 
-void printChar(unsigned char ascii) { //imprime un caracter
+void printChar(unsigned char ascii){ //imprime un caracter
 	printCharByPixel(posScreen[select]*CHAR_SIZE + SCREEN_WIDTH *select,lineScreen[select]*CHAR_SIZE,ascii);
 	posScreen[select]++;
 	if(posScreen[select] >= CHARACTERS) {
@@ -24,7 +24,7 @@ void printChar(unsigned char ascii) { //imprime un caracter
 	}
 }
 
-void printCharAt(unsigned char ascii, unsigned char line) { //imprime un caracter en la linea especificada
+void printCharAt(unsigned char ascii, unsigned char line){ //imprime un caracter en la linea especificada
 	if(line <= 0)
 		return;
 	if(line != lineScreen[select]) {
@@ -35,12 +35,12 @@ void printCharAt(unsigned char ascii, unsigned char line) { //imprime un caracte
 	printChar(ascii);
 }
 
-void printLineAt(char * string, unsigned char line) { //imprime una linea en la linea especificada
+void printLineAt(char * string, unsigned char line){ //imprime una linea en la linea especificada
 	printAt(string,line);
 	newLine();
 }
 
-void printAt(char * string, unsigned char line) { //IMPRIME UN STRING DE CARACTERES EN LA LINEA DADA, NO IMPRIME UNA LINEA
+void printAt(char * string, unsigned char line){ //IMPRIME UN STRING DE CARACTERES EN LA LINEA DADA, NO IMPRIME UNA LINEA
 	if(line <= 0)
 		return;
 	if(line != lineScreen[select]) {
@@ -51,7 +51,7 @@ void printAt(char * string, unsigned char line) { //IMPRIME UN STRING DE CARACTE
 	print(string);
 }
 
-void cleanLine(unsigned char line) { //BORRA LA LINEA DE LA PANTALLA SELECCIONADA
+void cleanLine(unsigned char line){ //BORRA LA LINEA DE LA PANTALLA SELECCIONADA
 	for(int i = 0; i < SCREEN_WIDTH;i++) {
 		for(int j = 0; j < CHAR_SIZE; j++) {
 			writeScreen(i + SCREEN_WIDTH*select,j + line*CHAR_SIZE);
@@ -59,7 +59,7 @@ void cleanLine(unsigned char line) { //BORRA LA LINEA DE LA PANTALLA SELECCIONAD
 	}
 }
 
-void selector(unsigned char screen) { //CAMBIA EL SELECT Y INICIALIZA LA PRIMER LINEA
+void selector(unsigned char screen){ //CAMBIA EL SELECT Y INICIALIZA LA PRIMER LINEA
 	select = screen;
 	initializeScreen();
 }
@@ -126,6 +126,5 @@ void newLine(void) { //IMPRIME UNA LINEA /n
 	lineScreen[select]++;
 	posScreen[select] = 0;
 }
-
 //void scrollUp();
 //void scrollDown();
