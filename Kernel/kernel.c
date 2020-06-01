@@ -107,14 +107,8 @@ int main()
 	ncPrint("[Finished]");
 
 
-	initializeScreen();
-	printLine("Hola Mundo, como estas sabias que");
-	printLine("Hola Mundo, segunda pantalla");
-	printCharAt('H',4);
-	selector(1);
-	char hola[30];
-	while(1){
-		keyboard_reader(hola, 1);
-	}
+	initializeScreen(0);
+	print("Hola segundo, soy la primer screen me quiero pasar de palabras a ver si escribe bien dos pantallas");
+	selector();
 	return 0;
 }
