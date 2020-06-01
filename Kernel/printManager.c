@@ -19,7 +19,7 @@ void screenWriter(char * buffer, uint64_t count, uint64_t upordown){
 	upDown = upordown;
 	for (int i = 0; i < count; i++){
 		if(buffer[i]=='\n'){
-			newLine(); //CAMBIAR ACA?
+			newLine(); 
 		}
 		if(buffer[i]=='\t'){
 			print("		");
