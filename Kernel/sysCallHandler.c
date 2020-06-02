@@ -5,7 +5,7 @@
 sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 	switch(rcx){
 		case 0:
-			read(rdi, rsi);
+			read(rdi);
 			break;
 		case 1:
 			write(rdi, rsi, rdx);
@@ -27,16 +27,16 @@ sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 	return;
 }
 
-void read(uint64_t buffer, uint64_t count) {
-	keyboard_reader(buffer, count);
+void read(uint64_t buffer) {
+	keyboard_reader(buffer);
 }
 
 void write(uint64_t buffer, uint64_t count, uint64_t upordown){
-	screenWriter();
+	screenWriter(buffer, count, upordown);
 }
 
 void switchScreen(uint64_t side) {
-	selector();
+	selector(side);
 }
 
 void time(uint64_t buffer){
