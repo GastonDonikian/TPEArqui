@@ -36,7 +36,7 @@ void write(uint64_t buffer, uint64_t count, uint64_t upordown){
 }
 
 void switchScreen(uint64_t side) {
-	selector()
+	selector();
 }
 
 void time(uint64_t buffer){

@@ -87,7 +87,7 @@ void * initializeKernelBinary()
 int main()
 {	
 	load_idt();
-
+	initializeScreen(0);
 	ncPrint("[Kernel Main]");
 	ncNewline();
 	ncPrint("  Sample code module at 0x");
@@ -105,10 +105,5 @@ int main()
 	ncPrint((char*)sampleDataModuleAddress);
 	ncNewline();
 	ncPrint("[Finished]");
-
-
-	initializeScreen(0);
-	print("Hola segundo, soy la primer screen me quiero pasar de palabras a ver si escribe bien dos pantallas");
-	selector();
 	return 0;
 }

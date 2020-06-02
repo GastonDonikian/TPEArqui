@@ -1,4 +1,6 @@
 /* sampleCodeModule.c */
+#include <stdint.h>
+void write(char * buf, uint64_t count, uint64_t abajoarriba);
 
 char * v = (char*)0xB8000 + 79 * 2;
 
@@ -7,6 +9,8 @@ static int var2 = 0;
 
 
 int main() {
+	char hola[]="Hola mundo";
+	write(hola, 10, 0);
 	//All the following code may be removed 
 	*v = 'X';
 	*(v+1) = 0x74;
