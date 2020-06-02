@@ -108,7 +108,18 @@ int main()
 
 
 	initializeScreen(0);
-	print("Hola segundo, soy la primer screen me quiero pasar de palabras a ver si escribe bien dos pantallas");
+	print("Hola segundo");
+	newLine();
+	print("Voy a ser copiado");
+	copyLine(2,20);
+	newLine();
+	printChar('C');
+	newLine();
+	printLine("Hola soy una nueva linea");
+	newLine();
+	printChar('H');
 	selector();
+	while(1);
+	
 	return 0;
 }

@@ -85,9 +85,8 @@ void printCharByPixel(int x, int y,unsigned char ascii) { //PASAR DE MOVERSE POR
 		for(int j = 0; j < 8*MULT;j++) {
 			if((font8x8_basic[ascii][i/MULT] & mask[7-j/MULT]) != 0){ // EL HOMBRE QUE ARMO EL FONT HIZO TODO AL REVEZ!!!     0000000
 				writePixel(x+j,y+i);
-			}
-			else
-				j += MULT-1; //CON EL J++ ME QUEDA EN MULT
+			}else
+				writeScreen(x+j,y+i); //CON EL J++ ME QUEDA EN MULT
 		}
 }
 

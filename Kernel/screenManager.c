@@ -42,7 +42,7 @@ void initializeScreen(unsigned char select) {//HIGHLITEA LA PANTALLA EN LA QUE E
 }*/
 
 void clearScreen(unsigned char select) { //LIMPIA LA PANTALLA ACTUAL
-	for(int i = 0; i < HEIGHT;i++)
+	for(int i = CHAR_SIZE; i < HEIGHT;i++)
 		for(int j = 0; j < SCREEN_WIDTH;j++){
 			writeScreen(j + SCREEN_WIDTH*select ,i);
 	}	
