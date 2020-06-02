@@ -97,7 +97,6 @@ int main()
 	ncPrintHex(((EntryPoint)sampleCodeModuleAddress)());
 	ncNewline();
 	ncNewline();
-
 	ncPrint("  Sample data module at 0x");
 	ncPrintHex((uint64_t)sampleDataModuleAddress);
 	ncNewline();
@@ -105,5 +104,18 @@ int main()
 	ncPrint((char*)sampleDataModuleAddress);
 	ncNewline();
 	ncPrint("[Finished]");
+	initializeScreen(0);
+	print("Hola segundo");
+	newLine();
+	print("Voy a ser copiado");
+	copyLine(2,20);
+	newLine();
+	printChar('C');
+	newLine();
+	printLine("Hola soy una nueva linea");
+	newLine();
+	printChar('H');
+	selector();
+	while(1);
 	return 0;
 }

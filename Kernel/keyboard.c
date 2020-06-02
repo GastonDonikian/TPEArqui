@@ -32,6 +32,7 @@ void keyboard_handler(){
 		}
 		else if(scancode <128){
 			keyPress = asccode[scancode][shift];
+			printChar(keyPress);
 			addToBuffer(keyPress);
 		}
 	}

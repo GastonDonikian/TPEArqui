@@ -13,7 +13,7 @@
 unsigned char posScreen[SCREENS] = {0};
 unsigned char lineScreen[SCREENS] = {1,1}; 
 unsigned char select = 0;
-unsigned char upDown = 1;
+unsigned char upDown = 0;
 
 void screenWriter(char * buffer, uint64_t count, uint64_t upordown){
 	upDown = upordown;
@@ -39,10 +39,13 @@ void screenWriter(char * buffer, uint64_t count, uint64_t upordown){
 }*/
 
 void selector() {
+
 	if(select)
 		select--;
 	else
 		select++;
+	initializeScreen(select);
+	upDown = 1;
 }
 
 void printChar(unsigned char ascii){ //UPDEATEADO UPDOWN
@@ -78,11 +81,11 @@ void cleanLine(unsigned char line){ //BORRA LA LINEA DE LA PANTALLA SELECCIONADA
 
 void newLine() { //UPDATEADO UPDOWN
 	if(upDown == 1) {
-		for(int i = 2; i < LINE - 1;i++) {
-			cleanLine(i-1);
+		for(int i = 2; i < LINE;i++) {
 			copyLine(i,i-1); //COPIO LA LINEA I EN LA LINEA I -1
 		}
-		cleanLine(LINE-1);
+		cleanLine(LINE - 1);
+		posScreen[select] = 0;
 	}
 	else {
 		if(lineScreen[select] == LINE-1) {
@@ -98,9 +101,8 @@ void copyLine(unsigned char source, unsigned char destiny) {
 	cleanLine(destiny);
 	for(int i = 0; i < SCREEN_WIDTH;i++) 
 		for(int j = 0; j < CHAR_SIZE; j++) 
-			if(isItWriten(i,j+source*CHAR_SIZE))
-				writePixel(i,j+destiny*CHAR_SIZE);
-		
+			if(isItWriten(i + select*SCREEN_WIDTH,j+source*CHAR_SIZE))
+				writePixel(i + select*SCREEN_WIDTH,j+destiny*CHAR_SIZE);
 }
 
 void delete() {

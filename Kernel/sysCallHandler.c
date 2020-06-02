@@ -42,6 +42,7 @@ void switchScreen(uint64_t side) {
 void time(uint64_t buffer){
 	timeGetter(buffer);
 }
+
 void cpuid(uint64_t buffer) {
 	timer_handler();
 }
