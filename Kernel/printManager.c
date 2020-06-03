@@ -22,7 +22,7 @@ void screenWriter(char * buffer, uint64_t count, uint64_t upordown){
 			newLine();
 		}
 		else if(buffer[i]=='\t'){
-			print("		");
+			print("        "); //SILICON VALLEY DICTA QUE SON 8 SPACES
 		}
 		else if(buffer[i]=='\b'){
 			deleteChar();

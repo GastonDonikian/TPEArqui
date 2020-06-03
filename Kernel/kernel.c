@@ -104,6 +104,7 @@ int main()
 	ncPrint((char*)sampleDataModuleAddress);
 	ncNewline();
 	ncPrint("[Finished]");
+	
 	while(1);
 	return 0;
 }

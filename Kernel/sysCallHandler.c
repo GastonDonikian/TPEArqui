@@ -11,7 +11,7 @@ sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 			write(rdi, rsi, rdx);
 			break;
 		case 2:
-			switchScreen(rdi);
+			switchScreen();
 			break;
 		case 3:
 			time(rdi);
@@ -35,8 +35,8 @@ void write(uint64_t buffer, uint64_t count, uint64_t upordown){
 	screenWriter(buffer, count, upordown);
 }
 
-void switchScreen(uint64_t side) {
-	selector(side);
+void switchScreen() {
+	selector();
 }
 
 void time(uint64_t buffer){

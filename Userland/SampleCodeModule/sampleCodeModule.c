@@ -22,8 +22,14 @@ int main() {
 	putChar(a);
 	a=getChar();
 	putChar(a);
-	while(1) {
-		putChar(getChar());
+	while(a != '\n') {
+		putChar(a=getChar());
+	}
+	changeScreen();
+	changeUpDown();	
+	a = 45;
+	while(a != '\n') {
+		putChar(a=getChar());
 	}
 	//All the following code may be removed 
 	*v = 'X';
