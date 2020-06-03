@@ -6,7 +6,7 @@ GLOBAL time
 GLOBAL cpuid
 GLOBAL cputemp
 
-; void read(char * buf, size_t count)
+; void read(char * buf)
 read:
 	mov rax, 0
 	int 80h
