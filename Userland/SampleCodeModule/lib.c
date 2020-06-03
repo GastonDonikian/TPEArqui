@@ -19,6 +19,12 @@ void putChar(char a){
 	return;
 }
 
+void printf(char * string){
+	int i = 0;
+	while(string[i++] != 0);
+	write(string,i-1,screenPrint[screen]);
+}
+
 void changeScreen() {
 	switchScreen();
 	if(screen == 1)
