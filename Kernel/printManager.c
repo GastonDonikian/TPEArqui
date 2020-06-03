@@ -108,21 +108,26 @@ void copyLine(unsigned char source, unsigned char destiny) {
 void delete() {
 	for(int i = 0; i < CHAR_SIZE;i++)
 			for(int j = 0; j < CHAR_SIZE;j++)
-				writeScreen(i + posScreen[select],j + LINE - 1);
+				writeScreen(i + posScreen[select],j + lineScreen[select]);
 	posScreen[select]--;
 }
 
 void deleteChar() {
 	if(upDown) {
-		delete();
+		for(int i = 0; i < CHAR_SIZE;i++)
+			for(int j = 0; j < CHAR_SIZE;j++)
+				writeScreen(i + posScreen[select],j + LINE -1);
 	}
 	else{
 		if(posScreen[select] == 0) {
 			lineScreen[select]--;
 			posScreen[select] = CHARACTERS;
 		}
-		delete();
+		for(int i = 0; i < CHAR_SIZE;i++)
+			for(int j = 0; j < CHAR_SIZE;j++)
+				writeScreen(i + posScreen[select],j + lineScreen[select]);
 	}
+	posScreen[select]--;
 }
 //void selector(unsigned char screen);
 //void initializeScreen();
