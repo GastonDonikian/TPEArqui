@@ -22,8 +22,9 @@ int main() {
 	putChar(a);
 	a=getChar();
 	putChar(a);
-	putChar('m');
-	
+	while(1) {
+		putChar(getChar());
+	}
 	//All the following code may be removed 
 	*v = 'X';
 	*(v+1) = 0x74;

@@ -19,12 +19,12 @@ void screenWriter(char * buffer, uint64_t count, uint64_t upordown){
 	upDown = upordown;
 	for (int i = 0; i < count; i++){
 		if(buffer[i]=='\n'){
-			newLine(); 
+			newLine();
 		}
-		if(buffer[i]=='\t'){
+		else if(buffer[i]=='\t'){
 			print("		");
 		}
-		if(buffer[i]=='\b'){
+		else if(buffer[i]=='\b'){
 			deleteChar();
 		}
 		else{
@@ -45,7 +45,7 @@ void selector() {
 	else
 		select++;
 	initializeScreen(select);
-	upDown = 1;
+	//upDown = 1; ESTO NO SE PORQUE ESTA ACA
 }
 
 void printChar(unsigned char ascii){ //UPDEATEADO UPDOWN
@@ -80,7 +80,7 @@ void cleanLine(unsigned char line){ //BORRA LA LINEA DE LA PANTALLA SELECCIONADA
 }
 
 void newLine() { //UPDATEADO UPDOWN
-	if(upDown == 1) {
+	if(upDown) {
 		for(int i = 2; i < LINE;i++) {
 			copyLine(i,i-1); //COPIO LA LINEA I EN LA LINEA I -1
 		}
@@ -105,29 +105,47 @@ void copyLine(unsigned char source, unsigned char destiny) {
 				writePixel(i + select*SCREEN_WIDTH,j+destiny*CHAR_SIZE);
 }
 
-void delete() {
+/*void delete() {
 	for(int i = 0; i < CHAR_SIZE;i++)
 			for(int j = 0; j < CHAR_SIZE;j++)
 				writeScreen(i + posScreen[select],j + lineScreen[select]);
 	posScreen[select]--;
-}
+}*/
 
 void deleteChar() {
+	
 	if(upDown) {
-		for(int i = 0; i < CHAR_SIZE;i++)
-			for(int j = 0; j < CHAR_SIZE;j++)
-				writeScreen(i + posScreen[select],j + LINE -1);
-	}
-	else{
-		if(posScreen[select] == 0) {
-			lineScreen[select]--;
+		if(posScreen[select] != 0) {
+			posScreen[select]--;
+			printChar(0);
+			posScreen[select]--;
+		}
+		else {
+			scrollDown();
 			posScreen[select] = CHARACTERS;
 		}
-		for(int i = 0; i < CHAR_SIZE;i++)
+		/*for(int i = 0; i < CHAR_SIZE;i++)
 			for(int j = 0; j < CHAR_SIZE;j++)
-				writeScreen(i + posScreen[select],j + lineScreen[select]);
+				writeScreen(i + posScreen[select],-j + LINE -1);*/
 	}
-	posScreen[select]--;
+	else{
+		if(posScreen[select] == 0 && lineScreen[select] == 1)
+			return;
+		else if(posScreen[select] == 0) {
+			lineScreen[select]--;
+			posScreen[select] = CHARACTERS ;
+		}
+		posScreen[select]--;
+		printChar(0);
+		posScreen[select]--;
+	}
+	
+}
+
+void scrollDown() {
+	for(int i = LINE -2; i > 0; i--) {
+		copyLine(i,i+1);
+	}
 }
 //void selector(unsigned char screen);
 //void initializeScreen();
