@@ -33,9 +33,42 @@ void changeScreen() {
 		screen =  1;
 }
 
-void changeUpDown() {
-	if(screenPrint[screen])
-		screenPrint[screen]--;
-	else
-		screenPrint[screen]++;
+void setUpDown(int i) {
+	screenPrint[screen]=i;
+}
+int stringCmp(char * string1, char * string2){
+	int flag =1;
+	for (int i = 0;(string1[i]!=0 || string2[i]!=0) && flag; i++){
+		if (string1[i] != string2[i]){
+			flag =0;
+		}
+	}
+	return flag;
+}
+
+void cleanString(char * string){
+	removePreSpaces(string);
+	removePostSpaces(string);
+	printf(string);
+}
+
+void removePreSpaces(char * string){
+	int i;
+	for (i=0; string[i]==' '; i++){
+	}
+	if(i>0){
+		int j=0;
+		while(string[i]!=0){
+			string[j++]=string[i++];
+		}
+	}
+}
+
+void removePostSpaces(char * string){
+	for (int i = 0; string[i]!=0; i++){
+		if(string[i]==' '){
+			string[i]=0;
+			return;
+		}
+	}
 }
