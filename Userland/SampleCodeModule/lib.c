@@ -1,4 +1,6 @@
 #include <stdint.h>
+#include <stdarg.h>
+
 extern void read(char * buf);
 extern void write(char * buf, uint64_t count, uint64_t abajoarriba);
 extern void switchScreen();
@@ -19,11 +21,42 @@ void putChar(char a){
 	return;
 }
 
-void printf(char * string){
+void printf(char * string) {
 	int i = 0;
-	while(string[i++] != 0);
-	write(string,i-1,screenPrint[screen]);
+	while(string[i++] !=0);
+	write(string,i - 1,screenPrint[screen]);
 }
+/*void printf(char *fmt,...){ //FUNCION SACADA DE "THE C PROGRAMMING LANGUAJE" - Brian W. Kernighan Dennis M. Ritchie
+	va_list ap;
+	char *p, *sval;
+	int ival;
+	double dval;
+	va_start(ap,fmt);
+	for(p = fmt; *p;p++) {
+		if(*p != '%') {
+			putChar(*p);
+			continue;
+		}
+		switch(*++p) {
+			case 'd':
+				ival = va_arg(ap,int);
+				printf("%d",ival);
+				break;
+			case 'f':
+				dval = va_arg(ap,double);
+				printf("%f",dval);
+				break;
+			case 's':
+				for(sval = va_arg(ap,char *);*sval;sval++)
+					putChar(*sval);
+				break;
+			default:
+				putChar(*p);
+				break;
+		}
+	}
+	va_end(ap);
+}*/
 
 void changeScreen() {
 	switchScreen();
@@ -33,9 +66,6 @@ void changeScreen() {
 		screen =  1;
 }
 
-void changeUpDown() {
-	if(screenPrint[screen])
-		screenPrint[screen]--;
-	else
-		screenPrint[screen]++;
+void setUpDown(int i) {
+	screenPrint[screen] = i;
 }
