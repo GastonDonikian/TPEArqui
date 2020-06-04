@@ -5,5 +5,5 @@
 void timer_handler();
 int ticks_elapsed();
 int seconds_elapsed();
-void timeGetter(int *);
+void timeGetter(char *);
 #endif

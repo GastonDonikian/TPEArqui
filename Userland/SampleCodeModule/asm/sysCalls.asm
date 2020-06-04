@@ -24,16 +24,19 @@ switchScreen:
 	int 80h
 	ret
 
-;void time(int * buf)
+;void time(char * buf)
+time:
 	mov rax, 3
 	int 80h
 	ret
 
 ;void cpuid(int * buf)
+cpuid:
 	mov rax, 4
 	int 80h
 	ret
  ;void	cputemp( * buf)
+cputemp:
 	mov rax, 5
 	int 80h
 	ret
