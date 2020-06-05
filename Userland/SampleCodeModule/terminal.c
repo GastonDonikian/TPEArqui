@@ -81,8 +81,25 @@ void help(){
 
 void inforeg(){}
 
-void printmem(){}
-
+void printmem(){
+	char * pointer= 1200;
+	int p =1200;
+	char point[11]= {0};
+	intToString(p, point);
+	printf(point);
+}
+	/*for (int i = 0; i < 32; i++)
+	//{
+		//char point[11]={0};
+		intToString(p, point);
+		p++;
+		printf(point);
+		putChar(pointer[i]);
+		putChar('\n');
+	}
+	putChar('\n');
+} //esto igual esta hecho un can
+*/
 void gettime(){
 	char time[9]={0};
 	timeGetter(time);
