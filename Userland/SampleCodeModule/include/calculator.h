@@ -1,3 +1,7 @@
 void calculator();
-double analyzeExpression(char * string);
-double stringToDouble(char * string);
+double evaluate(char * string);
+double evaluateOperator(double num1, double num2, char op);
+int operatorPrecedence(char op);
+int precedence(char op1,char op2);
+int isANumber(char ch);
+int isOperator(char ch);

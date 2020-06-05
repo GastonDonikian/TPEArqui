@@ -8,4 +8,5 @@ void setUpDown(int i);
 void removePreSpaces(char * string);
 void removePostSpaces(char * string);
 void cleanString(char * string);
+double stringToDouble(char * string);
 #endif
