@@ -12,9 +12,8 @@ void write(char * buf, uint64_t count, uint64_t abajoarriba);
 
 int main() {
 	//GASTON
-	double doub = 0;
-	if((evaluate(3+5) - doub) < EPSILON)
-		printf("funciono!");
+	double doub = 45.254;
+	doubleToString(doub);
 
 	//SEGUNDO
 /*	terminal();

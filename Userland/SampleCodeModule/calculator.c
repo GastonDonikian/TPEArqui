@@ -101,12 +101,12 @@ int operatorPrecedence(char op) {
 }
 
 int precedence(char op1,char op2) { //ME DICE SI OP1 TIENE MAYOR PRECEDENCIA QUE OP2
-	return op1 <= op2;
+	return (op1 >= op2);
 }
 
 int isANumber(char ch) {
 	return (ch >= '0' && ch <= '9');
 }
 int isOperator(char ch) {
-	return ch == '+' ||ch == '-' || ch=='*' ||ch=='/'||ch=='%' ;
+	return (ch == '+' || ch == '-' || ch=='*' ||ch=='/'||ch=='%') ;
  }

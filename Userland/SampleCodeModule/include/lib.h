@@ -10,4 +10,5 @@ void removePreSpaces(char * string);
 void removePostSpaces(char * string);
 void cleanString(char * string);
 double stringToDouble(char * string);
+void doubleToString(double doub);
 #endif

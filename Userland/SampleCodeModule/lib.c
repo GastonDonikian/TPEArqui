@@ -138,3 +138,11 @@ double stringToDouble(char * string) {
 	}
 	return rta;
 }
+
+void doubleToString(double doub) {
+	int casteo = (int)doub;
+	for(int i = 10; casteo != 0;) {
+		putChar((casteo % i) + '0');
+		casteo = casteo /10;
+	}
+}
