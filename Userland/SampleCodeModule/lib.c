@@ -4,10 +4,16 @@
 extern void read(char * buf);
 extern void write(char * buf, uint64_t count, uint64_t abajoarriba);
 extern void switchScreen();
+extern void time(char * buf);
 
 
 char screenPrint[2] = {0};
 char screen = 0;
+
+void timeGetter(char * buff){
+	time(buff);
+}
+
 char getChar(){
 	char a=0;
 	while(a==0){ //NO SERIA MEJOR TENER UN BUFFER Y QUE UNA VEZ QUE ES DISTINTO DE CERO LEA HASTA QUE VUELVA A SER CERO? no para el getChar pero para scanf
@@ -83,7 +89,6 @@ int stringCmp(char * string1, char * string2){
 void cleanString(char * string){
 	removePreSpaces(string);
 	removePostSpaces(string);
-	printf(string);
 }
 
 void removePreSpaces(char * string){
