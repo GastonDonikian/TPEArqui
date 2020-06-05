@@ -10,6 +10,23 @@ extern void time(char * buf);
 char screenPrint[2] = {0};
 char screen = 0;
 
+void intToString(int num, char * result){
+	int i =0;
+	while(num !=0){
+		result[i++]= num%10 + '0';
+		num = num/10;
+	}
+	int j=0;
+	char aux;
+	while (j<(i/2)){
+		aux = result[j];
+		result[j] = result[i-1-j];
+		result[i-1-j]= aux;
+		j++;
+	}
+	return;
+} 
+
 void timeGetter(char * buff){
 	time(buff);
 }
