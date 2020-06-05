@@ -1,5 +1,6 @@
 int i=0;
-char bufferTerminal[32];
+char bufferTerminal[32] = {0};
+char * postBuffer;
 int DIM = 6;
 char * funciones[]= {"help","inforeg","printmem","time","cpuid","cputemp"};
 void terminal(){
@@ -34,7 +35,7 @@ void analize(char * buffer){
 	}
 	if (flag){
 		putChar('\n');
-		gotoFunction(j-1);
+		gotoFunction(j-1, postBuffer);
 	}
 	else{
 		putChar('\n');
@@ -47,8 +48,12 @@ void analize(char * buffer){
 		buffer[i]=0;
 	}
 	i=0;
+	for (int k = 0; postBuffer[k]!= 0; k++){
+		postBuffer[k]=0;
+	}
 }
-void gotoFunction(int number){
+
+void gotoFunction(int number, char * postBuffer){
 	switch (number) {
 		case 0:
 			help();
@@ -57,7 +62,7 @@ void gotoFunction(int number){
 			inforeg();
 			break;
 		case 2:
-			printmem();
+			printmem(postBuffer);
 			break;
 		case 3:
 			gettime();
@@ -81,25 +86,24 @@ void help(){
 
 void inforeg(){}
 
-void printmem(){
-	char * pointer= 1200;
-	int p =1200;
-	char point[11]= {0};
-	intToString(p, point);
-	printf(point);
-}
-	/*for (int i = 0; i < 32; i++)
-	//{
-		//char point[11]={0};
-		intToString(p, point);
-		p++;
-		printf(point);
-		putChar(pointer[i]);
+void printmem(char * pointString){
+	cleanString(pointString);
+	int pointInt = stringToInt(pointString);
+	char * pointer = pointInt;
+	for (int i = 0; i < 32; i++)
+	{
+		char p[11]={0};
+		intToString(pointInt, p);
+		pointInt++;
+		printf(p);
+		putChar('\t');
+		char memorystring[8]={0};
+		charToBits(pointer[i], memorystring);
+		printf(memorystring);
 		putChar('\n');
 	}
-	putChar('\n');
-} //esto igual esta hecho un can
-*/
+}
+
 void gettime(){
 	char time[9]={0};
 	timeGetter(time);
@@ -110,3 +114,31 @@ void gettime(){
 void getcpuid(){}
 
 void getcputemp(){}
+
+void cleanString(char * string){
+	removePreSpaces(string);
+	removePostSpaces(string);
+}
+
+void removePreSpaces(char * string){
+	int i;
+	for (i=0; string[i]==' '; i++){
+	}
+	if(i>0){
+		int j=0;
+		while(string[i]!=0){
+			string[j++]=string[i++];
+		}
+	}
+}
+
+void removePostSpaces(char * string){
+	for (int i = 0; string[i]!=0; i++){
+		if(string[i]==' '){
+			string[i]=0;
+			i +=1;
+			postBuffer = string + i;
+			return;
+		}
+	}
+}
