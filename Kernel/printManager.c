@@ -33,13 +33,7 @@ void screenWriter(char * buffer, uint64_t count, uint64_t upordown){
 	}
 }
 
-/*void selector(unsigned char screen){ //CAMBIA EL SELECT Y INICIALIZA LA PRIMER LINEA
-	select = screen;
-	initializeScreen(select);
-}*/
-
 void selector() {
-
 	if(select)
 		select--;
 	else
@@ -47,16 +41,19 @@ void selector() {
 	initializeScreen(select);
 	//upDown = 1; ESTO NO SE PORQUE ESTA ACA
 }
-
-void printChar(unsigned char ascii){ //UPDEATEADO UPDOWN
+void printAnyChar(unsigned char ascii,unsigned char red,unsigned char green,unsigned char blue) {
 	if(upDown == 1) {
 		lineScreen[select] = LINE -1;
 	}	
 	if(posScreen[select] >= CHARACTERS) {
 		newLine();
 	}
-	printCharByPixel(posScreen[select]*CHAR_SIZE + SCREEN_WIDTH*select,lineScreen[select]*CHAR_SIZE,ascii);
+	printAnyCharByPixel(posScreen[select]*CHAR_SIZE + SCREEN_WIDTH*select,lineScreen[select]*CHAR_SIZE,ascii,red,green,blue);
 	posScreen[select]++;
+}
+
+void printChar(unsigned char ascii){ //UPDEATEADO UPDOWN
+	printAnyChar(ascii,255,255,255);
 }
 
 void print(char * string) { //UPDATEADO UPDOWN
@@ -105,13 +102,6 @@ void copyLine(unsigned char source, unsigned char destiny) {
 				writePixel(i + select*SCREEN_WIDTH,j+destiny*CHAR_SIZE);
 }
 
-/*void delete() {
-	for(int i = 0; i < CHAR_SIZE;i++)
-			for(int j = 0; j < CHAR_SIZE;j++)
-				writeScreen(i + posScreen[select],j + lineScreen[select]);
-	posScreen[select]--;
-}*/
-
 void deleteChar() {
 	
 	if(upDown) {
@@ -124,9 +114,6 @@ void deleteChar() {
 			scrollDown();
 			posScreen[select] = CHARACTERS;
 		}
-		/*for(int i = 0; i < CHAR_SIZE;i++)
-			for(int j = 0; j < CHAR_SIZE;j++)
-				writeScreen(i + posScreen[select],-j + LINE -1);*/
 	}
 	else{
 		if(posScreen[select] == 0 && lineScreen[select] == 1)
@@ -147,11 +134,9 @@ void scrollDown() {
 		copyLine(i,i+1);
 	}
 }
-//void selector(unsigned char screen);
-//void initializeScreen();
-//void changeScreen(void); //SE HACE EN SCREENMANAGER
-//void printLine(char * string);
-//void clearScreen();
-//void newLine(void);
-// void printCharAt(unsigned char ascii, unsigned char line);
-//void print(char * string);
+
+void cleanScreen() {
+	clearScreen(select);
+	posScreen[select] = 0;
+	lineScreen[select] = 1;
+}

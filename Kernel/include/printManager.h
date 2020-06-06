@@ -9,4 +9,6 @@ void printChar(unsigned char ascii);
 void selector();
 void screenWriter(char * buffer, uint64_t count, uint64_t upordown);
 void deleteChar();
+void cleanScreen();
+void printAnyChar(unsigned char ascii,unsigned char red,unsigned char green,unsigned char blue);
 #endif

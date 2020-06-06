@@ -8,8 +8,13 @@ void exceptionDispatcher(int exception) {
 		zero_division();
 }
 
-static void zero_division() {
+void zero_division() {
+	cleanScreen();
+	char * string = "Trataste de dividir por cero";
+	int i = 0;
+	while(string[i] != 0)
+		printAnyChar(string[i++],255,0,0);
+	
 	//printLine("Usted trato de dividir por cero!");
-	//printLine("Usted se tiene que arrepentir de lo que hizo");
 	// Handler para manejar excepcíon
 }

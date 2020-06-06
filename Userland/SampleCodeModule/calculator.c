@@ -46,7 +46,7 @@ void calculator() {
 	doubleToString(evaluate(buffer),string);
 	if(thereWasAnError) {
 		printf("Error: ");
-		char * stringArray[4] = {"Todo bien...","Me pasaste mal un numero","Mal cantidad de operandores","Mal cantidad de numeros"};
+		char * stringArray[4] = {"Todo bien...","Me pasaste mal un numero","Mal cantidad de operandores","Mal cantidad de numeros","Dividiste por cero"};
 		printf(stringArray[thereWasAnError]);
 	}
 	else
@@ -136,6 +136,10 @@ void updateStack() {
 	double num1 = operandStack[currentOperandPosition - 2]; //AGARRO EL PRIMER NUMERO
 	double num2 = operandStack[currentOperandPosition - 1]; //AGARRO EL SEGUNDO NUMERO
 	char op = operationStack[currentOperationPosition-1];
+	if((op == '%' || op == '/') && num2 == 0) {
+		thereWasAnError = 4;
+		return;
+	}
 	operandStack[currentOperandPosition - 2] = evaluateOperator(num1,num2,op);
 	currentOperandPosition--;
 	currentOperationPosition--;
