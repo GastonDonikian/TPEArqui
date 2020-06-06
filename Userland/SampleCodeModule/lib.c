@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include <stdarg.h>
-
+#define EPSILON 0.0001
 extern void read(char * buf);
 extern void write(char * buf, uint64_t count, uint64_t abajoarriba);
 extern void switchScreen();
@@ -139,7 +139,7 @@ double stringToDouble(char * string) {
 	while(isANumber(string[length]) || string[length] == '.') { //CAMBIAR != 0 POR PARENTESIS O OPERANDO Y VALIDAR!
 		if(string[length] == '.') {
 			if(pointPosition)
-				return; //HUBO UN ERROR!
+				return 0; //HUBO UN ERROR!
 			pointPosition = length;
 		}
 		if(!pointPosition)
@@ -147,19 +147,52 @@ double stringToDouble(char * string) {
 		length++;
 	}
 	for(int i = 0; i < length;i++) {
-		if(i != pointPosition){
+		if(i != pointPosition || (pointPosition == 0)){
 			rta = rta +  (string[i] - '0') * pow;
 			pow = pow/10;
 		}
-		else;
+		 	
 	}
 	return rta;
 }
 
-void doubleToString(double doub) {
+void doubleToString(double doub,char * string) {
 	int casteo = (int)doub;
-	for(int i = 10; casteo != 0;) {
-		putChar((casteo % i) + '0');
-		casteo = casteo /10;
+	if(casteo ==0) {
+		string[0] = '0';
 	}
+	else	
+		intToString(casteo,string);
+	
+	doub = doub - casteo; //0, ALGO	
+	
+	int length = 0;
+	if(casteo == 0)
+		length = 1;
+	while(casteo != 0) {
+		casteo = casteo/10;
+		length++;
+	}
+	if(doub >EPSILON) {
+		string[length] = '.';
+		for(int i = 1; i <= 4; i++) {
+			doub = doub * 10;
+			casteo = (int)(doub);
+			string[length + i] = casteo + '0';
+			doub = doub - casteo;
+		}
+		string[length + 5] = 0;
+		return;
+	}
+	string[length] = 0;
+
+}
+
+void charToBits(char ch, char * string) {
+	int j = 1;
+	for(int i = 7; i >= 0; i--) {
+		string[i] =((ch & j)>>(7-i)) +'0';
+		j = j*2;
+	}
+	string[8] = 0;
 }

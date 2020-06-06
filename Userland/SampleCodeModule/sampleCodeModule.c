@@ -12,9 +12,12 @@ void write(char * buf, uint64_t count, uint64_t abajoarriba);
 
 int main() {
 	//GASTON
-	double doub = 45.254;
-	doubleToString(doub);
-
+	//int c;
+	calculator();
+	/*char string[10];
+	doubleToString(evaluate("(3.6+3)*3+3+3+3+3+3"),string);
+	printf(string);
+*/
 	//SEGUNDO
 /*	terminal();
 	printf("Hola como estas\n");
