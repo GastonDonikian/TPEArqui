@@ -10,6 +10,19 @@ extern void time(char * buf);
 char screenPrint[2] = {0};
 char screen = 0;
 
+int stringToInt(char * string){
+	int resp=0;
+	int pow=1;
+	for (int i = 0; string[i]!=0 ; i++){
+		pow*=10;
+	}
+	pow/=10;
+	for (int i = 0; string[i]!=0; i++){
+		resp += (string[i]-'0')*pow;
+		pow/=10;
+	}
+	return resp;
+}
 void intToString(int num, char * result){
 	int i =0;
 	while(num !=0){
@@ -25,6 +38,7 @@ void intToString(int num, char * result){
 		j++;
 	}
 	return;
+	result[i]=0;
 } 
 
 void timeGetter(char * buff){
@@ -103,31 +117,7 @@ int stringCmp(char * string1, char * string2){
 	return flag;
 }
 
-void cleanString(char * string){
-	removePreSpaces(string);
-	removePostSpaces(string);
-}
 
-void removePreSpaces(char * string){
-	int i;
-	for (i=0; string[i]==' '; i++){
-	}
-	if(i>0){
-		int j=0;
-		while(string[i]!=0){
-			string[j++]=string[i++];
-		}
-	}
-}
-
-void removePostSpaces(char * string){
-	for (int i = 0; string[i]!=0; i++){
-		if(string[i]==' '){
-			string[i]=0;
-			return;
-		}
-	}
-}
 
 double stringToDouble(char * string) {
 	double rta = 0;
