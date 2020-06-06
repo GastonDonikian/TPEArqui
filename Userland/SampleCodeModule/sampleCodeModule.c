@@ -12,13 +12,14 @@ void write(char * buf, uint64_t count, uint64_t abajoarriba);
 
 int main() {
 	//GASTON
-	printf("Cabeza de termo\n");
-	double doub = 2.7111;
-	if(stringToDouble("2.7113") - doub < EPSILON)
-		printf("funciono\n");
-
+	//int c;
+	calculator();
+	/*char string[10];
+	doubleToString(evaluate("(3.6+3)*3+3+3+3+3+3"),string);
+	printf(string);
+*/
 	//SEGUNDO
-	terminal();
+/*	terminal();
 	printf("Hola como estas\n");
 	printf("Cabeza de alcornoque\n");
 	printf("que miras\n");
@@ -26,5 +27,5 @@ int main() {
 	printf("Todo bien?\n");
 	changeScreen();
 	printf("ahora volvi\n");
-	return 0;
+	return 0;*/
 }

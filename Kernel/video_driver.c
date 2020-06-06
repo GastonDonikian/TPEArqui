@@ -73,6 +73,13 @@ void writeScreen(int x, int y) {
 	pos[2] = 0; //ROJO
 }
 
+void writeAnyPixel(int x, int y,unsigned char red,unsigned char green,unsigned char blue) {
+	char * pos = getPixelDataByPosition(x,y);
+	pos[0] = blue;
+	pos[1] = green;
+	pos[2] = red;
+}
+
 void clear(void){
 	for(int i = 0; i < HEIGHT;i++)
 		for(int j = 0; j < WIDTH;j++){
@@ -90,35 +97,12 @@ void printCharByPixel(int x, int y,unsigned char ascii) { //PASAR DE MOVERSE POR
 		}
 }
 
-/*void printLineByPixel(int x, int y, char * string) {
-	int i = 0;
-	while(string[i] != 0) {
-		printCharByPixel(x + 8*i*MULT,y,string[i]);
-		i++;
-	}
+void printAnyCharByPixel(int x, int y, unsigned char ascii,unsigned char red, unsigned char green, unsigned char blue) {
+	for(int i = 0; i < 8*MULT; i++)
+		for(int j = 0; j < 8*MULT;j++) {
+			if((font8x8_basic[ascii][i/MULT] & mask[7-j/MULT]) != 0){ 
+				writeAnyPixel(x+j,y+i,red,green,blue);
+			}else
+				writeScreen(x+j,y+i); 
+		}
 }
-
-void printChar(char ascii) {
-	printCharByPixel(pos*(MULT*8),line*(MULT*8),ascii);
-	pos++;
-	if(pos >= CHARACTERS) {
-		newLine();
-	}
-}
-
-void printLine(char * string) {
-	int i = 0;
-	while(string[i] != 0)
-		printChar(string[i++]);
-	newLine();
-}
-
-void newLine(void) { 
-	if(line == LINE) {
-		clear();
-		line = 0;
-		pos = 0;
-	}
-	line++;
-	pos = 0;
-}*/
