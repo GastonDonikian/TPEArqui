@@ -3,6 +3,7 @@ char bufferTerminal[32] = {0};
 char * postBuffer;
 int DIM = 6;
 char * funciones[]= {"help","inforeg","printmem","time","cpuid","cputemp"};
+
 void terminal(){
 	setUpDown(1);
 	while(1){
@@ -111,7 +112,11 @@ void gettime(){
 	putChar('\n');
 }
 
-void getcpuid(){}
+void getcpuid(){
+char * cpuAns;
+getCpuid(cpuAns);
+printf(cpuAns);
+}
 
 void getcputemp(){}
 
