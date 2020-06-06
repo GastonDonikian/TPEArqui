@@ -4,6 +4,7 @@ char * postBuffer;
 int DIM = 6;
 char * funciones[]= {"help","inforeg","printmem","time","cpuid","cputemp"};
 
+
 void removePostSpaces(char * string); //LAS AGREGO ACA PORQUE COMO NO ESTAN EN EL .H
 void removePreSpaces(char * string); //TIRAN WARNINGS
 
@@ -116,7 +117,11 @@ void gettime(){
 	putChar('\n');
 }
 
-void getcpuid(){}
+void getcpuid(){
+char * cpuAns;
+getCpuid(cpuAns);
+printf(cpuAns);
+}
 
 void getcputemp(){}
 
