@@ -3,6 +3,10 @@ char bufferTerminal[32] = {0};
 char * postBuffer;
 int DIM = 6;
 char * funciones[]= {"help","inforeg","printmem","time","cpuid","cputemp"};
+
+void removePostSpaces(char * string); //LAS AGREGO ACA PORQUE COMO NO ESTAN EN EL .H
+void removePreSpaces(char * string); //TIRAN WARNINGS
+
 void terminal(){
 	setUpDown(1);
 	while(1){
@@ -26,6 +30,7 @@ void terminal(){
 		}
 	}
 }
+
 void analize(char * buffer){
 	cleanString(bufferTerminal);
 	int flag=0;

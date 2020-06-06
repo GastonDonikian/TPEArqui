@@ -14,7 +14,7 @@ void zero_division() {
 	int i = 0;
 	while(string[i] != 0)
 		printAnyChar(string[i++],255,0,0);
-	
+
 	//printLine("Usted trato de dividir por cero!");
 	// Handler para manejar excepcíon
 }

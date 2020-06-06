@@ -148,7 +148,15 @@ double stringToDouble(char * string) {
 
 void doubleToString(double doub,char * string) {
 	int casteo = (int)doub;
-	if(casteo ==0) {
+
+	if(doub < 0) {
+		string[0] = '-';
+		doub = doub*(-1);
+		doubleToString(doub,string+1);
+		return;
+	}
+
+	if(casteo == 0) {
 		string[0] = '0';
 	}
 	else	
