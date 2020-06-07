@@ -53,9 +53,6 @@ void intToString(int num, char * result){
 void timeGetter(char * buff){
 	time(buff);
 }
-void getCpu(char * cpuAns) { 
-	getCpuid(cpuAns);
-}
 
 char getChar(){
 	char a=0;

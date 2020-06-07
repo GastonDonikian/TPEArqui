@@ -50,6 +50,7 @@ void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
 			printf("Error: ");
 			char * stringArray[5] = {"Todo bien...","Me pasaste mal un numero","Mal cantidad de operandores","Mal cantidad de numeros","Dividiste por cero"};
 			printf(stringArray[thereWasAnError]);
+			thereWasAnError = 0;
 		}
 		else
 			printf(string);
@@ -70,12 +71,12 @@ void cleanEverything(int position, char * buffer) { //RESETEA LAS VARIABLES GLOB
 	position = 0;
 	return;
 }
+
 void startOver(int position,char * buffer) { //NO RESETEA TODO, PERO BORRAR EL INPUT
 	for(int  i = 0; i < position; i++) {
 		buffer[i] = 0;
 		putChar('\b');
 	}
-	calculator();
 }
 
 

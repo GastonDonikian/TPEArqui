@@ -23,16 +23,18 @@ void zero_division(uint64_t rsp) {
 	while(string[i] != 0) //imprimo el mensaje de error
 		printAnyChar(string[i++],255,0,0);
 	printAllRegisters(rsp);
-		
+	newLine();
+
+
 	//printLine("Usted trato de dividir por cero!");
 	// Handler para manejar excepcíon
 }
 void printAllRegisters(uint64_t rsp) {
-	uint64_t registerArray[16];
+	uint64_t registerArray[17];
 	fetchRegisters(registerArray,rsp); //en rdi tengo rsp y en rsi tengo register
 	char * registerNamesArray[] = {"r15","r14","r13","r12","r11","r10","r9","r8","rsp",
-	"rdl","rsl","rbp","rdx","rcx","rbx","rax"};
-	for(int i = 0; i <16 ;i++ ) {
+	"rdl","rsl","rbp","rdx","rcx","rbx","rax","rip"};
+	for(int i = 0; i <18 ;i++ ) {
 		newLine();
 		int j = 0;
 		while(registerNamesArray[i][j] != 0) {

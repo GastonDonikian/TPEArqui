@@ -13,7 +13,8 @@ void write(char * buf, uint64_t count, uint64_t abajoarriba);
 int main() {
 	//GASTON
 	//int c;
-	//calculator();
+	printf("No llegue hasta aca\n");
+	calculator();
 	/*char string[10];
 	doubleToString(evaluate("(3.6+3)*3+3+3+3+3+3"),string);
 	printf(string);
@@ -27,6 +28,6 @@ int main() {
 	changeScreen();
 	printf("Todo bien?\n");
 	changeScreen();
-	printf("ahora volvi\n");
+	printf("ahora volvi\n");*/
 	return 0;
 }

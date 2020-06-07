@@ -153,7 +153,9 @@ fetchRegisters:
 	mov rax,[rsi +112]
 	mov[rdi +112],rax
 	mov rax,[rsi +120]
-	mov qword[rdi +120],rax
+	mov [rdi +120],rax
+	mov eax,[rsi + 128] ; accedo al EIP
+	mov [rdi +128],eax
 	pop rax
 	ret
 

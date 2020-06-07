@@ -31,7 +31,7 @@ void read(uint64_t buffer) {
 }
 
 void write(uint64_t buffer, uint64_t count, uint64_t upordown){
-	if(count <= 0 || upordown != 0 || upordown != 1)
+	if(count <= 0 || (upordown != 0 && upordown != 1))
 		return;
 	screenWriter(buffer, count, upordown);
 }
