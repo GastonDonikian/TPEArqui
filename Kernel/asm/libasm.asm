@@ -121,6 +121,8 @@ cpuTempTarget:
 	ret
 
 fetchRegisters:
+	push rbp
+	mov rbp, rsp
 	push rax
 	mov rax,[rsi]
 	mov[rdi],rax 
@@ -156,6 +158,7 @@ fetchRegisters:
 	mov [rdi +120],rax
 	mov eax,[rsi + 128] ; accedo al EIP
 	mov [rdi +128],eax
-	pop rax
+	mov rsp, rbp
+	pop rbp
 	ret
 

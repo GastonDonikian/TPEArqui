@@ -5,6 +5,7 @@ GLOBAL switchScreen
 GLOBAL time
 GLOBAL getCpuid
 GLOBAL cputemp
+GLOBAL getRegisters
 
 ; void read(char * buf)
 read:
@@ -40,5 +41,11 @@ getCpuid:
  ;void	cputemp(char * buf)
 cputemp:
 	mov rax, 5
+	int 80h
+	ret
+
+;void getRegisters(uint64_t * registerKeeper)
+getRegisters:	
+	mov rax,6
 	int 80h
 	ret
