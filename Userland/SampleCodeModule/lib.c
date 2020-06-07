@@ -5,11 +5,15 @@ extern void read(char * buf);
 extern void write(char * buf, uint64_t count, uint64_t abajoarriba);
 extern void switchScreen();
 extern void time(char * buf);
+extern void getCpuid(char * buf);
 
 
 char screenPrint[2] = {0};
 char screen = 0;
 
+void getCpu(char * answer){
+	getCpuid(answer);
+}
 int stringToInt(char * string){
 	int resp=0;
 	int pow=1;

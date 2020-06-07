@@ -1,5 +1,8 @@
-int i=0;
-char bufferTerminal[32] = {0};
+
+#include "terminal.h"
+
+int longitud=0;
+char bufferTerminal[48] = {0};
 char * postBuffer;
 int DIM = 6;
 char * funciones[]= {"help","inforeg","printmem","time","cpuid","cputemp"};
@@ -9,19 +12,23 @@ void terminal(){
 	while(1){
 		char a;
 		while((a=getChar()) !='\n' && a != '\t'){
-			putChar(a);
-			if(a=='\b' && i!=0){
-				bufferTerminal[i-1]=0;
-				i--;
+			if(a=='\b'){
+				if(longitud!=0){
+					bufferTerminal[longitud-1]=0;
+					longitud--;
+					putChar(a);
+				}
 			}
 			else{
-				bufferTerminal[i++]=a;
+				putChar(a);
+				bufferTerminal[longitud++]=a;
 			}
 		}
 		if(a=='\n'){
+			putChar(a);
 			analize(bufferTerminal);
 		}
-		else{
+		if (a=='\t'){
 			changeScreen();
 			return;
 		}
@@ -40,15 +47,13 @@ void analize(char * buffer){
 	}
 	else{
 		putChar('\n');
-		printf("Operacion invalida amigue");
+		printf("Operacion invalida");
 		putChar('\n');
 	}
-	i = 0;
-	for (i = 0;buffer[i]!=0; i++)
-	{
+	for (int i = 0;buffer[i]!=0; i++){
 		buffer[i]=0;
 	}
-	i=0;
+	longitud=0;
 	for (int k = 0; postBuffer[k]!= 0; k++){
 		postBuffer[k]=0;
 	}
@@ -69,13 +74,20 @@ void gotoFunction(int number, char * postBuffer){
 			gettime();
 			break;
 		case 4:
-			getcpuid();
+			getid();
 			break;
 		case 5:
 			getcputemp();
 			break;
 	}
 	return;
+}
+
+void resetBufferTerminal(){
+	for (int i = 0; i < 48; i++){
+		bufferTerminal[i]=0;
+	}
+	longitud=0;
 }
 
 void help(){
@@ -112,10 +124,13 @@ void gettime(){
 	putChar('\n');
 }
 
-void getcpuid(){
-char * cpuAns;
-getCpuid(cpuAns);
-printf(cpuAns);
+void getid(){
+	char cpuAns[48] = {0};
+	getCpu(cpuAns);
+	printf(cpuAns);
+	putChar('\n');
+	resetBufferTerminal();
+	terminal();
 }
 
 void getcputemp(){}
