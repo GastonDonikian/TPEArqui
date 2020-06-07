@@ -21,12 +21,12 @@ int main() {
 */
 	//SEGUNDO
 	terminal();
-	printf("Hola como estas\n");
-	printf("Cabeza de alcornoque\n");
-	printf("que miras\n");
-	changeScreen();
-	printf("Todo bien?\n");
-	changeScreen();
-	printf("ahora volvi\n");
+	//printf("Hola como estas\n");
+	//printf("Cabeza de alcornoque\n");
+	//printf("que miras\n");
+	//changeScreen();
+	//printf("Todo bien?\n");
+	//changeScreen();
+	//printf("ahora volvi\n");
 	return 0;
 }
