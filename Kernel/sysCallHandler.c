@@ -34,6 +34,8 @@ void read(uint64_t buffer) {
 }
 
 void write(uint64_t buffer, uint64_t count, uint64_t upordown){
+	if(count <= 0 || upordown != 0 || upordown != 1)
+		return;
 	screenWriter(buffer, count, upordown);
 }
 
@@ -46,30 +48,22 @@ void time(uint64_t buffer){
 }
 
 void cpuGetter(char * buffer) {
-	printLine(buffer);
 	char * aux;
 	aux = cpuModel();
-	printLine(aux);
-	printLine(buffer);
 	for (int i = 0; i < 16; ++i)
 	{
 		buffer[i] = aux[i];
 	}
-	printLine(buffer);
 	aux = cpuModel1();
-	printLine(aux);
 	for (int i = 0; i < 16; ++i)
 	{
 		buffer[(i+16)] = aux[i];
 	}
-	printLine(buffer);
 	aux = cpuModel2();
-	printLine(aux);
 	for (int i = 0; i < 16; ++i)
 	{
 		buffer[i+32] = aux[i];
 	}
-	printLine(buffer);
 	
 }
 

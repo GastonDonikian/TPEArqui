@@ -1,3 +1,5 @@
+#include <lib.h>
+
 int i=0;
 char bufferTerminal[32] = {0};
 char * postBuffer;
@@ -13,12 +15,15 @@ void terminal(){
 	while(1){
 		char a;
 		while((a=getChar()) !='\n' && a != '\t'){
-			putChar(a);
-			if(a=='\b' && i!=0){
-				bufferTerminal[i-1]=0;
-				i--;
+			if(a=='\b'){
+				if(i!= 0) {
+					bufferTerminal[i-1]=0;
+					i--;
+					putChar(a);
+				}
 			}
 			else{
+				putChar(a);
 				bufferTerminal[i++]=a;
 			}
 		}
@@ -74,7 +79,7 @@ void gotoFunction(int number, char * postBuffer){
 			gettime();
 			break;
 		case 4:
-			getcpuid();
+			getId();
 			break;
 		case 5:
 			getcputemp();
@@ -117,10 +122,11 @@ void gettime(){
 	putChar('\n');
 }
 
-void getcpuid(){
-char * cpuAns;
-getCpuid(cpuAns);
-printf(cpuAns);
+void getId(){
+	char cpuAns[50];
+	printf("no llegue");
+	getCpu(cpuAns);
+	printf(cpuAns);
 }
 
 void getcputemp(){}

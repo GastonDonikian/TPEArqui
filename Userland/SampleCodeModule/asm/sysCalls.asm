@@ -35,6 +35,7 @@ getCpuid:
 	mov rax, 4
 	int 80h
 	ret
+	
  ;void	cputemp( * buf)
 cputemp:
 	mov rax, 5

@@ -13,14 +13,14 @@ void write(char * buf, uint64_t count, uint64_t abajoarriba);
 int main() {
 	//GASTON
 	//int c;
-	calculator();
-	return 0;
+	//calculator();
 	/*char string[10];
 	doubleToString(evaluate("(3.6+3)*3+3+3+3+3+3"),string);
 	printf(string);
-*/
+	
+	
 	//SEGUNDO
-/*	terminal();
+	terminal();
 	printf("Hola como estas\n");
 	printf("Cabeza de alcornoque\n");
 	printf("que miras\n");
