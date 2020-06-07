@@ -203,11 +203,12 @@ void charToBits(char ch, char * string) {
 	}
 	string[8] = 0;
 }
-void printRegister(int reg);
-void printAllRegisters(int * registerArray) { //SABEMOS QUE ACA ESTAN REPETIDAS PERO UNA ES LIB DE KERNEL Y OTRA DE USERLAND
-	char * registerNamesArray[] = {"r15","r14","r13","r12","r11","r10","r9","r8","rsp",
-	"rdl","rsl","rbp","rdx","rcx","rbx","rax","rip"};
-	for(int i = 0; i <18 ;i++ ) {
+void printRegister(long int reg);
+
+void printAllRegisters(long int * registerArray) { //SABEMOS QUE ACA ESTAN REPETIDAS PERO UNA ES LIB DE KERNEL Y OTRA DE USERLAND
+	char * registerNamesArray[] = {"r15","r14","r13","r12","r11","r10","r9","r8","rsi",
+	"rdi","rbp","rdx","rcx","rbx","rax","rip"};
+	for(int i = 0; i < 15 ;i++ ) {
 		printf(registerNamesArray[i]);
 		if(i == 6 || i == 7)
 			putChar(' ');
@@ -216,7 +217,7 @@ void printAllRegisters(int * registerArray) { //SABEMOS QUE ACA ESTAN REPETIDAS 
 		putChar('\n');
 	}
 }
-void printRegister(int reg) {
+void printRegister(long int reg) {
 	char array[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
 	char aux;
 	for(int i = 0; i < 16;i++) { 

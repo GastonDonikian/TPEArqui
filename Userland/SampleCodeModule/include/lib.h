@@ -12,4 +12,6 @@ void getCpu(char * answer);
 void getCpuTemp(char * answer);
 void charToBits(char ch, char * string);
 void intToString(int num, char * result);
+void printRegister(long int reg);
+void printAllRegisters(long int * registerArray);
 #endif

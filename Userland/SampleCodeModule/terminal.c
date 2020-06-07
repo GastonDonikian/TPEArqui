@@ -1,5 +1,6 @@
-#include <lib.h>
+#include "lib.h"
 #include "terminal.h"
+
 
 int longitud=0;
 char bufferTerminal[48] = {0};
@@ -104,7 +105,7 @@ void help(){
 }
 
 void inforeg(){
-	int registerKeeper[34];
+	long int registerKeeper[34];
 	getRegisters(registerKeeper);
 	printAllRegisters(registerKeeper);
 	putChar('\n');
