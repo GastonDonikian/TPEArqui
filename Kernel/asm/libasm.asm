@@ -1,8 +1,11 @@
 GLOBAL cpuVendor
-GLOBAL cpuModel
 GLOBAL cpuModel1
 GLOBAL cpuModel2
 GLOBAL fetchRegisters
+GLOBAL cpuModel3
+GLOBAL cpuTempStatus
+GLOBAL cpuTempTarget
+
 section .text
 	
 cpuVendor:
@@ -29,11 +32,9 @@ cpuVendor:
 	pop rbp
 	ret
 
-cpuModel:
+cpuModel1:
 	push rbp
 	mov rbp, rsp
-
-	push rbx
 
 	mov eax, 80000002h
 	cpuid
@@ -46,17 +47,14 @@ cpuModel:
 	mov byte [rdi+16], 0	;termino el string con 0
 
 	mov rax, rdi		;valor de retorno en rax
-
-	pop rbx
+	
 	mov rsp, rbp
 	pop rbp
 	ret
 
-cpuModel1:
+cpuModel2:
 	push rbp
 	mov rbp, rsp
-
-	push rbx
 
 	mov eax, 80000003h
 	cpuid
@@ -70,16 +68,13 @@ cpuModel1:
 
 	mov rax, rdi		;valor de retorno en rax
 
-	pop rbx
 	mov rsp, rbp
 	pop rbp
 	ret
 
-cpuModel2:
+cpuModel3:
 	push rbp
 	mov rbp, rsp
-
-	push rbx
 
 	mov eax, 80000004h
 	cpuid
@@ -93,7 +88,34 @@ cpuModel2:
 
 	mov rax, rdi		;valor de retorno en rax
 
-	pop rbx
+	mov rsp, rbp
+	pop rbp
+	ret
+
+cpuTempStatus:
+	push rbp
+	mov rbp, rsp
+						;mov rcx, 0x19C
+						;rdmcr
+	
+	xor rax, rax
+	mov eax, 0x88370000
+	mov rdi, 0
+	mov rdi, rax
+	mov rsp, rbp
+	pop rbp
+	ret
+
+cpuTempTarget:
+
+	push rbp
+	mov rbp, rsp
+						;mov rcx, 0x1A2
+						;rdmcr
+	xor rax, rax
+	mov eax, 0x690A00
+	mov rdi, 0
+	mov rdi, rax
 	mov rsp, rbp
 	pop rbp
 	ret

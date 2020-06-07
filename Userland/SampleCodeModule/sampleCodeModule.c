@@ -28,5 +28,5 @@ int main() {
 	printf("Todo bien?\n");
 	changeScreen();
 	printf("ahora volvi\n");
-	return 0;*/
+	return 0;
 }

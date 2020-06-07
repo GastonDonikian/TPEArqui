@@ -6,7 +6,9 @@ void putChar(char a);
 void printf(char * string);
 void changeScreen();
 void setUpDown(int i);
-void cleanString(char * string);
 double stringToDouble(char * string);
 void doubleToString(double doub,char * string);
+void getCpu(char * answer);
+void getCpuTemp(char * answer);
+
 #endif

@@ -1,8 +1,5 @@
 #include <stdint.h>
 #include "screenManager.h"
-extern char * cpuModel();
-extern char * cpuModel1();
-extern char * cpuModel2();
 
 sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 	switch(rcx){
@@ -47,26 +44,10 @@ void time(uint64_t buffer){
 	timeGetter(buffer);
 }
 
-void cpuGetter(char * buffer) {
-	char * aux;
-	aux = cpuModel();
-	for (int i = 0; i < 16; ++i)
-	{
-		buffer[i] = aux[i];
-	}
-	aux = cpuModel1();
-	for (int i = 0; i < 16; ++i)
-	{
-		buffer[(i+16)] = aux[i];
-	}
-	aux = cpuModel2();
-	for (int i = 0; i < 16; ++i)
-	{
-		buffer[i+32] = aux[i];
-	}
-	
+void cpuGetter(uint64_t buffer) {
+	cpuModel(buffer);
 }
 
 void cputemp(uint64_t buffer){
-	//getTemp(buffer);
+	cpuTemperature(buffer);
 }
