@@ -9,4 +9,6 @@ void setUpDown(int i);
 double stringToDouble(char * string);
 void doubleToString(double doub,char * string);
 void getCpu(char * answer);
+void getCpuTemp(char * answer);
+
 #endif

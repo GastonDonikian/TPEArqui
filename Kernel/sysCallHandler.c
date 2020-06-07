@@ -47,5 +47,5 @@ void cpuGetter(uint64_t buffer) {
 }
 
 void cputemp(uint64_t buffer){
-	//getTemp(buffer);
+	cpuTemperature(buffer);
 }

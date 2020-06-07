@@ -2,6 +2,9 @@ GLOBAL cpuVendor
 GLOBAL cpuModel1
 GLOBAL cpuModel2
 GLOBAL cpuModel3
+GLOBAL cpuTempStatus
+GLOBAL cpuTempTarget
+
 section .text
 	
 cpuVendor:
@@ -84,6 +87,34 @@ cpuModel3:
 
 	mov rax, rdi		;valor de retorno en rax
 
+	mov rsp, rbp
+	pop rbp
+	ret
+
+cpuTempStatus:
+	push rbp
+	mov rbp, rsp
+						;mov rcx, 0x19C
+						;rdmcr
+	
+	xor rax, rax
+	mov eax, 0x88370000
+	mov rdi, 0
+	mov rdi, rax
+	mov rsp, rbp
+	pop rbp
+	ret
+
+cpuTempTarget:
+
+	push rbp
+	mov rbp, rsp
+						;mov rcx, 0x1A2
+						;rdmcr
+	xor rax, rax
+	mov eax, 0x690A00
+	mov rdi, 0
+	mov rdi, rax
 	mov rsp, rbp
 	pop rbp
 	ret

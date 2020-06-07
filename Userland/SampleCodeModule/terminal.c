@@ -82,7 +82,7 @@ void gotoFunction(int number, char * postBuffer){
 			getid();
 			break;
 		case 5:
-			getcputemp();
+			cpuTemperature();
 			break;
 	}
 	return;
@@ -138,7 +138,12 @@ void getid(){
 	terminal();
 }
 
-void getcputemp(){}
+void cpuTemperature(){
+	char result[20]={0};
+	getCpuTemp(result);
+	printf(result);
+	putChar('\n');
+}
 
 void cleanString(char * string){
 	removePreSpaces(string);

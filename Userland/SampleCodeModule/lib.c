@@ -6,10 +6,15 @@ extern void write(char * buf, uint64_t count, uint64_t abajoarriba);
 extern void switchScreen();
 extern void time(char * buf);
 extern void getCpuid(char * buf);
+extern void	cputemp(char * buf);
 
 
 char screenPrint[2] = {0};
 char screen = 0;
+
+getCpuTemp(char * answer){
+	cputemp(answer);
+}
 
 void getCpu(char * answer){
 	getCpuid(answer);

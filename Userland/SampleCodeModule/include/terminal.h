@@ -9,6 +9,7 @@ void inforeg();
 void printmem(char * pointString);
 void gettime();
 void getid();
+void cpuTemperature();
 void cleanString(char * string);
 void removePreSpaces(char * string);
 void removePostSpaces(char * string);
