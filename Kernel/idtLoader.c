@@ -27,12 +27,13 @@ void load_idt() {
   setup_IDT_entry (0x20, (uint64_t)&_irq00Handler); //CONTROLADOR DE TIMER TIC 
   setup_IDT_entry (0x21, (uint64_t)&_irq01Handler); //CONTROLADOR DE TECLADO
   setup_IDT_entry (0x80, (uint64_t)&_int80Handler); //Interrupciones de USRLAND
-  setup_IDT_entry (0x00, (uint64_t)&_exception0Handler); // MANEJA DIVIDIR POR 0
+  setup_IDT_entry (0x00, (uint64_t)&_exception0Handler);// MANEJA DIVIDIR POR 0
+  setup_IDT_entry (0x06, (uint64_t)&_exception0Handler); 
 
 	//Solo interrupcion timer tick habilitadas
 	picMasterMask(0xF8); 
 	picSlaveMask(0xFF);
-        
+      
 	_sti();
 }
 

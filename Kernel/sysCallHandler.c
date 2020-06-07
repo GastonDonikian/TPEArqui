@@ -1,5 +1,8 @@
 #include <stdint.h>
+#include "lib.h"
 #include "screenManager.h"
+
+
 
 sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 	switch(rcx){
@@ -20,6 +23,9 @@ sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 			break;
 		case 5:
 			cputemp(rdi);
+			break;
+		case 6:
+			registerInfo(rdi);
 			break;
 
 	}
@@ -50,4 +56,8 @@ void cpuGetter(uint64_t buffer) {
 
 void cputemp(uint64_t buffer){
 	cpuTemperature(buffer);
+}
+
+void registerInfo(uint64_t * buffer) {
+	getCurrentRegisters(buffer);
 }

@@ -12,7 +12,7 @@ extern void	cputemp(char * buf);
 char screenPrint[2] = {0};
 char screen = 0;
 
-getCpuTemp(char * answer){
+void getCpuTemp(char * answer){
 	cputemp(answer);
 }
 
@@ -202,4 +202,28 @@ void charToBits(char ch, char * string) {
 		j = j*2;
 	}
 	string[8] = 0;
+}
+void printRegister(int reg);
+void printAllRegisters(int * registerArray) { //SABEMOS QUE ACA ESTAN REPETIDAS PERO UNA ES LIB DE KERNEL Y OTRA DE USERLAND
+	char * registerNamesArray[] = {"r15","r14","r13","r12","r11","r10","r9","r8","rsp",
+	"rdl","rsl","rbp","rdx","rcx","rbx","rax","rip"};
+	for(int i = 0; i <18 ;i++ ) {
+		printf(registerNamesArray[i]);
+		if(i == 6 || i == 7)
+			putChar(' ');
+		putChar(' ');
+		printRegister(registerArray[i]);
+		putChar('\n');
+	}
+}
+void printRegister(int reg) {
+	char array[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+	char aux;
+	for(int i = 0; i < 16;i++) { 
+		aux = (reg & 0xF000000000000000) >> 60; 
+		reg = reg << 4;
+		putChar(array[aux]);
+	}
+	putChar('h');
+	return;
 }

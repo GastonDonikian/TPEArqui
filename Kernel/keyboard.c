@@ -1,6 +1,8 @@
 #include <keyboard.h>
+#include <stdint.h>
+#include <lib.h>
 #include "screenManager.h"
-#define BUFFERSIZE 10
+#define BUFFERSIZE 30
 extern char keyPressed();
 extern char getKey();
 
@@ -18,7 +20,7 @@ char wasKeyPressed(){
 	return keyPressed();
 }
 
-void keyboard_handler(){
+void keyboard_handler(uint64_t rsp){
 	static char shift;
 	unsigned char scancode =250;
 	unsigned char keyPress;
@@ -30,10 +32,14 @@ void keyboard_handler(){
 		else if (scancode == 182){
 			shift = 0;
 		}
-		else if(scancode <128){
+		else if(scancode == 1) {
+			currentRegisters(rsp);
+		}
+		else if(scancode <58){
 			keyPress = asccode[scancode][shift];
 			addToBuffer(keyPress);
 		}
+
 	}
 }
 void addToBuffer(char key){

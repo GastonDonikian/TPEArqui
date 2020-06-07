@@ -103,7 +103,13 @@ void help(){
 	}
 }
 
-void inforeg(){}
+void inforeg(){
+	int registerKeeper[34];
+	getRegisters(registerKeeper);
+	printAllRegisters(registerKeeper);
+	putChar('\n');
+	terminal();
+}
 
 void printmem(char * pointString){
 	cleanString(pointString);

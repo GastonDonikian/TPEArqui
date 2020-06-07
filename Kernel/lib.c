@@ -1,5 +1,7 @@
 #include <stdint.h>
 
+uint64_t registerKeeper[17];
+
 void * memset(void * destination, int32_t c, uint64_t length)
 {
 	uint8_t chr = (uint8_t)c;
@@ -47,4 +49,45 @@ void * memcpy(void * destination, const void * source, uint64_t length)
 	}
 
 	return destination;
+}
+
+void currentRegisters(uint64_t rsp) {
+	fetchRegisters(registerKeeper,rsp);
+	printAllRegisters(rsp);
+}
+void getCurrentRegisters(uint64_t * buffer) {
+	for(int i = 0; i <17;i++) {
+		buffer[i]= registerKeeper[i];
+	}
+}
+
+void printAllRegisters(uint64_t rsp) {
+	uint64_t registerArray[17];
+	fetchRegisters(registerArray,rsp); //en rdi tengo rsp y en rsi tengo register
+	char * registerNamesArray[] = {"r15","r14","r13","r12","r11","r10","r9","r8","rsp",
+	"rdl","rsl","rbp","rdx","rcx","rbx","rax","rip"};
+	for(int i = 0; i <17 ;i++ ) {
+		newLine();
+		int j = 0;
+		while(registerNamesArray[i][j] != 0) {
+			printAnyChar(registerNamesArray[i][j++],255,0,0);
+		}
+		if(j == 2)
+			printAnyChar(' ',255,0,0);
+		printAnyChar(' ',255,0,0);
+		printRegister(registerArray[i]);
+		
+	}
+}
+void printRegister(uint64_t reg) {
+	char array[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+	char aux;
+	for(int i = 0; i < 16;i++) { 
+		aux = (reg & 0xF000000000000000) >> 60; 
+		reg = reg << 4;
+		printAnyChar(array[aux],255,0,0);
+	}
+	printAnyChar('h',255,0,0);
+
+	return;
 }
