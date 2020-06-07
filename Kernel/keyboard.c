@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <lib.h>
 #include "screenManager.h"
-#define BUFFERSIZE 30
+#define BUFFERSIZE 32
 extern char keyPressed();
 extern char getKey();
 
