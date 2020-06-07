@@ -8,6 +8,8 @@
 #include <keyboard.h>
 #include "video_driver.h"
 #include "screenManager.h"
+#include "exceptions.h"
+
 extern uint8_t text;
 extern uint8_t rodata;
 extern uint8_t data;
@@ -104,7 +106,7 @@ int main()
 	ncPrint((char*)sampleDataModuleAddress);
 	ncNewline();
 	ncPrint("[Finished]");
-
 	while(1);
+
 	return 0;
 }

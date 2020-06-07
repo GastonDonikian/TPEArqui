@@ -105,13 +105,13 @@ void copyLine(unsigned char source, unsigned char destiny) {
 void deleteChar() {
 	
 	if(upDown) {
-		if(posScreen[select] != 0) {
+		if(posScreen[select] > 0) {
 			posScreen[select]--;
 			printChar(0);
 			posScreen[select]--;
 		}
 		else {
-			scrollDown();
+			scrollDown(); //APARENTEMENTE SOLO SE PUEDE BORRAR LA ULTIMA LINEA
 			posScreen[select] = CHARACTERS;
 		}
 	}

@@ -1,6 +1,7 @@
 GLOBAL cpuVendor
 GLOBAL cpuModel1
 GLOBAL cpuModel2
+GLOBAL fetchRegisters
 GLOBAL cpuModel3
 GLOBAL cpuTempStatus
 GLOBAL cpuTempTarget
@@ -118,3 +119,43 @@ cpuTempTarget:
 	mov rsp, rbp
 	pop rbp
 	ret
+
+fetchRegisters:
+	push rax
+	mov rax,[rsi]
+	mov[rdi],rax 
+	mov rax,[rsi +8]
+	mov[rdi +8],rax
+	mov rax,[rsi +16]
+	mov[rdi +16],rax
+	mov rax,[rsi +24]
+	mov[rdi +24],rax
+	mov rax,[rsi +32]
+	mov[rdi +32],rax
+	mov rax,[rsi +40]
+	mov[rdi +40],rax
+	mov rax,[rsi +48]
+	mov[rdi +48],rax
+	mov rax,[rsi +56]
+	mov[rdi +56],rax
+	mov rax,[rsi +64]
+	mov[rdi +64],rax
+	mov rax,[rsi +72]
+	mov[rdi +72],rax
+	mov rax,[rsi +80]
+	mov[rdi +80],rax
+	mov rax,[rsi +88]
+	mov[rdi +88],rax
+	mov rax,[rsi +96]
+	mov[rdi +96],rax
+	mov rax,[rsi +104]
+	mov[rdi +104],rax
+	mov rax,[rsi +112]
+	mov[rdi +112],rax
+	mov rax,[rsi +120]
+	mov [rdi +120],rax
+	mov eax,[rsi + 128] ; accedo al EIP
+	mov [rdi +128],eax
+	pop rax
+	ret
+

@@ -1,8 +1,9 @@
-
+#include <lib.h>
 #include "terminal.h"
 
 int longitud=0;
 char bufferTerminal[48] = {0};
+
 char * postBuffer;
 int DIM = 6;
 char * funciones[]= {"help","inforeg","printmem","time","cpuid","cputemp"};
@@ -128,6 +129,7 @@ void gettime(){
 	printf(time);
 	putChar('\n');
 }
+
 
 void getid(){
 	char cpuAns[48] = {0};

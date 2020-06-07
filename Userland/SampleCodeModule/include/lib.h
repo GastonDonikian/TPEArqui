@@ -10,5 +10,6 @@ double stringToDouble(char * string);
 void doubleToString(double doub,char * string);
 void getCpu(char * answer);
 void getCpuTemp(char * answer);
-
+void charToBits(char ch, char * string);
+void intToString(int num, char * result);
 #endif
