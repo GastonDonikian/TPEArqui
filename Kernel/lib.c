@@ -56,7 +56,6 @@ void * memcpy(void * destination, const void * source, uint64_t length)
 
 void currentRegisters(uint64_t rsp) {
 	fetchRegisters(registerKeeper,rsp);
-	printAllRegisters(rsp);
 }
 void getCurrentRegisters(uint64_t *buffer) {
 	for(int i = 0; i <15;i++) {

@@ -109,7 +109,6 @@ void inforeg(){
 	getRegisters(registerKeeper);
 	printAllRegisters(registerKeeper);
 	putChar('\n');
-	terminal();
 }
 
 void printmem(char * pointString){
@@ -144,7 +143,7 @@ void getid(){
 	printf(cpuAns);
 	putChar('\n');
 	resetBufferTerminal();
-	terminal();
+	//terminal();
 }
 
 void cpuTemperature(){
