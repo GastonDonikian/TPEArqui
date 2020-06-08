@@ -7,7 +7,7 @@ extern void switchScreen();
 extern void time(char * buf);
 extern void getCpuid(char * buf);
 extern void	cputemp(char * buf);
-extern void addProgram(void (*function)());
+extern void addProgram(void * func);
 extern void startRunning();
 
 
@@ -232,7 +232,7 @@ void printRegister(long int reg) {
 }
 
 
-void add_program(void (*function)()){
+void add_program(void * function){
 	addProgram(function);
 }
 

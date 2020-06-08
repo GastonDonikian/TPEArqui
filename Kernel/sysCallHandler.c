@@ -1,8 +1,9 @@
 #include <stdint.h>
 #include "lib.h"
 #include "screenManager.h"
+#include "sysCallHandler.h"
 
-
+void add_Program(void * func);
 
 sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 	switch(rcx){
@@ -28,7 +29,7 @@ sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 			registerInfo(rdi);
 			break;
 		case 7:
-			add_program(rdi);
+			add_Program(rdi);
 			break;
 		case 8:
 			startProgram();
@@ -67,9 +68,8 @@ void registerInfo(uint64_t * buffer) {
 	getCurrentRegisters(buffer);
 }
 
-void add_program(void (*function)()){
-	(*function)();
-	addFunction(function);
+void add_Program(void * func){
+	addFunction(func);
 }
 
 void startProgram(){

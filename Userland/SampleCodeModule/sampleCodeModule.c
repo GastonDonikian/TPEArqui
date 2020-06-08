@@ -12,6 +12,7 @@ int main() {
 	//GASTON
 	//int c;
 	//calculator();
+	add_program(terminal);
 	void (*terminal_ptr)() = &terminal;
 	calculator();
 	terminal();
