@@ -12,16 +12,8 @@ int main() {
 	//GASTON
 	//int c;
 	//calculator();
+	terminal();
 	add_program(terminal);
-	void (*terminal_ptr)() = &terminal;
-	calculator();
-	terminal();
-	add_program(terminal_ptr);
-	start();
-	terminal();
-	/*char string[10];
-	doubleToString(evaluate("(3.6+3)*3+3+3+3+3+3"),string);
-	printf(string);*/
 	
 	
 	//SEGUNDO

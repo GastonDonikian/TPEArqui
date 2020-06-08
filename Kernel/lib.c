@@ -93,3 +93,21 @@ void printRegister(uint64_t reg) {
 
 	return;
 }
+
+void intToString(uint64_t num, char * result){
+	int i =0;
+	while(num !=0){
+		result[i++]= num%10 + '0';
+		num = num/10;
+	}
+	int j=0;
+	char aux;
+	while (j<(i/2)){
+		aux = result[j];
+		result[j] = result[i-1-j];
+		result[i-1-j]= aux;
+		j++;
+	}
+	return;
+	result[i]=0;
+}

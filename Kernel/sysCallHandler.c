@@ -2,13 +2,13 @@
 #include "lib.h"
 #include "screenManager.h"
 #include "sysCallHandler.h"
+#include "time.h"
+#include "keyboard.h"
 
-void add_Program(void * func);
-
-sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
+void sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 	switch(rcx){
 		case 0:
-			read(rdi);
+			read((char *) rdi);
 			break;
 		case 1:
 			write(rdi, rsi, rdx);
@@ -17,7 +17,7 @@ sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 			switchScreen();
 			break;
 		case 3:
-			time(rdi);
+			time((char *)rdi);
 			break;
 		case 4:
 			cpuGetter(rdi);
@@ -29,7 +29,7 @@ sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 			registerInfo(rdi);
 			break;
 		case 7:
-			add_Program(rdi);
+			add_Program((void *)rdi);
 			break;
 		case 8:
 			startProgram();
@@ -38,7 +38,7 @@ sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 	return;
 }
 
-void read(uint64_t buffer) {
+void read(char * buffer) {
 	keyboard_reader(buffer);
 }
 
@@ -52,7 +52,7 @@ void switchScreen() {
 	selector();
 }
 
-void time(uint64_t buffer){
+void time(char * buffer){
 	timeGetter(buffer);
 }
 
