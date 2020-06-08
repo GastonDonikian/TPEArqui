@@ -5,7 +5,7 @@
 
 void add_Program(void * func);
 
-sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
+void sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 	switch(rcx){
 		case 0:
 			read(rdi);

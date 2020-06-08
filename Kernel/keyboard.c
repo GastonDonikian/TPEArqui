@@ -37,7 +37,7 @@ void keyboard_handler(uint64_t rsp){
 			currentRegisters(rsp);
 		}
 		else if(scancode == 56){
-			switchFun();
+			switchFun(rsp);
 		}
 		else if(scancode <58){
 			keyPress = asccode[scancode][shift];

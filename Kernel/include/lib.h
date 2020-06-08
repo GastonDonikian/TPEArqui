@@ -10,4 +10,6 @@ void printAllRegisters(uint64_t rsp);
 void printRegister(uint64_t reg);
 void getCurrentRegisters(uint64_t *buffer);
 void currentRegisters(uint64_t rsp);
+void programRegisters(uint64_t rsp,int program);
+void getProgramRegisters(uint64_t *buffer,int program);
 #endif

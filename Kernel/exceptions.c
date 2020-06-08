@@ -2,8 +2,9 @@
 #include "lib.h"
 #include "exceptions.h"
 #include "printManager.h"
+#include "programManager.h"
 #include "screenManager.h"
-#include "/Userland/lib.h"
+#include "sysCallHandler.h"
 #define ZERO_EXCEPTION_ID 0
 #define INVALID_OP_CODE 6
 void zero_division(uint64_t rsp);
@@ -17,7 +18,7 @@ void exceptionDispatcher(int exception,uint64_t rsp) {
 		invalid_operation_code(rsp);
 }
 
-void printRegister(uint64_t reg);
+//void printRegister(uint64_t reg);
 
 void invalid_operation_code(uint64_t rsp) {
 	cleanScreen();
@@ -28,6 +29,11 @@ void invalid_operation_code(uint64_t rsp) {
 		printAnyChar(string[i++],255,0,0);
 	printAllRegisters(rsp);
 	newLine();
+	if(tryAndContinue()) {
+		reRunFunction();
+	}
+	else;
+		//NO SE QUE HACER ACA! PARA QUE NO SIGA CORRIENDO MI PROGRAMA
 }
 void zero_division(uint64_t rsp) {
 	cleanScreen();
@@ -38,16 +44,22 @@ void zero_division(uint64_t rsp) {
 		printAnyChar(string[i++],255,0,0);
 	printAllRegisters(rsp);
 	newLine();
+	if(tryAndContinue()) {
+		cleanScreen();
+		//reRunFunction();
+	}
+	else
+		cleanScreen();
 	//printLine("Usted trato de dividir por cero!");
 	// Handler para manejar excepcíon
 }
 
-int tryAndCountinue() {
+int tryAndContinue() {
 	setUpDown(1);
-	print("Try and Continue: Y/n");
-	char a;
-	while((a = getChar()) != 'y' && (a != 'n'));
-	if(a == 'y') {
-		
+	print("Try to Continue? Y/n");
+	char a = 0;
+	while(a==0){
+		read(&a);
 	}
+	return (a == 'y');
 }

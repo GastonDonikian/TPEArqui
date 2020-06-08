@@ -1,3 +1,5 @@
+#include "lib.h"
+extern void loadFunction(uint64_t *programRegisters,void (*function)(void));
 
 void (* fun_array[2])(void)={0};
 int runningfunc=0;
@@ -12,7 +14,8 @@ void addFunction(void * func){
 	function();
 }
 
-void switchFun(){
+void switchFun(uint64_t rsp){
+	programRegisters(rsp,runningfunc);
 	if (runningfunc == 0){
 		runningfunc =1;
 	}
@@ -25,4 +28,10 @@ void switchFun(){
 void runFunction(){
 	void (*function)(void) = fun_array[runningfunc];
 	function();
+}
+
+void reRunFunction() {
+	uint64_t programRegisters[15];
+	getProgramRegisters(programRegisters,runningfunc);
+	loadFunction(programRegisters,fun_array[runningfunc]);
 }

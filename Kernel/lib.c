@@ -2,6 +2,7 @@
 #include "lib.h"
 #include "printManager.h"
 uint64_t registerKeeper[15];
+uint64_t programReg[2][15];
 
 extern void fetchRegisters(uint64_t * array,uint64_t stackDirection);
 
@@ -53,7 +54,14 @@ void * memcpy(void * destination, const void * source, uint64_t length)
 
 	return destination;
 }
-
+void programRegisters(uint64_t rsp,int program) {
+	fetchRegisters(programReg[program],rsp);
+}
+void getProgramRegisters(uint64_t *buffer,int program){
+	for(int i = 0; i <15;i++) {
+		buffer[i]= programReg[program][i];
+	}
+}
 void currentRegisters(uint64_t rsp) {
 	fetchRegisters(registerKeeper,rsp);
 }
