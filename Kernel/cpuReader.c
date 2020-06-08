@@ -34,6 +34,7 @@ int cpuTemperature(char * result){
 	uint64_t tempTarget = cpuTempTarget();
 	uint64_t cpuTemp;
 	tempStatus = tempStatus >> 16;
+
 	tempStatus = tempStatus & 0x7F;
 	uint64_t offset = tempTarget >> 24;
 	offset = offset & 0x3F;

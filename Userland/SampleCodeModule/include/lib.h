@@ -14,4 +14,6 @@ void charToBits(char ch, char * string);
 void intToString(int num, char * result);
 void add_program(void (*function)());
 void start();
+void printRegister(long int reg);
+void printAllRegisters(long int * registerArray);
 #endif
