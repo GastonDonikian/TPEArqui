@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <lib.h>
 #include "screenManager.h"
+#include "programManager.h"
 #define BUFFERSIZE 32
 extern char keyPressed();
 extern char getKey();
@@ -34,6 +35,9 @@ void keyboard_handler(uint64_t rsp){
 		}
 		else if(scancode == 1) {
 			currentRegisters(rsp);
+		}
+		else if(scancode == 56){
+			switchFun();
 		}
 		else if(scancode <58){
 			keyPress = asccode[scancode][shift];

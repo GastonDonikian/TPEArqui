@@ -7,6 +7,8 @@ extern void switchScreen();
 extern void time(char * buf);
 extern void getCpuid(char * buf);
 extern void	cputemp(char * buf);
+extern void addProgram(void (*function)());
+extern void startRunning();
 
 
 char screenPrint[2] = {0};
@@ -226,4 +228,13 @@ void printRegister(int reg) {
 	}
 	putChar('h');
 	return;
+}
+
+
+void add_program(void (*function)()){
+	addProgram(function);
+}
+
+void start(){
+	startRunning();
 }

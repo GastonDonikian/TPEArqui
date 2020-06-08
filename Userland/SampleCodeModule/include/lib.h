@@ -12,4 +12,6 @@ void getCpu(char * answer);
 void getCpuTemp(char * answer);
 void charToBits(char ch, char * string);
 void intToString(int num, char * result);
+void add_program(void (*function)());
+void start();
 #endif

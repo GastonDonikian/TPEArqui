@@ -150,6 +150,7 @@ void cpuTemperature(){
 	char result[20]={0};
 	getCpuTemp(result);
 	printf(result);
+	printf(" grados Celsius");
 	putChar('\n');
 }
 

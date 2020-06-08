@@ -27,7 +27,12 @@ sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 		case 6:
 			registerInfo(rdi);
 			break;
-
+		case 7:
+			add_program(rdi);
+			break;
+		case 8:
+			startProgram();
+			break;
 	}
 	return;
 }
@@ -60,4 +65,13 @@ void cputemp(uint64_t buffer){
 
 void registerInfo(uint64_t * buffer) {
 	getCurrentRegisters(buffer);
+}
+
+void add_program(void (*function)()){
+	(*function)();
+	addFunction(function);
+}
+
+void startProgram(){
+	runFunction();
 }

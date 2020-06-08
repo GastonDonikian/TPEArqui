@@ -6,6 +6,8 @@ GLOBAL time
 GLOBAL getCpuid
 GLOBAL cputemp
 GLOBAL getRegisters
+GLOBAL addProgram
+GLOBAL startRunning
 
 ; void read(char * buf)
 read:
@@ -47,5 +49,17 @@ cputemp:
 ;void getRegisters(uint64_t * registerKeeper)
 getRegisters:	
 	mov rax,6
+	int 80h
+	ret
+
+;void addProgram(void (* fun)())
+addProgram:
+	mov rax, 7
+	int 80h
+	ret
+
+; void startRunning
+startRunning:
+	mov rax, 8
 	int 80h
 	ret
