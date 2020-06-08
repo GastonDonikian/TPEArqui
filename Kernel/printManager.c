@@ -134,7 +134,9 @@ void scrollDown() {
 		copyLine(i,i+1);
 	}
 }
-
+void setUpDown(int i ) {
+	upDown = i;
+}
 void cleanScreen() {
 	clearScreen(select);
 	posScreen[select] = 0;
