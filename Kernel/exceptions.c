@@ -3,7 +3,6 @@
 #include "exceptions.h"
 #include "printManager.h"
 #include "screenManager.h"
-#include "/Userland/lib.h"
 #define ZERO_EXCEPTION_ID 0
 #define INVALID_OP_CODE 6
 void zero_division(uint64_t rsp);
@@ -40,14 +39,4 @@ void zero_division(uint64_t rsp) {
 	newLine();
 	//printLine("Usted trato de dividir por cero!");
 	// Handler para manejar excepcíon
-}
-
-int tryAndCountinue() {
-	setUpDown(1);
-	print("Try and Continue: Y/n");
-	char a;
-	while((a = getChar()) != 'y' && (a != 'n'));
-	if(a == 'y') {
-		
-	}
 }
