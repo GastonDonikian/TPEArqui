@@ -143,7 +143,7 @@ void getid(){
 	printf(cpuAns);
 	putChar('\n');
 	resetBufferTerminal();
-	//terminal();
+	terminal();
 }
 
 void cpuTemperature(){

@@ -13,6 +13,8 @@ int main() {
 	//int c;
 	//calculator();
 	void (*terminal_ptr)() = &terminal;
+	calculator();
+	terminal();
 	add_program(terminal_ptr);
 	start();
 	terminal();
