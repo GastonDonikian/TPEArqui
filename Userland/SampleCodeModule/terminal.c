@@ -98,7 +98,6 @@ void resetBufferTerminal(){
 }
 
 void help(){
-	int a = 4/0;
 	for(int i = 0; i< DIM; i++){
 		printf(funciones[i]);
 		putChar('\n');

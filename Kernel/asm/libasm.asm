@@ -36,6 +36,10 @@ cpuVendor:
 cpuModel1:
 	push rbp
 	mov rbp, rsp
+	
+	push rbx
+	push rcx
+	push rdx
 
 	mov eax, 80000002h
 	cpuid
@@ -47,6 +51,10 @@ cpuModel1:
 
 	mov byte [rdi+16], 0	;termino el string con 0
 
+	pop rdx
+	pop rcx
+	pop rbx
+
 	mov rax, rdi		;valor de retorno en rax
 	
 	mov rsp, rbp
@@ -56,6 +64,10 @@ cpuModel1:
 cpuModel2:
 	push rbp
 	mov rbp, rsp
+
+	push rbx
+	push rcx
+	push rdx
 
 	mov eax, 80000003h
 	cpuid
@@ -69,6 +81,10 @@ cpuModel2:
 
 	mov rax, rdi		;valor de retorno en rax
 
+	pop rdx
+	pop rcx
+	pop rbx
+
 	mov rsp, rbp
 	pop rbp
 	ret
@@ -76,6 +92,10 @@ cpuModel2:
 cpuModel3:
 	push rbp
 	mov rbp, rsp
+
+	push rbx
+	push rcx
+	push rdx
 
 	mov eax, 80000004h
 	cpuid
@@ -88,6 +108,10 @@ cpuModel3:
 	mov byte [rdi+16], 0	;termino el string con 0
 
 	mov rax, rdi		;valor de retorno en rax
+
+	pop rdx
+	pop rcx
+	pop rbx
 
 	mov rsp, rbp
 	pop rbp

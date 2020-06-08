@@ -12,4 +12,5 @@ void getCurrentRegisters(uint64_t *buffer);
 void currentRegisters(uint64_t rsp);
 void programRegisters(uint64_t rsp,int program);
 void getProgramRegisters(uint64_t *buffer,int program);
+void intToString(uint64_t num, char * result);
 #endif

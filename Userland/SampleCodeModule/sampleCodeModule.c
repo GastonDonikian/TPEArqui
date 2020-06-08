@@ -13,10 +13,10 @@ int main() {
 	//int c;
 	//calculator();
 	terminal();
-	
 	/*char string[10];
 	doubleToString(evaluate("(3.6+3)*3+3+3+3+3+3"),string);
 	printf(string);*/
+	add_program(terminal);
 	
 	
 	//SEGUNDO
