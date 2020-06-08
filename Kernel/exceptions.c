@@ -6,6 +6,7 @@
 #define ZERO_EXCEPTION_ID 0
 #define INVALID_OP_CODE 6
 void zero_division(uint64_t rsp);
+void invalid_operation_code(uint64_t rsp);
 
 
 void exceptionDispatcher(int exception,uint64_t rsp) {

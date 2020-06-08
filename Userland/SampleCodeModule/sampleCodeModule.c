@@ -12,10 +12,7 @@ int main() {
 	//GASTON
 	//int c;
 	//calculator();
-	void (*terminal_ptr)() = &terminal;
-	add_program(terminal_ptr);
-	start();
-	terminal();
+	add_program(terminal);
 	/*char string[10];
 	doubleToString(evaluate("(3.6+3)*3+3+3+3+3+3"),string);
 	printf(string);*/

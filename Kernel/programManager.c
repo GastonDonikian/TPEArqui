@@ -1,13 +1,15 @@
 
-void (* fun_array[2])()={0};
+void (* fun_array[2])(void)={0};
 int runningfunc=0;
 
-void addFunction(void (*function)()){
+void addFunction(void * func){
 	int i =0;
 	if (fun_array[i]!=0){
 		i++;
 	}
-	fun_array[i] = function;
+	fun_array[i] = func;
+	void (*function)(void) = func;
+	function();
 }
 
 void switchFun(){
@@ -21,5 +23,6 @@ void switchFun(){
 }
 
 void runFunction(){
-	(*fun_array[runningfunc])();
+	void (*function)(void) = fun_array[runningfunc];
+	function();
 }
