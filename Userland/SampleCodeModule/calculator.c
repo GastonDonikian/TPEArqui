@@ -48,7 +48,7 @@ void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
 		doubleToString(evaluate(buffer),string);
 		if(thereWasAnError) { //SI HUBO ALGUN ERROR IMPRIMIMOS EL ERROR Y NO MOSTRAMOS EL VALOR
 			printf("Error: ");
-			char * stringArray[5] = {"Todo bien...","Me pasaste mal un numero","Mal cantidad de operandores","Mal cantidad de numeros","Dividiste por cero"};
+			char * stringArray[5] = {"Todo bien...","Me pasaste mal un numero","Mal cantidad de operadores","Mal cantidad de numeros","Dividiste por cero"};
 			printf(stringArray[thereWasAnError]);
 			thereWasAnError = 0;
 		}
@@ -108,6 +108,8 @@ double evaluate(char * string) { //EVALUA LA EXPRESION
 					thereWasAnError = 2;
 					return;
 				}
+				if(thereWasAnError)
+					return;
 				updateStack();
 			}
 			operationStack[currentOperationPosition - 1] = 0; //BORRO EL PARENTESIS, PUES NO ME INTERESA
