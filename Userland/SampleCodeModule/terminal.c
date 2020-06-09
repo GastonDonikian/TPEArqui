@@ -1,21 +1,23 @@
 #include "lib.h"
 #include "terminal.h"
-
+#define TERMINALDIM  40
+#define DIM 6
 
 int longitud=0;
-char bufferTerminal[48] = {0};
+char bufferTerminal[TERMINALDIM] = {0};
 
 char * postBuffer;
-int DIM = 6;
-char * funciones[]= {"help","inforeg","printmem","time","cpuid","cputemp"};
+char * funciones[DIM]= {"help","inforeg","printmem","time","cpuid","cputemp"};
 
 
 void removePostSpaces(char * string); //LAS AGREGO ACA PORQUE COMO NO ESTAN EN EL .H
 void removePreSpaces(char * string); //TIRAN WARNINGS
 
 void terminal(){
-	setUpDown(1);
+	putChar('h');
+	//setUpDown(1);
 	while(1){
+		putChar('o');
 		char a;
 		while((a=getChar()) !='\n' && a != '\t'){
 			if(a=='\b'){
@@ -26,8 +28,20 @@ void terminal(){
 				}
 			}
 			else{
-				putChar(a);
-				bufferTerminal[longitud++]=a;
+				if(longitud >= TERMINALDIM){
+					putChar('\n');
+					printf("no hay espacio en la terminal, escriba su comando devuelta");
+					putChar('\n');
+					for (int i = 0;bufferTerminal[i]!=0; i++){
+						bufferTerminal[i]=0;
+					}
+					longitud=0;
+
+				}
+				else{
+					putChar(a);
+					bufferTerminal[longitud++]=a;
+				}
 			}
 		}
 		if(a=='\n'){
@@ -42,11 +56,11 @@ void terminal(){
 }
 
 void analize(char * buffer){
-	cleanString(bufferTerminal);
+	cleanString(buffer);
 	int flag=0;
 	int j;
 	for (j = 0; j < DIM && flag == 0; j++){
-		flag=stringCmp(funciones[j], bufferTerminal);
+		flag=stringCmp(funciones[j], buffer);
 	}
 	if (flag){
 		putChar('\n');

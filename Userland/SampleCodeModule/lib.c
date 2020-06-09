@@ -12,7 +12,7 @@ extern void startRunning();
 
 
 char screenPrint[2] = {0};
-char screen = 0;
+int screen = 0;
 
 void getCpuTemp(char * answer){
 	cputemp(answer);

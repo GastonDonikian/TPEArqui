@@ -9,7 +9,7 @@ void irqDispatcher(uint64_t irq,uint64_t rsp) {
 			int_20();
 			break;
 		case 1:
-			int_21(rsp);
+			int_21();
 			break;
 	}
 	return;

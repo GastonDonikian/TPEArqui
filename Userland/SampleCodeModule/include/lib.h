@@ -17,4 +17,5 @@ void start();
 void printRegister(long int reg);
 void printAllRegisters(long int * registerArray);
 int stringCmp(char * string1, char * string2);
+int stringToInt(char * string);
 #endif

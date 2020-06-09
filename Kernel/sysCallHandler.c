@@ -4,6 +4,8 @@
 #include "sysCallHandler.h"
 #include "time.h"
 #include "keyboard.h"
+#include "cpuReader.h"
+#include "programManager.h"
 
 
 void sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
@@ -21,10 +23,10 @@ void sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 			time((char *)rdi);
 			break;
 		case 4:
-			cpuGetter(rdi);
+			cpuGetter((char *)rdi);
 			break;
 		case 5:
-			cputemp(rdi);
+			cputemp((char *)rdi);
 			break;
 		case 6:
 			registerInfo(rdi);
@@ -57,11 +59,11 @@ void time(char * buffer){
 	timeGetter(buffer);
 }
 
-void cpuGetter(uint64_t buffer) {
+void cpuGetter(char * buffer) {
 	cpuModel(buffer);
 }
 
-void cputemp(uint64_t buffer){
+void cputemp(char * buffer){
 	cpuTemperature(buffer);
 }
 
