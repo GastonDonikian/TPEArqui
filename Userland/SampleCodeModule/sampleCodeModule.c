@@ -15,9 +15,9 @@ int main() {
 	printf(string);*/
 
 	void(*fun)(void);
-	fun = calculator;
-	add_program(fun);
 	fun = terminal;
+	add_program(fun);
+	fun = calculator;
 	add_program(fun);
 	start();
 	
