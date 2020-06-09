@@ -9,7 +9,7 @@
 #include "printManager.h"
 
 
-void sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
+void sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx,uint64_t r8){ //r8 solo se usa para rsp y multitask
 	switch(rcx){
 		case 0:
 			read((char *) rdi);
@@ -33,10 +33,10 @@ void sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 			registerInfo((uint64_t *)rdi);
 			break;
 		case 7:
-			add_Program((void *)rdi);
+			add_Program((void(*)(void))rdi);
 			break;
 		case 8:
-			startProgram();
+			startProgram(r8);
 			break;
 	}
 	return;
@@ -72,10 +72,11 @@ void registerInfo(uint64_t * buffer) {
 	getCurrentRegisters(buffer);
 }
 
-void add_Program(void * func){
-	addFunction(func);
+void add_Program(uint64_t function){
+	//((void(*)(void))function)();
+	addFunction((void(*)(void))function);
 }
 
-void startProgram(){
-	runFunction();
+void startProgram(uint64_t rsp){
+	initializeFunction(rsp);
 }

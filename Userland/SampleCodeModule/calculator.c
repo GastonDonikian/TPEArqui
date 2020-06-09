@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "lib.h"
 #include "calculator.h"
 
@@ -18,6 +19,7 @@ int thereWasAnError = 0; // HABLA ENTRE LA CALCULADORA Y EL ANALIZADOR PARA SABE
 //ERROR 4 = DIVIDISTE POR CERO 
 //ERROR 5 = NOT AN OPERATOR
 void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
+	putChar('h');
 	while(1) {
 		char c;
 		char buffer[MAX_OPERATIONS + MAX_OPERANDS + 20] = {0}; //MAXIMA POSICION DE IMPRESION

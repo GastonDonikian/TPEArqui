@@ -151,6 +151,7 @@ _irq05Handler:
 _int80Handler:
 	pushState
 	mov rcx, rax
+	mov r8,rsp
 	call sysCallHandler
 	popState
 	iretq

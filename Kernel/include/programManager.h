@@ -2,7 +2,7 @@
 #define _programManager
 void addFunction(void (*function)());
 void switchFun();
-void runFunction();
+void initializeFunction();
 void reRunFunction();
 void loadFunction(uint64_t *registers,void (*function)(void));
 #endif

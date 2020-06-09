@@ -16,13 +16,13 @@ unsigned char asccode[58][2] ={ {0,0}, {0,0}, {'1', '!'}, {'2', '@'}, {'3', '#'}
 int buffer_position = 0;
 char keyboardBuffer[BUFFERSIZE]={0};
 unsigned int reading_position= 0;
+char shift = 0;
 
 char wasKeyPressed(){
 	return keyPressed();
 }
 
 void keyboard_handler(uint64_t rsp){
-	static char shift;
 	unsigned int scancode =0;
 	unsigned char keyPress;
 	if(wasKeyPressed()){

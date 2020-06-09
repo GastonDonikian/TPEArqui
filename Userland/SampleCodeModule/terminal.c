@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "lib.h"
 #include "terminal.h"
 #define TERMINALDIM  40

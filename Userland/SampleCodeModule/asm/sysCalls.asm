@@ -52,7 +52,7 @@ getRegisters:
 	int 80h
 	ret
 
-;void addProgram(void (* fun)())
+;void addProgram(void * function (void))
 addProgram:
 	mov rax, 7
 	int 80h

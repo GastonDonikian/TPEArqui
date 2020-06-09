@@ -4,8 +4,6 @@
 #include "calculator.h"
 #include "terminal.h"
 
-#define EPSILON 0.0001
-
 
 
 int main() {
@@ -15,9 +13,11 @@ int main() {
 	/*char string[10];
 	doubleToString(evaluate("(3.6+3)*3+3+3+3+3+3"),string);
 	printf(string);*/
-	calculator();
-	add_program(calculator);
-	
+
+	void(*fun)(void);
+	fun = terminal;
+	add_program(fun);
+	start();
 	
 	//SEGUNDO
 	/*printf("Hola como estas\n");
