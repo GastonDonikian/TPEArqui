@@ -14,5 +14,7 @@ void cleanString(char * string);
 void removePreSpaces(char * string);
 void removePostSpaces(char * string);
 void resetBufferTerminal();
+void ceriDivision();
+void invalidOperation();
 
 #endif
