@@ -76,9 +76,25 @@ void printf(char * string) {
 	while(string[i++] !=0);
 	write(string,i - 1,screenPrint[screen]);
 }
+
+void scanf (char * string, int longitud){
+	int i;
+	char a;
+	while((a=getChar()) !='\n' && i < longitud){
+		if(a=='\b'){
+			if(i != 0){
+				string[i--]=0;
+			}
+		}
+		else{
+			string[i++] = a;
+		}
+	}
+}
+
 /*void printf(char *fmt,...){ //FUNCION SACADA DE "THE C PROGRAMMING LANGUAJE" - Brian W. Kernighan Dennis M. Ritchie
 	va_list ap;
-	char *p, *sval;
+	char *p, *sval;aa
 	int ival;
 	double dval;
 	va_start(ap,fmt);
@@ -107,14 +123,6 @@ void printf(char * string) {
 	}
 	va_end(ap);
 }*/
-
-void changeScreen() {
-	switchScreen();
-	if(screen == 1)
-		screen = 0;
-	else
-		screen =  1;
-}
 
 void setUpDown(int i) {
 	screenPrint[screen]=i;

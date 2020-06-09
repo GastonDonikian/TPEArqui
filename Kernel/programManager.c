@@ -26,7 +26,8 @@ void switchFun(uint64_t rsp){
 	else{
 		runningfunc = 0;
 	}
-	(fun_array[runningfunc])();
+	selector();
+	initializeFunction(rsp);
 }
 
 void initializeFunction(uint64_t rsp){

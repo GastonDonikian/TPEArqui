@@ -2,24 +2,22 @@
 #include "lib.h"
 #include "terminal.h"
 #define TERMINALDIM  40
-#define DIM 6
+#define DIM 8
 
 int longitud=0;
 char bufferTerminal[TERMINALDIM] = {0};
 extern void getRegisters(long int registerKeeper[]);
 
 char * postBuffer;
-char * funciones[DIM]= {"help","inforeg","printmem","time","cpuid","cputemp"};
+char * funciones[DIM]= {"help","inforeg","printmem","time","cpuid","cputemp","ceroDivision", "invalidOperation"};
 
 
 void removePostSpaces(char * string); //LAS AGREGO ACA PORQUE COMO NO ESTAN EN EL .H
 void removePreSpaces(char * string); //TIRAN WARNINGS
 
 void terminal(){
-	putChar('h');
-	//setUpDown(1);
+	setUpDown(1);
 	while(1){
-		putChar('o');
 		char a;
 		while((a=getChar()) !='\n' && a != '\t'){
 			if(a=='\b'){
@@ -49,10 +47,6 @@ void terminal(){
 		if(a=='\n'){
 			putChar(a);
 			analize(bufferTerminal);
-		}
-		if (a=='\t'){
-			changeScreen();
-			return;
 		}
 	}
 }
@@ -102,6 +96,10 @@ void gotoFunction(int number, char * postBuffer){
 		case 5:
 			cpuTemperature();
 			break;
+		case 6:
+			ceroDivision();
+		case 7:
+			invalidOperation();
 	}
 	return;
 }
@@ -196,4 +194,12 @@ void removePostSpaces(char * string){
 			return;
 		}
 	}
+}
+
+void ceroDivision(){
+	int ceroDiv = 4/0;
+}
+
+void invalidOperation(){
+	return;
 }
