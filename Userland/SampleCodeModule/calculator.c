@@ -15,7 +15,8 @@ int thereWasAnError = 0; // HABLA ENTRE LA CALCULADORA Y EL ANALIZADOR PARA SABE
 //ERROR 1 = MAL DADO UN NUMERO
 //ERROR 2 = MAL CANTIDAD DE OPERANDOS
 //ERROR 3 = MAL CANTIDAD DE NUMEROS
-//ERROR 4 = DIVIDISTE POR CERO
+//ERROR 4 = DIVIDISTE POR CERO 
+//ERROR 5 = NOT AN OPERATOR
 void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
 	while(1) {
 		char c;
@@ -84,14 +85,14 @@ double evaluate(char * string) { //EVALUA LA EXPRESION
 	for(int i = 0; string[i] != 0;i++) { //PARA CADA CARACTER DE LA STRING
 		int stillInANumber = 0;
 		if(thereWasAnError)
-			return;
+			return 0;
 		if(isANumber(string[i])) { //ESTOY PARADO EN UN NUMERO, AVANZO HASTA QUE EL NUMER TERMINE
 			operandStack[currentOperandPosition++] = stringToDouble(string + i); //AGREGO EL NUMERO A MI STACK
 			while(isANumber(string[i + 1]) || string[i + 1] == '.') {
 				if(string[i + 1] == '.'){
 					if(stillInANumber) {
 						thereWasAnError = 1;
-						return;
+						return 0;
 					}
 					stillInANumber = 1;
 				}
@@ -106,10 +107,10 @@ double evaluate(char * string) { //EVALUA LA EXPRESION
 			while(operationStack[currentOperationPosition - 1] != '(') {
 				if(currentOperationPosition == 0) {
 					thereWasAnError = 2;
-					return;
+					 return 0;
 				}
 				if(thereWasAnError)
-					return;
+					 return 0;
 				updateStack();
 			}
 			operationStack[currentOperationPosition - 1] = 0; //BORRO EL PARENTESIS, PUES NO ME INTERESA
@@ -120,23 +121,23 @@ double evaluate(char * string) { //EVALUA LA EXPRESION
 			while((currentOperationPosition != 0) && precedence(operationStack[currentOperationPosition - 1],string[i])) {
 				updateStack();
 				if(thereWasAnError)
-					return;
+					return 0;
 			}
 			operationStack[currentOperationPosition++] = string[i];
 		}
 		else {
 			thereWasAnError = 2;
-			return;
+			return 0;
 		}
 	}
 	while(currentOperationPosition != 0) { //TERMINE CON EL STRING PERO TODAVIA ME FALTA OPERAR
 		if(thereWasAnError)
-			return;
+			return 0;
 		updateStack();
 	}
 	if(currentOperandPosition != 1){ //SI NO ME QUEDA SOLO UN NUMERO HUBO UN PROBLEMA CON LA EXPRESION
 		thereWasAnError = 3;
-		return;
+		return 0;
 	}
 
 	return operandStack[0]; //DEVUELVE EL ULTIMO VALOR
@@ -172,7 +173,7 @@ double evaluateOperator(double num1, double num2, char op) { //EVALUA LA OPERACI
 			return num1/num2;
 		default:
 			thereWasAnError = 1;
-			return;
+			return 0;
 		}
 }
 
@@ -181,7 +182,7 @@ int operatorPrecedence(char op) { //PRECEDENCIA DE OPERADOR
 		return 0;
 	if(op == '%' || op == '*' || op == '/')
 		return 1;
-	if(op == '(')
+	else
 		return 0;
 }
 

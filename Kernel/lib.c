@@ -90,7 +90,7 @@ void printAllRegisters(uint64_t rsp) {
 	}
 }
 void printRegister(uint64_t reg) {
-	char array[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+	unsigned char array[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
 	char aux;
 	for(int i = 0; i < 16;i++) { 
 		aux = (reg & 0xF000000000000000) >> 60; 

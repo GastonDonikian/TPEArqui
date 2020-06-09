@@ -2,6 +2,7 @@
 #define _printManager_
 void copyLine(unsigned char source, unsigned char destiny);
 void newLine();
+void scrollDown();
 void cleanLine(unsigned char line);
 void printLine(char * string);
 void print(char * string);

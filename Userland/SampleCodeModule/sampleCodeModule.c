@@ -15,6 +15,7 @@ int main() {
 	/*char string[10];
 	doubleToString(evaluate("(3.6+3)*3+3+3+3+3+3"),string);
 	printf(string);*/
+	calculator();
 	add_program(calculator);
 	
 	

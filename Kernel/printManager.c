@@ -1,6 +1,8 @@
 #include <stdint.h>
 #include "video_driver.h"
 #include "printManager.h"
+#include "screenManager.h"
+#include "video_driver.h"
 #define WIDTH 1024 
 #define HEIGHT 768
 #define MULT 2
@@ -103,7 +105,6 @@ void copyLine(unsigned char source, unsigned char destiny) {
 }
 
 void deleteChar() {
-	
 	if(upDown) {
 		if(posScreen[select] > 0) {
 			posScreen[select]--;

@@ -6,6 +6,7 @@
 #include "keyboard.h"
 #include "cpuReader.h"
 #include "programManager.h"
+#include "printManager.h"
 
 
 void sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
@@ -29,7 +30,7 @@ void sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx){
 			cputemp((char *)rdi);
 			break;
 		case 6:
-			registerInfo(rdi);
+			registerInfo((uint64_t *)rdi);
 			break;
 		case 7:
 			add_Program((void *)rdi);
@@ -48,7 +49,7 @@ void read(char * buffer) {
 void write(uint64_t buffer, uint64_t count, uint64_t upordown){
 	if(count <= 0 || (upordown != 0 && upordown != 1))
 		return;
-	screenWriter(buffer, count, upordown);
+	screenWriter((char *)buffer, count, upordown);
 }
 
 void switchScreen() {

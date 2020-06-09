@@ -8,7 +8,7 @@ void switchScreen();
 void time(char * buffer);
 void cpuGetter(char * buffer);
 void cputemp(char * buffer);
-void registerInfo(uint64_t * buffer);
+void registerInfo(uint64_t *buffer);
 void add_Program(void * func);
 void startProgram();
 #endif

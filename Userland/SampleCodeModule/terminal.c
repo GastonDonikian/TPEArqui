@@ -5,6 +5,7 @@
 
 int longitud=0;
 char bufferTerminal[TERMINALDIM] = {0};
+extern void getRegisters(long int registerKeeper[]);
 
 char * postBuffer;
 char * funciones[DIM]= {"help","inforeg","printmem","time","cpuid","cputemp"};

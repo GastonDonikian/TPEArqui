@@ -50,6 +50,7 @@ unsigned char mask[] = {128,64,32,16,8,4,2,1};
 
 int pos = 0; //Caracter de la pantalla
 int line = 0; //linea en la pantalla
+
 char * getPixelDataByPosition(int x, int y) {
 	return (screen_info->framebuffer + 3 * (x + y * WIDTH));
 }

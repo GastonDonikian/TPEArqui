@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <stdarg.h>
+#include "lib.h"
 #define EPSILON 0.0001
 extern void read(char * buf);
 extern void write(char * buf, uint64_t count, uint64_t abajoarriba);
@@ -128,7 +129,9 @@ int stringCmp(char * string1, char * string2){
 	return flag;
 }
 
-
+int isItANumber(char ch) { //DICE SI ES UN NUMERO
+	return (ch >= '0' && ch <= '9');
+}
 
 double stringToDouble(char * string) {
 	double rta = 0;
@@ -137,7 +140,7 @@ double stringToDouble(char * string) {
 	double pow = 0.1;
 	while(*string == '0')
 		string = string+1;
-	while(isANumber(string[length]) || string[length] == '.') { //CAMBIAR != 0 POR PARENTESIS O OPERANDO Y VALIDAR!
+	while(isItANumber(string[length]) || string[length] == '.') { //CAMBIAR != 0 POR PARENTESIS O OPERANDO Y VALIDAR!
 		if(string[length] == '.') {
 			if(pointPosition)
 				return 0; //HUBO UN ERROR!
@@ -205,7 +208,6 @@ void charToBits(char ch, char * string) {
 	}
 	string[8] = 0;
 }
-void printRegister(long int reg);
 
 void printAllRegisters(long int * registerArray) { //SABEMOS QUE ACA ESTAN REPETIDAS PERO UNA ES LIB DE KERNEL Y OTRA DE USERLAND
 	char * registerNamesArray[] = {"r15","r14","r13","r12","r11","r10","r9","r8","rsi",
