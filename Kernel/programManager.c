@@ -1,4 +1,6 @@
 #include "lib.h"
+#include "programManager.h"
+#include "printManager.h"
 
 extern void asmRunFunction(uint64_t *programRegisters,void (*function)(void),uint64_t *stack,uint64_t rsp);
 #define STACKSIZE 512
@@ -10,12 +12,10 @@ uint64_t stackProgram[2][STACKSIZE];
 
 void addFunction(void * func){
 	int i =0;
-	if (fun_array[i]!=0){
+	while (fun_array[i]!=0){
 		i++;
 	}
-	fun_array[i] = func;
-	//void (*function)(void) = func;
-	//function();
+	fun_array[i%2] = func;
 }
 
 void switchFun(uint64_t rsp){
