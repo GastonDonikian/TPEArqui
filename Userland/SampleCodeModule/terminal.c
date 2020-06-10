@@ -7,6 +7,7 @@
 int longitud=0;
 char bufferTerminal[TERMINALDIM] = {0};
 extern void getRegisters(long int registerKeeper[]);
+extern void invalidOpCode();
 
 char * postBuffer;
 char * funciones[DIM]= {"help","inforeg","printmem","time","cpuid","cputemp","ceroDivision", "invalidOperation"};
@@ -98,8 +99,10 @@ void gotoFunction(int number, char * postBuffer){
 			break;
 		case 6:
 			ceroDivision();
+			break;
 		case 7:
 			invalidOperation();
+			break;
 	}
 	return;
 }
@@ -197,9 +200,18 @@ void removePostSpaces(char * string){
 }
 
 void ceroDivision(){
-	int ceroDiv = 4/0;
+	longitud = 0;
+	bufferTerminal[0] = 0;
+	int a = 0;
+	int b = 4/a;
+
 }
 
 void invalidOperation(){
-	return;
+	longitud = 0;
+	bufferTerminal[0] = 0;
+	char buffer[] = "que haces papa";
+	void (*function)(void)=(void(*)(void))"crack";
+	function();
+	//invalidOpCode();
 }

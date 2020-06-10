@@ -7,7 +7,8 @@
 	
 double operandStack[MAX_OPERANDS];
 char operationStack[MAX_OPERATIONS];
-	
+char buffer[MAX_OPERATIONS + MAX_OPERANDS + 20] = {0}; //MAXIMA POSICION DE IMPRESION
+int position = 0;
 int currentOperandPosition = 0;
 int currentOperationPosition = 0; //VARIABLES GLOBALES PARA MANEJAR LOS STACKS
  
@@ -22,9 +23,7 @@ void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
 	setUpDown(0);
 	while(1) {
 		char c;
-		char buffer[MAX_OPERATIONS + MAX_OPERANDS + 20] = {0}; //MAXIMA POSICION DE IMPRESION
-		int position = 0;
-		while((c = getChar()) != 'a') { //SOLO ACEPTAMOS DIGITOS O CARACTERES ESPECIALES
+		while((c = getChar()) != '=') { //SOLO ACEPTAMOS DIGITOS O CARACTERES ESPECIALES
 			if(c == '\b') {
 				if(position != 0) {
 					buffer[--position] = 0;

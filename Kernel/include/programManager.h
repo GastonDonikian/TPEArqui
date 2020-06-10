@@ -3,6 +3,6 @@
 void addFunction(void (*function)());
 void switchFun();
 void initializeFunction();
-void reRunFunction();
-void loadFunction(uint64_t *registers,void (*function)(void));
+//void reRunFunction();
+//void loadFunction(uint64_t *registers,void (*function)(void));
 #endif
