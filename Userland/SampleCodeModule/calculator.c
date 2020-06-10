@@ -7,8 +7,7 @@
 	
 double operandStack[MAX_OPERANDS];
 char operationStack[MAX_OPERATIONS];
-char buffer[MAX_OPERATIONS + MAX_OPERANDS + 20] = {0}; //MAXIMA POSICION DE IMPRESION
-int position = 0;
+
 int currentOperandPosition = 0;
 int currentOperationPosition = 0; //VARIABLES GLOBALES PARA MANEJAR LOS STACKS
  
@@ -21,6 +20,9 @@ int thereWasAnError = 0; // HABLA ENTRE LA CALCULADORA Y EL ANALIZADOR PARA SABE
 //ERROR 5 = NOT AN OPERATOR
 void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
 	setUpDown(0);
+	thereWasAnError = 0;
+	char buffer[MAX_OPERATIONS + MAX_OPERANDS + 20] = {0}; //MAXIMA POSICION DE IMPRESION
+	int position = 0;
 	while(1) {
 		char c;
 		while((c = getChar()) != '=') { //SOLO ACEPTAMOS DIGITOS O CARACTERES ESPECIALES
@@ -34,8 +36,6 @@ void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
 				startOver(position,buffer);
 				position = 0;
 			}
-			else if(c == ' ')
-				putChar(' ');
 			else if(isANumber(c) || isOperator(c) || c== '.' || c=='(' || c==')'){
 				putChar(c);
 				buffer[position++] = c;
@@ -58,6 +58,7 @@ void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
 			printf(string);
 		putChar('\n');
 		cleanEverything(position,buffer);
+		position= 0;
 	}
 }
 
@@ -70,11 +71,10 @@ void cleanEverything(int position, char * buffer) { //RESETEA LAS VARIABLES GLOB
 	currentOperationPosition = 0;
 	for(int i = 0; i < position;i++)
 		buffer[i] = 0;
-	position = 0;
 	return;
 }
 
-void startOver(int position,char * buffer) { //NO RESETEA TODO, PERO BORRAR EL INPUT
+void startOver(int position, char * buffer) { //NO RESETEA TODO, PERO BORRAR EL INPUT
 	for(int  i = 0; i < position; i++) {
 		buffer[i] = 0;
 		putChar('\b');
@@ -84,11 +84,18 @@ void startOver(int position,char * buffer) { //NO RESETEA TODO, PERO BORRAR EL I
 
 double evaluate(char * string) { //EVALUA LA EXPRESION 
 	for(int i = 0; string[i] != 0;i++) { //PARA CADA CARACTER DE LA STRING
-		int stillInANumber = 0;
 		if(thereWasAnError)
 			return 0;
-		if(isANumber(string[i])) { //ESTOY PARADO EN UN NUMERO, AVANZO HASTA QUE EL NUMER TERMINE
-			operandStack[currentOperandPosition++] = stringToDouble(string + i); //AGREGO EL NUMERO A MI STACK
+		int stillInANumber = 0;
+		if((string[i] == '-' && isANumber(string[i+1])) ||isANumber(string[i])) { //ESTOY PARADO EN UN NUMERO, AVANZO HASTA QUE EL NUMER TERMINE
+			int flag = 0;
+			 //AGREGO EL NUMERO A MI STACK
+			if(string[i] == '-') {
+				operandStack[currentOperandPosition++] = ((double)-1)*stringToDouble(string + ++i); 
+				operationStack[currentOperationPosition++] = '+';
+			}
+			else
+				operandStack[currentOperandPosition++] = stringToDouble(string + i);
 			while(isANumber(string[i + 1]) || string[i + 1] == '.') {
 				if(string[i + 1] == '.'){
 					if(stillInANumber) {

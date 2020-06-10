@@ -202,16 +202,15 @@ void removePostSpaces(char * string){
 void ceroDivision(){
 	longitud = 0;
 	bufferTerminal[0] = 0;
-	int a = 0;
-	int b = 4/a;
+	int hola = 0;
+	int chau = 1/hola;
 
 }
 
 void invalidOperation(){
 	longitud = 0;
 	bufferTerminal[0] = 0;
-	char buffer[] = "que haces papa";
-	void (*function)(void)=(void(*)(void))"crack";
+	void (*function)(void)=(void(*)(void))"No vas a poder";
 	function();
 	//invalidOpCode();
 }

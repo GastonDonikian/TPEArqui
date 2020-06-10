@@ -220,8 +220,8 @@ void charToBits(char ch, char * string) {
 
 void printAllRegisters(long int * registerArray) { //SABEMOS QUE ACA ESTAN REPETIDAS PERO UNA ES LIB DE KERNEL Y OTRA DE USERLAND
 	char * registerNamesArray[] = {"r15","r14","r13","r12","r11","r10","r9","r8","rsi",
-	"rdi","rbp","rdx","rcx","rbx","rax","rip"};
-	for(int i = 0; i < 15 ;i++ ) {
+	"rdi","rbp","rdx","rcx","rbx","rax","rip","rsp"};
+	for(int i = 0; i < 17 ;i++ ) {
 		printf(registerNamesArray[i]);
 		if(i == 6 || i == 7)
 			putChar(' ');

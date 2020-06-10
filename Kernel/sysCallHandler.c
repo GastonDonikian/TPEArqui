@@ -66,7 +66,6 @@ void registerInfo(uint64_t * buffer) {
 }
 
 void add_Program(uint64_t function){
-	//((void(*)(void))function)();
 	addFunction((void(*)(void))function);
 }
 

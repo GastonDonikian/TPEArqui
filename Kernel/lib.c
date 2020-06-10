@@ -1,8 +1,8 @@
 #include <stdint.h>
 #include "lib.h"
 #include "printManager.h"
-uint64_t registerKeeper[15];
-uint64_t programReg[2][15];
+uint64_t registerKeeper[17];
+uint64_t programReg[2][17];
 
 extern void fetchRegisters(uint64_t * array,uint64_t stackDirection);
 
@@ -66,17 +66,17 @@ void currentRegisters(uint64_t rsp) {
 	fetchRegisters(registerKeeper,rsp);
 }
 void getCurrentRegisters(uint64_t *buffer) {
-	for(int i = 0; i <15;i++) {
+	for(int i = 0; i <17;i++) {
 		buffer[i]= registerKeeper[i];
 	}
 }
 
 void printAllRegisters(uint64_t rsp) {
-	uint64_t registerArray[16];
+	uint64_t registerArray[17];
 	fetchRegisters(registerArray,rsp); //en rdi tengo rsp y en rsi tengo register
 	char * registerNamesArray[] = {"r15","r14","r13","r12","r11","r10","r9","r8","rsi",
-	"rdi","rbp","rdx","rcx","rbx","rax","rip"};
-	for(int i = 0; i <16 ;i++ ) {
+	"rdi","rbp","rdx","rcx","rbx","rax","rip","rsp"};
+	for(int i = 0; i <17 ;i++ ) {
 		newLine();
 		int j = 0;
 		while(registerNamesArray[i][j] != 0) {

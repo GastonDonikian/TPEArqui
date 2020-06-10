@@ -5,8 +5,10 @@
 #include "programManager.h"
 #include "screenManager.h"
 #include "sysCallHandler.h"
+
 #define ZERO_EXCEPTION_ID 0
 #define INVALID_OP_CODE 6
+
 void zero_division(uint64_t rsp);
 void invalid_operation_code(uint64_t rsp);
 
@@ -35,5 +37,4 @@ void invalid_operation_code(uint64_t rsp) {
 
 void zero_division(uint64_t rsp) {
 	exception("Trataste de dividir por cero",rsp);
-
 }

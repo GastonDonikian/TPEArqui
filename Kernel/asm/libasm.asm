@@ -203,6 +203,9 @@ fetchRegisters:
 
 	mov rax,[rsi + 120] ; accedo al RIP
 	mov [rdi +120],rax
+
+	mov rax,[rsi +144] ; accedo al RSP
+	mov [rdi +128],rax
 	pop rax
 	mov rsp, rbp
 	pop rbp
