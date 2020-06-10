@@ -219,7 +219,5 @@ void ceroDivision(){
 void invalidOperation(){
 	longitud = 0;
 	bufferTerminal[0] = 0;
-	void (*function)(void)=(void(*)(void))"No vas a poder";
-	function();
-	//invalidOpCode();
+	invalidOpCode();
 }
