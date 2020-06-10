@@ -8,13 +8,10 @@ int longitud=0;
 char bufferTerminal[TERMINALDIM] = {0};
 extern void getRegisters(long int registerKeeper[]);
 extern void invalidOpCode();
+extern void ceroDiv();
 
 char * postBuffer;
 char * funciones[DIM]= {"help","inforeg","printmem","time","cpuid","cputemp","ceroDivision", "invalidOperation"};
-
-
-void removePostSpaces(char * string); //LAS AGREGO ACA PORQUE COMO NO ESTAN EN EL .H
-void removePreSpaces(char * string); //TIRAN WARNINGS
 
 void terminal(){
 	setUpDown(1);
@@ -65,7 +62,7 @@ void analize(char * buffer){
 	}
 	else{
 		putChar('\n');
-		printf("Operacion invalida");
+		printf("Debe ingresar un comando");
 		putChar('\n');
 	}
 	for (int i = 0;buffer[i]!=0; i++){
@@ -211,8 +208,7 @@ void removePostSpaces(char * string){
 void ceroDivision(){
 	longitud = 0;
 	bufferTerminal[0] = 0;
-	int hola = 0;
-	int chau = 1/hola;
+	ceroDiv();
 
 }
 

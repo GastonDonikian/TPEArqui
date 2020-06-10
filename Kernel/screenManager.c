@@ -31,16 +31,6 @@ void initializeScreen(unsigned char select) {//HIGHLITEA LA PANTALLA EN LA QUE E
 		}
 	}
 }
-
-
-
-/*void changeScreen(void) { //ALTERNA DE PANTALLA
-	if(select == SCREENS - 1)
-		selector(0);
-	else
-		selector(select+1);
-}*/
-
 void clearScreen(unsigned char select) { //LIMPIA LA PANTALLA ACTUAL
 	for(int i = CHAR_SIZE; i < HEIGHT;i++)
 		for(int j = 0; j < SCREEN_WIDTH;j++){
