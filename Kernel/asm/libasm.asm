@@ -266,9 +266,3 @@ asmRunFunction:
 	mov [rcx+144], rdx ;le cargo el stack de su programa
 	pop rax
 	ret
-
-
-
-	
-
-

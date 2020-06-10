@@ -7,7 +7,8 @@
 	
 double operandStack[MAX_OPERANDS];
 char operationStack[MAX_OPERATIONS];
-	
+char buffer[MAX_OPERATIONS + MAX_OPERANDS + 20] = {0}; //MAXIMA POSICION DE IMPRESION
+int position = 0;
 int currentOperandPosition = 0;
 int currentOperationPosition = 0; //VARIABLES GLOBALES PARA MANEJAR LOS STACKS
  

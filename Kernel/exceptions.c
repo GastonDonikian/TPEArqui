@@ -19,47 +19,21 @@ void exceptionDispatcher(int exception,uint64_t rsp) {
 }
 
 //void printRegister(uint64_t reg);
-
+void exception(char * string,uint64_t rsp) {
+	cleanScreen();
+	setUpDown(0);
+	int i = 0;
+	while(string[i] != 0) //imprimo el mensaje de error
+		printAnyChar(string[i++],255,0,0);
+	printAllRegisters(rsp);
+	newLine();
+	initializeFunction(rsp);
+}
 void invalid_operation_code(uint64_t rsp) {
-	cleanScreen();
-	setUpDown(0);
-	int i = 0;
-	char * string = "Invalid Operation Code";
-	while(string[i] != 0) //imprimo el mensaje de error
-		printAnyChar(string[i++],255,0,0);
-	printAllRegisters(rsp);
-	newLine();
-	if(tryAndContinue()) {
-		reRunFunction();
-	}
-	else;
-		//NO SE QUE HACER ACA! PARA QUE NO SIGA CORRIENDO MI PROGRAMA
-}
-void zero_division(uint64_t rsp) {
-	cleanScreen();
-	setUpDown(0);
-	int i = 0;
-	char * string = "Trataste de dividir por cero";
-	while(string[i] != 0) //imprimo el mensaje de error
-		printAnyChar(string[i++],255,0,0);
-	printAllRegisters(rsp);
-	newLine();
-	if(tryAndContinue()) {
-		cleanScreen();
-		//reRunFunction();
-	}
-	else
-		cleanScreen();
-	//printLine("Usted trato de dividir por cero!");
-	// Handler para manejar excepcíon
+	exception("Invalid Operation Code",rsp);
 }
 
-int tryAndContinue() {
-	setUpDown(1);
-	print("Try to Continue? Y/n");
-	char a = 0;
-	while(a==0){
-		read(&a);
-	}
-	return (a == 'y');
+void zero_division(uint64_t rsp) {
+	exception("Trataste de dividir por cero",rsp);
+
 }
