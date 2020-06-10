@@ -25,6 +25,8 @@ void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
 	int position = 0;
 	while(1) {
 		char c;
+		char buffer[MAX_OPERATIONS + MAX_OPERANDS + 20] = {0}; //MAXIMA POSICION DE IMPRESION
+		int position = 0;
 		while((c = getChar()) != '=') { //SOLO ACEPTAMOS DIGITOS O CARACTERES ESPECIALES
 			if(c == '\b') {
 				if(position != 0) {
@@ -203,4 +205,4 @@ int isANumber(char ch) { //DICE SI ES UN NUMERO
 }
 int isOperator(char ch) { //DICE SI ES OPERADOR
 	return (ch == '+' || ch == '-' || ch=='*' ||ch=='/'||ch=='%') ;
- }
+}

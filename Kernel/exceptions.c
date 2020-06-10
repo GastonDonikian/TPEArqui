@@ -13,7 +13,7 @@ void zero_division(uint64_t rsp);
 void invalid_operation_code(uint64_t rsp);
 
 
-void exceptionDispatcher(int exception,uint64_t rsp) {
+void exceptionDispatcher(uint64_t exception,uint64_t rsp) {
 	if (exception == ZERO_EXCEPTION_ID)
 		zero_division(rsp);
 	else if(exception == INVALID_OP_CODE)

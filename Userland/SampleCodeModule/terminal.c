@@ -130,6 +130,15 @@ void inforeg(){
 
 void printmem(char * pointString){
 	cleanString(pointString);
+	int j = 0;
+	while(pointString[j]!=0){
+		if(pointString[j]<'0'|| pointString[j]>'9'){
+			printf("la direccion de memoria debe estar en formato int");
+			putChar('\n');
+			return;
+		}
+		j++;
+	}
 	int pointInt = stringToInt(pointString);
 	char * pointer = pointInt;
 	for (int i = 0; i < 32; i++)
