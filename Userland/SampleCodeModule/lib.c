@@ -92,38 +92,6 @@ void scanf (char * string, int longitud){
 	}
 }
 
-/*void printf(char *fmt,...){ //FUNCION SACADA DE "THE C PROGRAMMING LANGUAJE" - Brian W. Kernighan Dennis M. Ritchie
-	va_list ap;
-	char *p, *sval;aa
-	int ival;
-	double dval;
-	va_start(ap,fmt);
-	for(p = fmt; *p;p++) {
-		if(*p != '%') {
-			putChar(*p);
-			continue;
-		}
-		switch(*++p) {
-			case 'd':
-				ival = va_arg(ap,int);
-				printf("%d",ival);
-				break;
-			case 'f':
-				dval = va_arg(ap,double);
-				printf("%f",dval);
-				break;
-			case 's':
-				for(sval = va_arg(ap,char *);*sval;sval++)
-					putChar(*sval);
-				break;
-			default:
-				putChar(*p);
-				break;
-		}
-	}
-	va_end(ap);
-}*/
-
 void setUpDown(int i) {
 	screenPrint[screen]=i;
 }
@@ -149,7 +117,7 @@ double stringToDouble(char * string) {
 	double pow = 0.1;
 	while(*string == '0')
 		string = string+1;
-	while(isItANumber(string[length]) || string[length] == '.') { //CAMBIAR != 0 POR PARENTESIS O OPERANDO Y VALIDAR!
+	while(isItANumber(string[length]) || string[length] == '.') {
 		if(string[length] == '.') {
 			if(pointPosition)
 				return 0; //HUBO UN ERROR!
@@ -244,7 +212,6 @@ void printRegister(long int reg) {
 
 
 void add_program(uint64_t function){
-	//function();
 	addProgram(function);
 }
 

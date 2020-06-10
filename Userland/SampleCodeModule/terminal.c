@@ -13,10 +13,6 @@ extern void ceroDiv();
 char * postBuffer;
 char * funciones[DIM]= {"help","inforeg","printmem","time","cpuid","cputemp","ceroDivision", "invalidOperation"};
 
-
-void removePostSpaces(char * string); //LAS AGREGO ACA PORQUE COMO NO ESTAN EN EL .H
-void removePreSpaces(char * string); //TIRAN WARNINGS
-
 void terminal(){
 	setUpDown(1);
 	while(1){
@@ -66,7 +62,7 @@ void analize(char * buffer){
 	}
 	else{
 		putChar('\n');
-		printf("Operacion invalida");
+		printf("Debe ingresar un comando");
 		putChar('\n');
 	}
 	for (int i = 0;buffer[i]!=0; i++){
