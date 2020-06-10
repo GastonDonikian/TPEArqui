@@ -8,6 +8,7 @@ int longitud=0;
 char bufferTerminal[TERMINALDIM] = {0};
 extern void getRegisters(long int registerKeeper[]);
 extern void invalidOpCode();
+extern void ceroDiv();
 
 char * postBuffer;
 char * funciones[DIM]= {"help","inforeg","printmem","time","cpuid","cputemp","ceroDivision", "invalidOperation"};
@@ -211,8 +212,7 @@ void removePostSpaces(char * string){
 void ceroDivision(){
 	longitud = 0;
 	bufferTerminal[0] = 0;
-	int hola = 0;
-	int chau = 1/hola;
+	ceroDiv();
 
 }
 
