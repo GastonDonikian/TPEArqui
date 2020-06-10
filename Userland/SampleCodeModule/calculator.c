@@ -24,7 +24,7 @@ void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
 		char c;
 		char buffer[MAX_OPERATIONS + MAX_OPERANDS + 20] = {0}; //MAXIMA POSICION DE IMPRESION
 		int position = 0;
-		while((c = getChar()) != 'a') { //SOLO ACEPTAMOS DIGITOS O CARACTERES ESPECIALES
+		while((c = getChar()) != '=') { //SOLO ACEPTAMOS DIGITOS O CARACTERES ESPECIALES
 			if(c == '\b') {
 				if(position != 0) {
 					buffer[--position] = 0;
@@ -197,4 +197,4 @@ int isANumber(char ch) { //DICE SI ES UN NUMERO
 }
 int isOperator(char ch) { //DICE SI ES OPERADOR
 	return (ch == '+' || ch == '-' || ch=='*' ||ch=='/'||ch=='%') ;
- }
+}
