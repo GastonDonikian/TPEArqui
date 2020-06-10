@@ -41,7 +41,9 @@ void keyboard_handler(uint64_t rsp){
 		}
 		else if(scancode <58){
 			keyPress = asccode[scancode][shift];
-			addToBuffer(keyPress);
+			if(keyPress!=0){
+				addToBuffer(keyPress);
+			}
 		}
 
 	}
