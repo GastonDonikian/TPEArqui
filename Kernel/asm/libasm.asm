@@ -121,8 +121,8 @@ cpuModel3:
 cpuTempStatus:
 	push rbp
 	mov rbp, rsp
-						;mov rcx, 0x19C
-						;rdmcr
+				;mov rcx, 0x19C
+				;rdmcr
 	
 	xor rax, rax
 	mov eax, 0x88370000

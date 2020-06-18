@@ -1,10 +1,11 @@
 #include <stdint.h>
 #include "lib.h"
 #include "terminal.h"
-#define TERMINALDIM  40
+#define TERMINALDIM  70
 #define DIM 8
 
-int longitud=0;
+int firstTime = 1;
+int longitud = 0;
 char bufferTerminal[TERMINALDIM] = {0};
 extern void getRegisters(long int registerKeeper[]);
 extern void invalidOpCode();
@@ -15,7 +16,17 @@ char * funciones[DIM]= {"help","inforeg","printmem","time","cpuid","cputemp","ce
 
 void terminal(){
 	setUpDown(1);
+	if(firstTime){
+		printf("Bienvenido, usted se encuentra en el Shell.\n");
+		printf(" Puede ver los comandos con el comando help.\n");
+		printf("Apriete tab para cambiar a la calculadora, y esc para guardar el estado de los registros\n");
+		putChar('\n');
+		firstTime = 0;
+	}
 	while(1){
+		if(longitud == 0){
+			printf("<user/shell>:");
+		}
 		char a;
 		while((a=getChar()) !='\n' && a != '\t'){
 			if(a=='\b'){
@@ -59,10 +70,12 @@ void analize(char * buffer){
 	if (flag){
 		putChar('\n');
 		gotoFunction(j-1, postBuffer);
+		putChar('\n');
 	}
 	else{
 		putChar('\n');
 		printf("Debe ingresar un comando");
+		putChar('\n');
 		putChar('\n');
 	}
 	for (int i = 0;buffer[i]!=0; i++){
@@ -164,6 +177,7 @@ void getid(){
 	char cpuAns[48] = {0};
 	getCpu(cpuAns);
 	printf(cpuAns);
+	putChar('\n');
 	putChar('\n');
 	resetBufferTerminal();
 	terminal();
