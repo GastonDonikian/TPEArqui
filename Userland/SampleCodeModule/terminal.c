@@ -209,7 +209,6 @@ void ceroDivision(){
 	longitud = 0;
 	bufferTerminal[0] = 0;
 	ceroDiv();
-
 }
 
 void invalidOperation(){

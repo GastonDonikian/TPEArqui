@@ -7,10 +7,11 @@
 	
 double operandStack[MAX_OPERANDS];
 char operationStack[MAX_OPERATIONS];
-
+char buffer[MAX_OPERATIONS + MAX_OPERANDS + 100] = {0};
+int position = 0;
 int currentOperandPosition = 0;
 int currentOperationPosition = 0; //VARIABLES GLOBALES PARA MANEJAR LOS STACKS
- 
+int welcomeMessage = 1;
 int thereWasAnError = 0; // HABLA ENTRE LA CALCULADORA Y EL ANALIZADOR PARA SABER SI HUBO ALGUN ERROR CON LA EXPRESION
 //ERROR 0 = TODO BIEN
 //ERROR 1 = MAL DADO UN NUMERO
@@ -18,15 +19,21 @@ int thereWasAnError = 0; // HABLA ENTRE LA CALCULADORA Y EL ANALIZADOR PARA SABE
 //ERROR 3 = MAL CANTIDAD DE NUMEROS
 //ERROR 4 = DIVIDISTE POR CERO 
 //ERROR 5 = NOT AN OPERATOR
+
 void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
 	setUpDown(0);
+	if(welcomeMessage) {
+		printf("En esta calculadora solo se \npueden usar los simbolos:\n");
+		printf("+ - * / % = 1 2 3 4 5 6 7 8 9\n\n");
+		welcomeMessage = 0;
+	}	
 	thereWasAnError = 0;
-	char buffer[MAX_OPERATIONS + MAX_OPERANDS + 20] = {0}; //MAXIMA POSICION DE IMPRESION
-	int position = 0;
+	//char buffer[MAX_OPERATIONS + MAX_OPERANDS + 20] = {0}; //MAXIMA POSICION DE IMPRESION
+	//int position = 0;
 	while(1) {
 		char c;
-		char buffer[MAX_OPERATIONS + MAX_OPERANDS + 20] = {0}; //MAXIMA POSICION DE IMPRESION
-		int position = 0;
+		//char buffer[MAX_OPERATIONS + MAX_OPERANDS + 20] = {0}; //MAXIMA POSICION DE IMPRESION
+		//int position = 0;
 		while((c = getChar()) != '=') { //SOLO ACEPTAMOS DIGITOS O CARACTERES ESPECIALES
 			if(c == '\b') {
 				if(position != 0) {
@@ -35,7 +42,7 @@ void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
 				}
 			}
 			else if(c == '\n') {
-				startOver(position,buffer);
+				startOver(); //position,buffer
 				position = 0;
 			}
 			else if(isANumber(c) || isOperator(c) || c== '.' || c=='(' || c==')'){
@@ -43,8 +50,8 @@ void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
 				buffer[position++] = c;
 			}
 			if(position >= (MAX_OPERATIONS + MAX_OPERANDS + 20)) {
-				startOver(position,buffer);
-				position = 0;
+				startOver(); //position,buffer
+				//position = 0;
 			}
 		}	
 		putChar('=');
@@ -59,12 +66,12 @@ void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
 		else
 			printf(string);
 		putChar('\n');
-		cleanEverything(position,buffer);
-		position= 0;
+		cleanEverything(); //position,buffer
+		//position= 0;
 	}
 }
-
-void cleanEverything(int position, char * buffer) { //RESETEA LAS VARIABLES GLOBALES PARA VOLVER A EMPEZAR
+//int position, char * buffer
+void cleanEverything() { //RESETEA LAS VARIABLES GLOBALES PARA VOLVER A EMPEZAR
 	for(int i = 0; i < currentOperationPosition;i++)
 		operationStack[i] = 0;
 	for(int i = 0; i < currentOperandPosition;i++)
@@ -73,10 +80,11 @@ void cleanEverything(int position, char * buffer) { //RESETEA LAS VARIABLES GLOB
 	currentOperationPosition = 0;
 	for(int i = 0; i < position;i++)
 		buffer[i] = 0;
+	position = 0;
 	return;
 }
-
-void startOver(int position, char * buffer) { //NO RESETEA TODO, PERO BORRAR EL INPUT
+//int position, char * buffer
+void startOver() { //NO RESETEA TODO, PERO BORRAR EL INPUT
 	for(int  i = 0; i < position; i++) {
 		buffer[i] = 0;
 		putChar('\b');

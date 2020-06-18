@@ -45,7 +45,6 @@ void keyboard_handler(uint64_t rsp){
 				addToBuffer(keyPress);
 			}
 		}
-
 	}
 }
 void addToBuffer(char key){

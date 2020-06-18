@@ -1,11 +1,7 @@
 #include <stdint.h>
 #include "video_driver.h"
 #include "fonts.h"
-#define WIDTH 1024
-#define HEIGHT 768
-#define MULT 2
-#define LINE HEIGHT/(MULT*8)
-#define CHARACTERS WIDTH/(MULT*8)
+
 struct vbe_mode_info_structure {
 	uint16_t attributes;		// deprecated, only bit 7 should be of interest to you, and it indicates the mode supports a linear frame buffer.
 	uint8_t window_a;			// deprecated

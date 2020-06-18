@@ -3,6 +3,7 @@
 #include "lib.h"
 #include "calculator.h"
 #define EPSILON 0.0001
+
 extern void read(char * buf);
 extern void write(char * buf, uint64_t count, uint64_t abajoarriba);
 extern void switchScreen();

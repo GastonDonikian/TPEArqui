@@ -7,7 +7,7 @@ int operatorPrecedence(char op);
 int precedence(char op1,char op2);
 int isANumber(char ch);
 int isOperator(char ch);
-void startOver(int position, char * buffer);
+void startOver(); //int position, char * buffer
 void updateStack();
-void cleanEverything(int position, char * buffer);
+void cleanEverything(); //int position, char * buffer
 #endif
