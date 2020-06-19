@@ -1,10 +1,11 @@
 #include <stdint.h>
 #include "lib.h"
 #include "terminal.h"
-#define TERMINALDIM  70
+#define TERMINALDIM  100
 #define DIM 8
 
 int firstTime = 1;
+int enter = 0;
 int longitud = 0;
 char bufferTerminal[TERMINALDIM] = {0};
 extern void getRegisters(long int registerKeeper[]);
@@ -12,20 +13,21 @@ extern void invalidOpCode();
 extern void ceroDiv();
 
 char * postBuffer;
-char * funciones[DIM]= {"help","inforeg","printmem","time","cpuid","cputemp","ceroDivision", "invalidOperation"};
+char * funciones[DIM]= {"help","inforeg","printmem","time","cpuid","cputemp","ceroDiv", "invalidOp"};
 
 void terminal(){
 	setUpDown(1);
 	if(firstTime){
-		printf("Bienvenido, usted se encuentra en el Shell.\n");
-		printf(" Puede ver los comandos con el comando help.\n");
-		printf("Apriete tab para cambiar a la calculadora, y esc para guardar el estado de los registros\n");
+		printf("Bienvenido, usted se encuentra\n en el Shell.\n\n");
+		printf("Puede ver los comandos con el\n comando help.\n\n");
+		printf("Apriete tab para cambiar a la\n calculadora, y esc para guardar el estado de los registros\n");
 		putChar('\n');
 		firstTime = 0;
 	}
 	while(1){
-		if(longitud == 0){
+		if(!enter){
 			printf("<user/shell>:");
+			enter = 1;
 		}
 		char a;
 		while((a=getChar()) !='\n' && a != '\t'){
@@ -55,6 +57,7 @@ void terminal(){
 		}
 		if(a=='\n'){
 			putChar(a);
+			enter = 0;	
 			analize(bufferTerminal);
 		}
 	}
@@ -222,6 +225,7 @@ void removePostSpaces(char * string){
 void ceroDivision(){
 	longitud = 0;
 	bufferTerminal[0] = 0;
+	resetBufferTerminal();
 	ceroDiv();
 
 }
@@ -229,5 +233,6 @@ void ceroDivision(){
 void invalidOperation(){
 	longitud = 0;
 	bufferTerminal[0] = 0;
+	resetBufferTerminal();
 	invalidOpCode();
 }
