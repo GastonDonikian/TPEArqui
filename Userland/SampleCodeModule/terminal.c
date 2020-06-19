@@ -137,7 +137,17 @@ void inforeg(){
 	printAllRegisters(registerKeeper);
 	putChar('\n');
 }
-
+void charToHex(char  bits,char * string) {
+	unsigned char array[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+	char aux;
+	for(int i = 0; i < 2;i++) { 
+		string[1 - i] = array[(bits & 0xF)]; 
+		bits = bits >> 4;
+	}
+	string[2] = 0;
+	return;
+	
+}
 void printmem(char * pointString){
 	cleanString(pointString);
 	int j = 0;
@@ -151,6 +161,7 @@ void printmem(char * pointString){
 	}
 	int pointInt = stringToInt(pointString);
 	char * pointer = pointInt;
+	printf("\nPOS\t BITS     HEX ASCII\n\n");
 	for (int i = 0; i < 32; i++)
 	{
 		char p[11]={0};
@@ -161,6 +172,12 @@ void printmem(char * pointString){
 		char memorystring[8]={0};
 		charToBits(pointer[i], memorystring);
 		printf(memorystring);
+		putChar(' ');
+		charToHex(pointer[i], memorystring);
+		printf(memorystring);
+		putChar('h');
+		putChar(' ');
+		putChar(pointer[i]);
 		putChar('\n');
 	}
 }

@@ -23,18 +23,21 @@ int thereWasAnError = 0; // HABLA ENTRE LA CALCULADORA Y EL ANALIZADOR PARA SABE
 void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
 	setUpDown(0);
 	if(welcomeMessage) {
+		welcomeMessage = 0;
 		printf("En esta calculadora solo se \npueden usar los simbolos:\n");
-		printf("+ - * / % = 1 2 3 4 5 6 7 8 9\n\n");
+		printf("+ - * / % = 1 2 3 4 5 6 7 8 9 0\n");
+		printf("Ademas de parentesis ( )\n");
+		printf("Para indicar precedencia\n");
+		printf("No es necesario utilizar espacio\n\n");	
+		//printf("Utilizando el backspace\nse borra un caracter\n");
+		//printf("Utilizando el enter borra\nuna linea entera\n");
 		welcomeMessage = 0;
 	}	
 	thereWasAnError = 0;
-	//char buffer[MAX_OPERATIONS + MAX_OPERANDS + 20] = {0}; //MAXIMA POSICION DE IMPRESION
-	//int position = 0;
+
 	while(1) {
 		char c;
-		//char buffer[MAX_OPERATIONS + MAX_OPERANDS + 20] = {0}; //MAXIMA POSICION DE IMPRESION
-		//int position = 0;
-		while((c = getChar()) != '=') { //SOLO ACEPTAMOS DIGITOS O CARACTERES ESPECIALES
+		while((c = getChar()) != '=') { 
 			if(c == '\b') {
 				if(position != 0) {
 					buffer[--position] = 0;
@@ -42,36 +45,36 @@ void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
 				}
 			}
 			else if(c == '\n') {
-				startOver(); //position,buffer
+				startOver(); 
 				position = 0;
 			}
 			else if(isANumber(c) || isOperator(c) || c== '.' || c=='(' || c==')'){
 				putChar(c);
 				buffer[position++] = c;
 			}
-			if(position >= (MAX_OPERATIONS + MAX_OPERANDS + 20)) {
-				startOver(); //position,buffer
-				//position = 0;
-			}
+			if(position >= (MAX_OPERATIONS + MAX_OPERANDS + 20)) 
+				startOver(); 
 		}	
 		putChar('=');
+
 		char string[30];
 		doubleToString(evaluate(buffer),string);
-		if(thereWasAnError) { //SI HUBO ALGUN ERROR IMPRIMIMOS EL ERROR Y NO MOSTRAMOS EL VALOR
+		if(thereWasAnError) {
 			printf("Error: ");
 			char * stringArray[5] = {"Todo bien...","Me pasaste mal un numero","Mal cantidad de operadores","Mal cantidad de numeros","Dividiste por cero"};
 			printf(stringArray[thereWasAnError]);
 			thereWasAnError = 0;
 		}
+
 		else
 			printf(string);
+
 		putChar('\n');
-		cleanEverything(); //position,buffer
-		//position= 0;
+		cleanEverything(); 
 	}
 }
-//int position, char * buffer
-void cleanEverything() { //RESETEA LAS VARIABLES GLOBALES PARA VOLVER A EMPEZAR
+
+void cleanEverything() { 
 	for(int i = 0; i < currentOperationPosition;i++)
 		operationStack[i] = 0;
 	for(int i = 0; i < currentOperandPosition;i++)
@@ -83,8 +86,9 @@ void cleanEverything() { //RESETEA LAS VARIABLES GLOBALES PARA VOLVER A EMPEZAR
 	position = 0;
 	return;
 }
-//int position, char * buffer
-void startOver() { //NO RESETEA TODO, PERO BORRAR EL INPUT
+
+
+void startOver() { 
 	for(int  i = 0; i < position; i++) {
 		buffer[i] = 0;
 		putChar('\b');
@@ -92,14 +96,14 @@ void startOver() { //NO RESETEA TODO, PERO BORRAR EL INPUT
 }
 
 
-double evaluate(char * string) { //EVALUA LA EXPRESION 
-	for(int i = 0; string[i] != 0;i++) { //PARA CADA CARACTER DE LA STRING
+double evaluate(char * string) { 
+	for(int i = 0; string[i] != 0;i++) { 
 		if(thereWasAnError)
 			return 0;
 		int stillInANumber = 0;
-		if((string[i] == '-' && isANumber(string[i+1])) ||isANumber(string[i])) { //ESTOY PARADO EN UN NUMERO, AVANZO HASTA QUE EL NUMER TERMINE
+		if((string[i] == '-' && isANumber(string[i+1])) ||isANumber(string[i])) {
 			int flag = 0;
-			 //AGREGO EL NUMERO A MI STACK
+			
 			if(string[i] == '-') {
 				operandStack[currentOperandPosition++] = ((double)-1)*stringToDouble(string + ++i); 
 				operationStack[currentOperationPosition++] = '+';
@@ -117,11 +121,11 @@ double evaluate(char * string) { //EVALUA LA EXPRESION
 				i++;
 			}
 
-		} //YA TENEMOS EL NUMERO GUARDADO EN EL STACK
-		else if(string[i] == '(') { //SI ES UN PARENTESIS LO APPENDEA PUES SIEMPRE QUIERO EJECUTAR LO QUE HAY ADENTRO DEL PARENTESIS
+		} 
+		else if(string[i] == '(') 
 			operationStack[currentOperationPosition++] = '(';
-		}
-		else if(string[i] == ')') { //HASTA QUE NO HAYA UN CIERRE SIGO CORRIENDO
+	
+		else if(string[i] == ')') { 
 			while(operationStack[currentOperationPosition - 1] != '(') {
 				if(currentOperationPosition == 0) {
 					thereWasAnError = 2;
@@ -131,11 +135,11 @@ double evaluate(char * string) { //EVALUA LA EXPRESION
 					 return 0;
 				updateStack();
 			}
-			operationStack[currentOperationPosition - 1] = 0; //BORRO EL PARENTESIS, PUES NO ME INTERESA
+			operationStack[currentOperationPosition - 1] = 0; 
 			currentOperationPosition--;
 
 		}
-		else if(isOperator(string[i])) { //SI ES UN OPERADOR ME FIJO PRECEDENCIA Y VEO QUE HAGO
+		else if(isOperator(string[i])) { 
 			while((currentOperationPosition != 0) && precedence(operationStack[currentOperationPosition - 1],string[i])) {
 				updateStack();
 				if(thereWasAnError)
@@ -148,17 +152,17 @@ double evaluate(char * string) { //EVALUA LA EXPRESION
 			return 0;
 		}
 	}
-	while(currentOperationPosition != 0) { //TERMINE CON EL STRING PERO TODAVIA ME FALTA OPERAR
+	while(currentOperationPosition != 0) { 
 		if(thereWasAnError)
 			return 0;
 		updateStack();
 	}
-	if(currentOperandPosition != 1){ //SI NO ME QUEDA SOLO UN NUMERO HUBO UN PROBLEMA CON LA EXPRESION
+	if(currentOperandPosition != 1){ 
 		thereWasAnError = 3;
 		return 0;
 	}
 
-	return operandStack[0]; //DEVUELVE EL ULTIMO VALOR
+	return operandStack[0]; 
 }
 
 void updateStack() { //OPERA CON EL ULTIMO VALOR DEL STACK Y LOS ULTIMOS DOS DEL STACK DE NUMEROS
