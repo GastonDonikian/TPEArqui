@@ -4,25 +4,25 @@
 #define TERMINALDIM  100
 #define DIM 8
 
-int firstTime = 1;
-int enter = 0;
-int longitud = 0;
-char bufferTerminal[TERMINALDIM] = {0};
 extern void getRegisters(long int registerKeeper[]);
 extern void invalidOpCode();
 extern void ceroDiv();
 
+int firstTime = 1;
+int enter = 0;
+int longitud = 0;
+char bufferTerminal[TERMINALDIM] = {0};
 char * postBuffer;
 char * funciones[DIM]= {"help","inforeg","printmem","time","cpuid","cputemp","ceroDiv", "invalidOp"};
 
 void terminal(){
 	setUpDown(1);
 	if(firstTime){
+		firstTime = 0;
 		printf("Bienvenido, usted se encuentra\n en el Shell.\n\n");
 		printf("Puede ver los comandos con el\n comando help.\n\n");
 		printf("Apriete tab para cambiar a la\n calculadora, y esc para guardar el estado de los registros\n");
 		putChar('\n');
-		firstTime = 0;
 	}
 	while(1){
 		if(!enter){
@@ -144,6 +144,10 @@ void inforeg(){
 void printmem(char * pointString){
 	cleanString(pointString);
 	int j = 0;
+	if (pointString[j] == 0){
+		printf("Debe indacarme la posicion de memoria a imprimir en formato int");
+		return;
+	}
 	while(pointString[j]!=0){
 		if(pointString[j]<'0'|| pointString[j]>'9'){
 			printf("la direccion de memoria debe estar en formato int");
