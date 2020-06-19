@@ -3,14 +3,6 @@
 #include "printManager.h"
 #include "screenManager.h"
 #include "video_driver.h"
-#define WIDTH 1024 
-#define HEIGHT 768
-#define MULT 2
-#define CHAR_SIZE MULT*8
-#define LINE HEIGHT/(CHAR_SIZE)
-#define CHARACTERS WIDTH/(CHAR_SIZE*SCREENS)
-#define SCREENS 2
-#define SCREEN_WIDTH WIDTH/SCREENS
 
 unsigned char posScreen[SCREENS] = {0};
 unsigned char lineScreen[SCREENS] = {1,1}; 
@@ -50,7 +42,7 @@ void printAnyChar(unsigned char ascii,unsigned char red,unsigned char green,unsi
 	if(posScreen[select] >= CHARACTERS) {
 		newLine();
 	}
-	printAnyCharByPixel(posScreen[select]*CHAR_SIZE + SCREEN_WIDTH*select,lineScreen[select]*CHAR_SIZE,ascii,red,green,blue);
+	printAnyCharByPixel(posScreen[select]*CHAR_SIZE + (SCREEN_WIDTH+2)*select ,lineScreen[select]*CHAR_SIZE,ascii,red,green,blue);
 	posScreen[select]++;
 }
 
@@ -100,8 +92,8 @@ void copyLine(unsigned char source, unsigned char destiny) {
 	cleanLine(destiny);
 	for(int i = 0; i < SCREEN_WIDTH;i++) 
 		for(int j = 0; j < CHAR_SIZE; j++) 
-			if(isItWriten(i + select*SCREEN_WIDTH,j+source*CHAR_SIZE))
-				writePixel(i + select*SCREEN_WIDTH,j+destiny*CHAR_SIZE);
+			if(isItWriten(i + select*(SCREEN_WIDTH),j+source*CHAR_SIZE))
+				writePixel(i + select*(SCREEN_WIDTH),j+destiny*CHAR_SIZE);
 }
 
 void deleteChar() {

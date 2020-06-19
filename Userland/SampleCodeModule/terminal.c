@@ -227,7 +227,6 @@ void ceroDivision(){
 	bufferTerminal[0] = 0;
 	resetBufferTerminal();
 	ceroDiv();
-
 }
 
 void invalidOperation(){

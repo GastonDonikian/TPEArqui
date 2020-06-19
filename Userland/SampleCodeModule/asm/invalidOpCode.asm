@@ -2,6 +2,7 @@ section .text
 GLOBAL invalidOpCode
 GLOBAL ceroDiv
 
+
 invalidOpCode:
 	ud2
 	ret
@@ -16,3 +17,4 @@ ceroDiv:
 	mov rsp, rbp
 	pop rbp
 	ret
+

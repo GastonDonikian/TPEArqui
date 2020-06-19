@@ -3,6 +3,7 @@
 #include "lib.h"
 #include "calculator.h"
 #define EPSILON 0.0001
+
 extern void read(char * buf);
 extern void write(char * buf, uint64_t count, uint64_t abajoarriba);
 extern void switchScreen();
@@ -37,6 +38,24 @@ int stringToInt(char * string){
 	return resp;
 }
 void intToString(int num, char * result){
+	int i =0;
+	while(num !=0){
+		result[i++]= num%10 + '0';
+		num = num/10;
+	}
+	int j=0;
+	char aux;
+	while (j<(i/2)){
+		aux = result[j];
+		result[j] = result[i-1-j];
+		result[i-1-j]= aux;
+		j++;
+	}
+	return;
+	result[i]=0;
+} 
+
+void longToString(long long int num, char * result){
 	int i =0;
 	while(num !=0){
 		result[i++]= num%10 + '0';
@@ -138,7 +157,7 @@ double stringToDouble(char * string) {
 }
 
 void doubleToString(double doub,char * string) {
-	int casteo = (int)doub;
+	long long int casteo = (long long int)doub;
 
 	if(doub < 0) {
 		string[0] = '-';
@@ -151,7 +170,7 @@ void doubleToString(double doub,char * string) {
 		string[0] = '0';
 	}
 	else	
-		intToString(casteo,string);
+		longToString(casteo,string);
 	
 	doub = doub - casteo; //0, ALGO	
 	
@@ -164,7 +183,7 @@ void doubleToString(double doub,char * string) {
 	}
 	if(doub >EPSILON) {
 		string[length] = '.';
-		for(int i = 1; i <= 4; i++) {
+		for(int i = 1; i < 4; i++) {
 			doub = doub * 10;
 			casteo = (int)(doub);
 			string[length + i] = casteo + '0';
