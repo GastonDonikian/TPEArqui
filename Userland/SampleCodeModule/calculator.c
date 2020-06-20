@@ -103,24 +103,9 @@ double evaluate(char * string) {
 			return 0;
 		int stillInANumber = 0;
 		if((string[i] == '-' && isANumber(string[i+1])) ||isANumber(string[i])) {
-
-			if(string[i] == '-') {
-				operandStack[currentOperandPosition++] = ((double)-1)*stringToDouble(string + ++i); 
-				operationStack[currentOperationPosition++] = '+';
-			}
-			else
-				operandStack[currentOperandPosition++] = stringToDouble(string + i);
-			while(isANumber(string[i + 1]) || string[i + 1] == '.') {
-				if(string[i + 1] == '.'){
-					if(stillInANumber) {
-						thereWasAnError = 1;
-						return 0;
-					}
-					stillInANumber = 1;
-				}
-				i++;
-			}
-
+			i = addNumber(string,i,stillInANumber);
+			if(thereWasAnError)
+				return 0;
 		} 
 
 		else if(string[i] == '(') 
@@ -152,7 +137,25 @@ double evaluate(char * string) {
 
 	return operandStack[0]; 
 }
-
+int addNumber(char * string, int i,int stillInANumber) {
+	if(string[i] == '-') {
+		operandStack[currentOperandPosition++] = ((double)-1)*stringToDouble(string + ++i); 
+		operationStack[currentOperationPosition++] = '+';
+	}
+	else
+		operandStack[currentOperandPosition++] = stringToDouble(string + i);
+	while(isANumber(string[i + 1]) || string[i + 1] == '.') {
+		if(string[i + 1] == '.'){
+			if(stillInANumber) {
+				thereWasAnError = 1;
+				return;
+			}
+			stillInANumber = 1;
+		}
+		i++;
+	}
+	return i;
+}
 void operatorInExpression(char * string, int i) {
 	while((currentOperationPosition != 0) && precedence(operationStack[currentOperationPosition - 1],string[i])) {
 		updateStack();

@@ -57,6 +57,8 @@ char isItWriten(int x, int y) {
 	return 0;
 }
 
+
+
 void writePixel(int x, int y) { //x es el width, y es el height
 	char * pos = getPixelDataByPosition(x,y); // &(screen_info).framebuffer
 	pos[0] = 255;//AZUL

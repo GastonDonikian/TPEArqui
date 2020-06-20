@@ -46,6 +46,8 @@ void printAnyChar(unsigned char ascii,unsigned char red,unsigned char green,unsi
 	posScreen[select]++;
 }
 
+
+
 void printChar(unsigned char ascii){ //UPDEATEADO UPDOWN
 	printAnyChar(ascii,255,255,255);
 }
@@ -70,10 +72,10 @@ void cleanLine(unsigned char line){ //BORRA LA LINEA DE LA PANTALLA SELECCIONADA
 	}
 }
 
-void newLine() { //UPDATEADO UPDOWN
+void newLine() { 
 	if(upDown) {
-		for(int i = 2; i < LINE;i++) {
-			copyLine(i,i-1); //COPIO LA LINEA I EN LA LINEA I -1
+		for(int i = 3; i < LINE;i++) {
+			copyLine(i,i-1); 
 		}
 		cleanLine(LINE - 1);
 		posScreen[select] = 0;
@@ -104,14 +106,15 @@ void deleteChar() {
 			posScreen[select]--;
 		}
 		else {
-			scrollDown(); //APARENTEMENTE SOLO SE PUEDE BORRAR LA ULTIMA LINEA
+			scrollDown(); 
 			posScreen[select] = CHARACTERS;
+			deleteChar();
 		}
 	}
 	else{
-		if(posScreen[select] == 0 && lineScreen[select] == 1)
+		if(posScreen[select] == 0 && lineScreen[select] == 1 ) 
 			return;
-		else if(posScreen[select] == 0) {
+		if(posScreen[select] == 0) {
 			lineScreen[select]--;
 			posScreen[select] = CHARACTERS ;
 		}

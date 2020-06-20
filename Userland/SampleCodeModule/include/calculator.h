@@ -8,6 +8,7 @@ int precedence(char op1,char op2);
 void closeParenthesis();
 void openParenthesis();
 void operatorInExpression(char * string,int i);
+int addNumber(char * string, int i,int stillInANumuber);
 int isANumber(char ch);
 int isOperator(char ch);
 void startOver(); //int position, char * buffer
