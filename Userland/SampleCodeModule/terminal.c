@@ -41,13 +41,9 @@ void terminal(){
 			else{
 				if(longitud >= TERMINALDIM){
 					putChar('\n');
-					printf("no hay espacio en la terminal, escriba su comando devuelta");
+					printf("Se lleno el buffer.\n");
 					putChar('\n');
-					for (int i = 0;bufferTerminal[i]!=0; i++){
-						bufferTerminal[i]=0;
-					}
-					longitud=0;
-
+					clearBufferTerminal();
 				}
 				else{
 					putChar(a);
@@ -243,7 +239,7 @@ void invalidOperation(){
 	invalidOpCode();
 }
 
-clearBufferTerminal(){
+void clearBufferTerminal(){
 	for (int i = 0; i < TERMINALDIM; i++){
 		bufferTerminal[i] = 0;
 		postBuffer = bufferTerminal;

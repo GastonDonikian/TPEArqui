@@ -74,7 +74,7 @@ void cleanLine(unsigned char line){ //BORRA LA LINEA DE LA PANTALLA SELECCIONADA
 
 void newLine() { 
 	if(upDown) {
-		for(int i = 3; i < LINE;i++) {
+		for(int i = 2; i < LINE;i++) {
 			copyLine(i,i-1); 
 		}
 		cleanLine(LINE - 1);
@@ -129,6 +129,7 @@ void scrollDown() {
 	for(int i = LINE -2; i > 0; i--) {
 		copyLine(i,i+1);
 	}
+	cleanLine(1);
 }
 void setUpDown(int i ) {
 	upDown = i;
