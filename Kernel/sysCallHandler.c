@@ -9,7 +9,7 @@
 #include "printManager.h"
 
 
-void sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx,uint64_t r8){ //r8 solo se usa para rsp y multitask
+void sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx,uint64_t r8){
 	switch(rcx){
 		case 0:
 			read((char *) rdi);

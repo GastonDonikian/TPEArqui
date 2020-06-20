@@ -1,7 +1,7 @@
 #ifndef _sysCallHandler_
 #define _sysCallHandler_
 
-void sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx,uint64_t r8);
+void sysCallHandler(uint64_t rdi, uint64_t rsi, uint64_t rdx, uint64_t rcx, uint64_t r8);
 void read(char * buffer);
 void write(uint64_t buffer, uint64_t count, uint64_t upordown);
 void switchScreen();
