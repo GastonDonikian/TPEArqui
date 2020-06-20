@@ -227,8 +227,9 @@ void removePreSpaces(char * string){
 	if(i>0){
 		int j=0;
 		while(string[i]!=0){
-			string[j++]=string[i++];
+			string[j++]=string[i++]; 
 		}
+		string[j] = 0;
 	}
 }
 
@@ -236,7 +237,7 @@ void removePostSpaces(char * string){
 	for (int i = 0; string[i]!=0; i++){
 		if(string[i]==' '){
 			string[i]=0;
-			i +=1;
+			i ++;
 			postBuffer = string + i;
 			return;
 		}
