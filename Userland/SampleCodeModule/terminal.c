@@ -12,7 +12,7 @@ int firstTime = 1;
 int enter = 0;
 int longitud = 0;
 char bufferTerminal[TERMINALDIM] = {0};
-char * postBuffer;
+char  * postBuffer = bufferTerminal;
 char * funciones[DIM]= {"help","inforeg","printmem","time","cpuid","cputemp","ceroDiv", "invalidOp"};
 
 void terminal(){
@@ -234,14 +234,15 @@ void removePreSpaces(char * string){
 }
 
 void removePostSpaces(char * string){
-	for (int i = 0; string[i]!=0; i++){
+	int flag = 1;
+	int i = 0;
+	for (i = 0; string[i]!=0 && flag; i++){
 		if(string[i]==' '){
 			string[i]=0;
-			i ++;
-			postBuffer = string + i;
-			return;
+			flag = 0;
 		}
 	}
+	postBuffer = string + i;
 }
 
 void ceroDivision(){
