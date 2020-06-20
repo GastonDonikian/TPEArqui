@@ -8,13 +8,7 @@ invalidOpCode:
 	ret
 
 ceroDiv:
-	push rbp
-	mov rbp, rsp
-	mov EAX, 3
-	mov EBX, 0
-	DIV EBX
-
-	mov rsp, rbp
-	pop rbp
+	mov eax, 3
+	mov ebx, 0
+	div ebx
 	ret
-

@@ -24,9 +24,9 @@ void getCpuTemp(char * answer){
 void getCpu(char * answer){
 	getCpuid(answer);
 }
-int stringToInt(char * string){
-	int resp=0;
-	int pow=1;
+long int stringToLong(char * string){
+	long int resp=0;
+	long int pow=1;
 	for (int i = 0; string[i]!=0 ; i++){
 		pow*=10;
 	}
@@ -39,6 +39,8 @@ int stringToInt(char * string){
 }
 void intToString(int num, char * result){
 	int i =0;
+	result[i]='0';
+	result[1] = 0;
 	while(num !=0){
 		result[i++]= num%10 + '0';
 		num = num/10;
@@ -51,12 +53,17 @@ void intToString(int num, char * result){
 		result[i-1-j]= aux;
 		j++;
 	}
+	if (i > 0)
+	{
+		result[i] = 0;
+	}
 	return;
-	result[i]=0;
 } 
 
 void longToString(long long int num, char * result){
 	int i =0;
+	result[i] = '0';
+	result[1] = 0;
 	while(num !=0){
 		result[i++]= num%10 + '0';
 		num = num/10;
@@ -69,8 +76,11 @@ void longToString(long long int num, char * result){
 		result[i-1-j]= aux;
 		j++;
 	}
+	if (i>0)
+	{
+		result[i] = 0;
+	}
 	return;
-	result[i]=0;
 } 
 
 void timeGetter(char * buff){

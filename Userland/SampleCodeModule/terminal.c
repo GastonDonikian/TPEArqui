@@ -72,7 +72,12 @@ void analize(char * buffer){
 	}
 	if (flag){
 		putChar('\n');
-		gotoFunction(j-1, postBuffer);
+		char auxPost[30] = {0};
+		for (int i = 0; postBuffer[i] != 0 && i < 30; i++){
+			auxPost[i] = postBuffer[i];
+		}
+		clearBufferTerminal();
+		gotoFunction(j-1, auxPost);
 		putChar('\n');
 	}
 	else{
@@ -80,13 +85,7 @@ void analize(char * buffer){
 		printf("Debe ingresar un comando");
 		putChar('\n');
 		putChar('\n');
-	}
-	for (int i = 0;buffer[i]!=0; i++){
-		buffer[i]=0;
-	}
-	longitud=0;
-	for (int k = 0; postBuffer[k]!= 0; k++){
-		postBuffer[k]=0;
+		clearBufferTerminal();
 	}
 }
 
@@ -118,13 +117,6 @@ void gotoFunction(int number, char * postBuffer){
 			break;
 	}
 	return;
-}
-
-void resetBufferTerminal(){
-	for (int i = 0; i < 48; i++){
-		bufferTerminal[i]=0;
-	}
-	longitud=0;
 }
 
 void help(){
@@ -166,13 +158,13 @@ void printmem(char * pointString){
 		}
 		j++;
 	}
-	int pointInt = stringToInt(pointString);
+	long int pointInt = stringToLong(pointString);
 	char * pointer = pointInt;
 	printf("\nPOS\t BITS     HEX ASCII\n\n");
 	for (int i = 0; i < 32; i++)
 	{
 		char p[11]={0};
-		intToString(pointInt, p);
+		longToString(pointInt, p);
 		pointInt++;
 		printf(p);
 		putChar('\t');
@@ -203,8 +195,6 @@ void getid(){
 	printf(cpuAns);
 	putChar('\n');
 	putChar('\n');
-	resetBufferTerminal();
-	terminal();
 }
 
 void cpuTemperature(){
@@ -246,15 +236,17 @@ void removePostSpaces(char * string){
 }
 
 void ceroDivision(){
-	longitud = 0;
-	bufferTerminal[0] = 0;
-	resetBufferTerminal();
 	ceroDiv();
 }
 
 void invalidOperation(){
-	longitud = 0;
-	bufferTerminal[0] = 0;
-	resetBufferTerminal();
 	invalidOpCode();
+}
+
+clearBufferTerminal(){
+	for (int i = 0; i < TERMINALDIM; i++){
+		bufferTerminal[i] = 0;
+		postBuffer = bufferTerminal;
+	}
+	longitud = 0;
 }

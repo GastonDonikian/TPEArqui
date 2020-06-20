@@ -8,9 +8,18 @@ extern uint64_t cpuTempStatus();
 extern uint64_t cpuTempTarget();
  
 void cpuModel(char * result){
+	char aux[16] = {0};
 	cpuModel1(result);
-	cpuModel2(result + 16);
-	cpuModel3(result + 32);
+	cpuModel2(aux);
+	for (int i = 16; aux[i%16] != 0; i++)
+	{
+		result[i] = aux[i%16];
+	}
+	cpuModel3(aux);
+	for (int i = 32; aux[i%16] != 0; i++)
+	{
+		result[i] = aux[i%16];
+	}
 } 
 
 void cpuTemperature(char * result){
