@@ -5,6 +5,9 @@ double evaluate(char * string);
 double evaluateOperator(double num1, double num2, char op);
 int operatorPrecedence(char op);
 int precedence(char op1,char op2);
+void closeParenthesis();
+void openParenthesis();
+void operatorInExpression(char * string,int i);
 int isANumber(char ch);
 int isOperator(char ch);
 void startOver(); //int position, char * buffer

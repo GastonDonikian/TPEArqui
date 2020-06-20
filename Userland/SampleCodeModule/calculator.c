@@ -96,14 +96,14 @@ void startOver() {
 }
 
 
-double evaluate(char * string) { 
+double evaluate(char * string) {
+	thereWasAnError = 0; 
 	for(int i = 0; string[i] != 0;i++) { 
 		if(thereWasAnError)
 			return 0;
 		int stillInANumber = 0;
 		if((string[i] == '-' && isANumber(string[i+1])) ||isANumber(string[i])) {
-			int flag = 0;
-			
+
 			if(string[i] == '-') {
 				operandStack[currentOperandPosition++] = ((double)-1)*stringToDouble(string + ++i); 
 				operationStack[currentOperationPosition++] = '+';
@@ -122,30 +122,18 @@ double evaluate(char * string) {
 			}
 
 		} 
-		else if(string[i] == '(') 
-			operationStack[currentOperationPosition++] = '(';
-	
-		else if(string[i] == ')') { 
-			while(operationStack[currentOperationPosition - 1] != '(') {
-				if(currentOperationPosition == 0) {
-					thereWasAnError = 2;
-					 return 0;
-				}
-				if(thereWasAnError)
-					 return 0;
-				updateStack();
-			}
-			operationStack[currentOperationPosition - 1] = 0; 
-			currentOperationPosition--;
 
+		else if(string[i] == '(') 
+			openParenthesis(); //hice esta funcion para mantener simetria
+		else if(string[i] == ')') {
+			closeParenthesis();
+			if(thereWasAnError)
+				return 0;
 		}
 		else if(isOperator(string[i])) { 
-			while((currentOperationPosition != 0) && precedence(operationStack[currentOperationPosition - 1],string[i])) {
-				updateStack();
-				if(thereWasAnError)
-					return 0;
-			}
-			operationStack[currentOperationPosition++] = string[i];
+			operatorInExpression(string,i);
+			if(thereWasAnError)
+				return 0;
 		}
 		else {
 			thereWasAnError = 2;
@@ -163,6 +151,32 @@ double evaluate(char * string) {
 	}
 
 	return operandStack[0]; 
+}
+
+void operatorInExpression(char * string, int i) {
+	while((currentOperationPosition != 0) && precedence(operationStack[currentOperationPosition - 1],string[i])) {
+		updateStack();
+		if(thereWasAnError)
+			return;
+	}
+	operationStack[currentOperationPosition++] = string[i];	
+}
+void openParenthesis(){
+	operationStack[currentOperationPosition++] = '(';
+}
+
+void closeParenthesis() {
+		while(operationStack[currentOperationPosition - 1] != '(') {
+			if(currentOperationPosition == 0) {
+				thereWasAnError = 2;
+				return;
+			}
+		if(thereWasAnError)
+			return;
+		updateStack();
+	}
+	operationStack[currentOperationPosition - 1] = 0; 
+	currentOperationPosition--;
 }
 
 void updateStack() { //OPERA CON EL ULTIMO VALOR DEL STACK Y LOS ULTIMOS DOS DEL STACK DE NUMEROS
