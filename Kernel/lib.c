@@ -116,6 +116,6 @@ void intToString(uint64_t num, char * result){
 		result[i-1-j]= aux;
 		j++;
 	}
-	return;
 	result[i]=0;
+	return;
 }

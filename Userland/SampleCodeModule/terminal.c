@@ -1,31 +1,33 @@
 #include <stdint.h>
 #include "lib.h"
 #include "terminal.h"
-#define TERMINALDIM  70
+#define TERMINALDIM  100
 #define DIM 8
 
-int firstTime = 1;
-int longitud = 0;
-char bufferTerminal[TERMINALDIM] = {0};
 extern void getRegisters(long int registerKeeper[]);
 extern void invalidOpCode();
 extern void ceroDiv();
 
-char * postBuffer;
-char * funciones[DIM]= {"help","inforeg","printmem","time","cpuid","cputemp","ceroDivision", "invalidOperation"};
+int firstTime = 1;
+int enter = 0;
+int longitud = 0;
+char bufferTerminal[TERMINALDIM] = {0};
+char  * postBuffer = bufferTerminal;
+char * funciones[DIM]= {"help","inforeg","printmem","time","cpuid","cputemp","ceroDiv", "invalidOp"};
 
 void terminal(){
 	setUpDown(1);
 	if(firstTime){
-		printf("Bienvenido, usted se encuentra en el Shell.\n");
-		printf(" Puede ver los comandos con el comando help.\n");
-		printf("Apriete tab para cambiar a la calculadora, y esc para guardar el estado de los registros\n");
-		putChar('\n');
 		firstTime = 0;
+		printf("Bienvenido, usted se encuentra\n en el Shell.\n\n");
+		printf("Puede ver los comandos con el\n comando help.\n\n");
+		printf("Apriete tab para cambiar a la\n calculadora, y esc para guardar el estado de los registros\n");
+		putChar('\n');
 	}
 	while(1){
-		if(longitud == 0){
+		if(!enter){
 			printf("<user/shell>:");
+			enter = 1;
 		}
 		char a;
 		while((a=getChar()) !='\n' && a != '\t'){
@@ -55,6 +57,7 @@ void terminal(){
 		}
 		if(a=='\n'){
 			putChar(a);
+			enter = 0;	
 			analize(bufferTerminal);
 		}
 	}
@@ -151,6 +154,10 @@ void charToHex(char  bits,char * string) {
 void printmem(char * pointString){
 	cleanString(pointString);
 	int j = 0;
+	if (pointString[j] == 0){
+		printf("Debe indacarme la posicion de memoria a imprimir en formato int");
+		return;
+	}
 	while(pointString[j]!=0){
 		if(pointString[j]<'0'|| pointString[j]>'9'){
 			printf("la direccion de memoria debe estar en formato int");
@@ -220,30 +227,34 @@ void removePreSpaces(char * string){
 	if(i>0){
 		int j=0;
 		while(string[i]!=0){
-			string[j++]=string[i++];
+			string[j++]=string[i++]; 
 		}
+		string[j] = 0;
 	}
 }
 
 void removePostSpaces(char * string){
-	for (int i = 0; string[i]!=0; i++){
+	int flag = 1;
+	int i = 0;
+	for (i = 0; string[i]!=0 && flag; i++){
 		if(string[i]==' '){
 			string[i]=0;
-			i +=1;
-			postBuffer = string + i;
-			return;
+			flag = 0;
 		}
 	}
+	postBuffer = string + i;
 }
 
 void ceroDivision(){
 	longitud = 0;
 	bufferTerminal[0] = 0;
+	resetBufferTerminal();
 	ceroDiv();
 }
 
 void invalidOperation(){
 	longitud = 0;
 	bufferTerminal[0] = 0;
+	resetBufferTerminal();
 	invalidOpCode();
 }
