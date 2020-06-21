@@ -154,7 +154,7 @@ void printmem(char * pointString){
 		j++;
 	}
 	long int pointInt = stringToLong(pointString);
-	char * pointer = pointInt;
+	char * pointer = (char *)pointInt;
 	printf("\nPOS\t BITS     HEX ASCII\n\n");
 	for (int i = 0; i < 32; i++)
 	{
