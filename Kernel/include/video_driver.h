@@ -6,7 +6,7 @@ void printCharByPixel(int x, int y,unsigned char ascii);
 void printAnyCharByPixel(int x, int y, unsigned char ascii,unsigned char red, unsigned char green, unsigned char blue);
 char isItWriten(int x, int y);
 void clear(void);
-
+void writeAnyPixel(int x, int y,unsigned char red,unsigned char green,unsigned char blue);
 #define WIDTH 1024 
 #define HEIGHT 768
 #define MULT 2

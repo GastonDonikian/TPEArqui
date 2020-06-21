@@ -41,14 +41,14 @@ struct vbe_mode_info_structure {
 } __attribute__ ((packed));
 
 
-struct vbe_mode_info_structure * screen_info = 0x5C00;
+struct vbe_mode_info_structure * screen_info = (void *)0x5C00;
 unsigned char mask[] = {128,64,32,16,8,4,2,1};
 
 int pos = 0; //Caracter de la pantalla
 int line = 0; //linea en la pantalla
 
 char * getPixelDataByPosition(int x, int y) {
-	return (screen_info->framebuffer + 3 * (x + y * WIDTH));
+	return (char *)(screen_info->framebuffer + (long)3 * (x + y * WIDTH));
 }
 
 char isItWriten(int x, int y) {

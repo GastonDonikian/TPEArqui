@@ -12,6 +12,7 @@ void initializeScreen(unsigned char select) {//HIGHLITEA LA PANTALLA EN LA QUE E
 		writeAnyPixel(SCREEN_WIDTH, i,0,128,255);
 	}
 	for(int i = 0; i < WIDTH; i++) {
+		
 		for(int j = 0; j < CHAR_SIZE;j++) {
 			if(select == 0) {
 				if(i < SCREEN_WIDTH) 

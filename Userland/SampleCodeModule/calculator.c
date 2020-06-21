@@ -10,7 +10,7 @@ char operationStack[MAX_OPERATIONS];
 char buffer[MAX_OPERATIONS + MAX_OPERANDS + 100] = {0};
 int position = 0;
 int currentOperandPosition = 0;
-int currentOperationPosition = 0; //VARIABLES GLOBALES PARA MANEJAR LOS STACKS
+int currentOperationPosition = 0; 
 int welcomeMessage = 1;
 int thereWasAnError = 0; // HABLA ENTRE LA CALCULADORA Y EL ANALIZADOR PARA SABER SI HUBO ALGUN ERROR CON LA EXPRESION
 //ERROR 0 = TODO BIEN
@@ -20,7 +20,7 @@ int thereWasAnError = 0; // HABLA ENTRE LA CALCULADORA Y EL ANALIZADOR PARA SABE
 //ERROR 4 = DIVIDISTE POR CERO 
 //ERROR 5 = NOT AN OPERATOR
 
-void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
+void calculator() { 
 	setUpDown(0);
 	if(welcomeMessage) {
 		welcomeMessage = 0;
@@ -29,8 +29,6 @@ void calculator() { //FUENTE DE "FRONT-END" DE LA CALCULADORA
 		printf("Ademas de parentesis ( )\n");
 		printf("Para indicar precedencia\n");
 		printf("No es necesario utilizar espacio\n\n");	
-		//printf("Utilizando el backspace\nse borra un caracter\n");
-		//printf("Utilizando el enter borra\nuna linea entera\n");
 		welcomeMessage = 0;
 	}	
 	thereWasAnError = 0;
@@ -148,7 +146,7 @@ int addNumber(char * string, int i,int stillInANumber) {
 		if(string[i + 1] == '.'){
 			if(stillInANumber) {
 				thereWasAnError = 1;
-				return;
+				return i;
 			}
 			stillInANumber = 1;
 		}
