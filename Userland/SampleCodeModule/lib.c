@@ -240,7 +240,7 @@ void printRegister(long int reg) {
 }
 
 
-void add_program(uint64_t function){
+void add_program(void * function){
 	addProgram((char *)function);
 }
 
