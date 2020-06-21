@@ -9,6 +9,6 @@ void time(char * buffer);
 void cpuGetter(char * buffer);
 void cputemp(char * buffer);
 void registerInfo(uint64_t *buffer);
-void add_Program(uint64_t function);
+void add_Program(void * function);
 void startProgram();
 #endif
