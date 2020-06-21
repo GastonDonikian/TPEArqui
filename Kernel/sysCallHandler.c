@@ -65,7 +65,7 @@ void registerInfo(uint64_t * buffer) {
 	getCurrentRegisters(buffer);
 }
 
-void add_Program(uint64_t function){
+void add_Program(void * function){
 	addFunction((void(*)(void))function);
 }
 
