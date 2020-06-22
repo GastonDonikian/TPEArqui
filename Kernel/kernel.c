@@ -90,22 +90,22 @@ int main()
 {	
 	load_idt();
 	initializeScreen(0);
-	ncPrint("[Kernel Main]");
-	ncNewline();
-	ncPrint("  Sample code module at 0x");
+	//ncPrint("[Kernel Main]");
+	//ncNewline();
+	//ncPrint("  Sample code module at 0x");
 	ncPrintHex((uint64_t)sampleCodeModuleAddress);
-	ncNewline();
-	ncPrint("  Calling the sample code module returned: ");
+	//ncNewline();
+	//ncPrint("  Calling the sample code module returned: ");
 	ncPrintHex(((EntryPoint)sampleCodeModuleAddress)());
-	ncNewline();
-	ncNewline();
-	ncPrint("  Sample data module at 0x");
+	//ncNewline();
+	//ncNewline();
+	//ncPrint("  Sample data module at 0x");
 	ncPrintHex((uint64_t)sampleDataModuleAddress);
-	ncNewline();
-	ncPrint("  Sample data module contents: ");
+	//ncNewline();
+	//ncPrint("  Sample data module contents: ");
 	ncPrint((char*)sampleDataModuleAddress);
-	ncNewline();
-	ncPrint("[Finished]");
+	//ncNewline();
+	//ncPrint("[Finished]");
 
 	return 0;
 }
